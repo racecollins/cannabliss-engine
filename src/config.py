@@ -50,7 +50,7 @@ def load_config() -> Config:
         mode=_env("MODE", "random"),
         count=int(_env("COUNT", "100")),
         dry_run=_env("DRY_RUN", "0") == "1",
-        seed=int(os.environ["SEED"]) if "SEED" in os.environ else None,
+        seed=_int_optional("SEED"),
         history_weeks=int(_env("HISTORY_WEEKS", "6")),
         max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
         fresh_days_1=int(_env("FRESH_DAYS_1", "30")),
