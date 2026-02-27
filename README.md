@@ -46,6 +46,11 @@ FRESH_PLAYLIST_ID=1h9wSgaNgFMTvt73qrgccn
 MODE=random
 COUNT=100
 DRY_RUN=0
+HISTORY_WEEKS=6
+MAX_TRACKS_PER_ARTIST=2
+FRESH_DAYS_1=30
+FRESH_DAYS_2=180
+ARCHIVE=0
 ```
 
 ### 4. Get Your Refresh Token (One Time)
@@ -112,7 +117,7 @@ In your repo → **Settings → Secrets and variables → Actions**, add:
 
 ### Schedule
 
-The workflow runs **every Monday at 9:00 AM UTC** automatically. You can also trigger it manually from the **Actions** tab with options for mode, seed, and dry run.
+The workflow runs **every Monday at 9:00 AM UTC** automatically. You can also trigger it manually from the **Actions** tab with options for mode, seed, dry run, history window, artist cap, freshness tiers, and archive mode.
 
 ### Manual Trigger
 
@@ -133,6 +138,11 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `COUNT`                  |          | `100`      | Number of tracks to select               |
 | `DRY_RUN`                |          | `0`        | `1` to preview without Spotify writes    |
 | `SEED`                   |          |            | Random seed for reproducible selection   |
+| `HISTORY_WEEKS`          |          | `6`        | Exclude tracks from last N runs          |
+| `MAX_TRACKS_PER_ARTIST`  |          | `2`        | Artist cap per selection                 |
+| `FRESH_DAYS_1`           |          | `30`       | Recent-tier days (weight 3 in random)    |
+| `FRESH_DAYS_2`           |          | `180`      | Mid-tier days (weight 2 in random)       |
+| `ARCHIVE`                |          | `0`        | `1` to create dated archive playlist     |
 
 ---
 

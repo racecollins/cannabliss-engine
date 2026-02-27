@@ -25,6 +25,34 @@ on:
         options:
           - "0"
           - "1"
+      history_weeks:
+        description: "Exclude tracks from last N runs"
+        required: false
+        default: "6"
+        type: string
+      max_tracks_per_artist:
+        description: "Max tracks per primary artist"
+        required: false
+        default: "2"
+        type: string
+      fresh_days_1:
+        description: "Freshness tier 1 days (weight 3)"
+        required: false
+        default: "30"
+        type: string
+      fresh_days_2:
+        description: "Freshness tier 2 days (weight 2)"
+        required: false
+        default: "180"
+        type: string
+      archive:
+        description: "Create dated archive playlist (1/0)"
+        required: false
+        default: "0"
+        type: choice
+        options:
+          - "0"
+          - "1"
 
 jobs:
   update-playlist:
@@ -53,4 +81,9 @@ jobs:
           COUNT: "100"
           DRY_RUN: ${{ inputs.dry_run || '0' }}
           SEED: ${{ inputs.seed || '' }}
+          HISTORY_WEEKS: ${{ inputs.history_weeks || '6' }}
+          MAX_TRACKS_PER_ARTIST: ${{ inputs.max_tracks_per_artist || '2' }}
+          FRESH_DAYS_1: ${{ inputs.fresh_days_1 || '30' }}
+          FRESH_DAYS_2: ${{ inputs.fresh_days_2 || '180' }}
+          ARCHIVE: ${{ inputs.archive || '0' }}
         run: python -m src.main

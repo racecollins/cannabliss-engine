@@ -18,6 +18,11 @@ class Config:
     count: int
     dry_run: bool
     seed: int | None
+    history_weeks: int
+    max_tracks_per_artist: int
+    fresh_days_1: int
+    fresh_days_2: int
+    archive: bool
 
 
 def load_config() -> Config:
@@ -38,6 +43,11 @@ def load_config() -> Config:
         count=int(_env("COUNT", "100")),
         dry_run=_env("DRY_RUN", "0") == "1",
         seed=int(os.environ["SEED"]) if "SEED" in os.environ else None,
+        history_weeks=int(_env("HISTORY_WEEKS", "6")),
+        max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
+        fresh_days_1=int(_env("FRESH_DAYS_1", "30")),
+        fresh_days_2=int(_env("FRESH_DAYS_2", "180")),
+        archive=_env("ARCHIVE", "0") == "1",
     )
 
 
@@ -50,6 +60,16 @@ def validate_config(cfg: Config) -> None:
 
     if cfg.count < 1:
         errors.append(f"COUNT must be >= 1, got {cfg.count}")
+    if cfg.history_weeks < 0:
+        errors.append(f"HISTORY_WEEKS must be >= 0, got {cfg.history_weeks}")
+    if cfg.max_tracks_per_artist < 1:
+        errors.append(f"MAX_TRACKS_PER_ARTIST must be >= 1, got {cfg.max_tracks_per_artist}")
+    if cfg.fresh_days_1 < 1:
+        errors.append(f"FRESH_DAYS_1 must be >= 1, got {cfg.fresh_days_1}")
+    if cfg.fresh_days_2 < cfg.fresh_days_1:
+        errors.append(
+            f"FRESH_DAYS_2 must be >= FRESH_DAYS_1 ({cfg.fresh_days_1}), got {cfg.fresh_days_2}"
+        )
 
     if not cfg.master_playlist_id:
         errors.append("MASTER_PLAYLIST_ID is empty")
