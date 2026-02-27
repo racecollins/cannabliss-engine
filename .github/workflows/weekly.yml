@@ -45,14 +45,6 @@ on:
         required: false
         default: "180"
         type: string
-      archive:
-        description: "Create dated archive playlist (1/0)"
-        required: false
-        default: "0"
-        type: choice
-        options:
-          - "0"
-          - "1"
 
 jobs:
   update-playlist:
@@ -85,5 +77,4 @@ jobs:
           MAX_TRACKS_PER_ARTIST: ${{ inputs.max_tracks_per_artist || '2' }}
           FRESH_DAYS_1: ${{ inputs.fresh_days_1 || '30' }}
           FRESH_DAYS_2: ${{ inputs.fresh_days_2 || '180' }}
-          ARCHIVE: ${{ inputs.archive || '0' }}
         run: python -m src.main

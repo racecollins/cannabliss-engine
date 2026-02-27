@@ -50,7 +50,6 @@ HISTORY_WEEKS=6
 MAX_TRACKS_PER_ARTIST=2
 FRESH_DAYS_1=30
 FRESH_DAYS_2=180
-ARCHIVE=0
 ```
 
 ### 4. Get Your Refresh Token (One Time)
@@ -117,7 +116,7 @@ In your repo → **Settings → Secrets and variables → Actions**, add:
 
 ### Schedule
 
-The workflow runs **every Monday at 9:00 AM UTC** automatically. You can also trigger it manually from the **Actions** tab with options for mode, seed, dry run, history window, artist cap, freshness tiers, and archive mode.
+The workflow runs **every Monday at 9:00 AM UTC** automatically. You can also trigger it manually from the **Actions** tab with options for mode, seed, dry run, history window, artist cap, and freshness tiers.
 
 ### Manual Trigger
 
@@ -142,7 +141,6 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `MAX_TRACKS_PER_ARTIST`  |          | `2`        | Artist cap per selection                 |
 | `FRESH_DAYS_1`           |          | `30`       | Recent-tier days (weight 3 in random)    |
 | `FRESH_DAYS_2`           |          | `180`      | Mid-tier days (weight 2 in random)       |
-| `ARCHIVE`                |          | `0`        | `1` to create dated archive playlist     |
 
 ---
 

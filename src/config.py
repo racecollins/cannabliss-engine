@@ -22,7 +22,6 @@ class Config:
     max_tracks_per_artist: int
     fresh_days_1: int
     fresh_days_2: int
-    archive: bool
 
 
 def load_config() -> Config:
@@ -47,7 +46,6 @@ def load_config() -> Config:
         max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
         fresh_days_1=int(_env("FRESH_DAYS_1", "30")),
         fresh_days_2=int(_env("FRESH_DAYS_2", "180")),
-        archive=_env("ARCHIVE", "0") == "1",
     )
 
 

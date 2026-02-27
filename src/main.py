@@ -20,7 +20,7 @@ def main() -> None:
         print(f"🎲 Seed: {cfg.seed}")
     print(
         f"🧠 HISTORY_WEEKS={cfg.history_weeks}, MAX_TRACKS_PER_ARTIST={cfg.max_tracks_per_artist}, "
-        f"FRESH_DAYS_1={cfg.fresh_days_1}, FRESH_DAYS_2={cfg.fresh_days_2}, ARCHIVE={cfg.archive}"
+        f"FRESH_DAYS_1={cfg.fresh_days_1}, FRESH_DAYS_2={cfg.fresh_days_2}"
     )
 
     # ── Auth ──────────────────────────────────────────────────────
@@ -71,26 +71,12 @@ def main() -> None:
 
     # ── Write or dry-run ──────────────────────────────────────────
     if cfg.dry_run:
-        if cfg.archive:
-            archive_name = f"Fresh 100 — {datetime.now(timezone.utc).strftime('%Y-%m-%d')}"
-            print(f"\n🗂️  DRY RUN — would create archive playlist '{archive_name}'.")
         append_history(selected, cfg.mode, cfg.seed)
         print("🧾 Recorded run in data/history.json")
         print("\n🏜️  DRY RUN — no changes made to Spotify.")
         return
 
     uris = [t.uri for t in selected]
-    if cfg.archive:
-        archive_name = f"Fresh 100 — {datetime.now(timezone.utc).strftime('%Y-%m-%d')}"
-        archive_desc = f"Archive · mode={cfg.mode} · seed={cfg.seed}"
-        print(f"\n🗂️  Creating archive playlist '{archive_name}' …")
-        try:
-            archive_id = client.create_playlist(archive_name, archive_desc, public=False)
-            client.replace_playlist_tracks(archive_id, uris)
-        except SpotifyApiError as err:
-            _print_spotify_error_help(err)
-            sys.exit(1)
-
     print(f"\n✍️  Replacing Fresh 100 playlist {cfg.fresh_playlist_id} …")
     try:
         client.replace_playlist_tracks(cfg.fresh_playlist_id, uris)
