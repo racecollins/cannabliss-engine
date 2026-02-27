@@ -32,6 +32,7 @@ class SpotifyClient:
         self._client_secret = client_secret
         self._refresh_token = refresh_token
         self._access_token: str | None = None
+        self._user_id: str | None = None
 
     # -- Auth -----------------------------------------------------
 
@@ -85,6 +86,25 @@ class SpotifyClient:
         self._put(url, json={"uris": uris})
         print(f"✅ Replaced playlist {playlist_id} with {len(uris)} tracks")
 
+    def create_playlist(self, name: str, description: str, public: bool = False) -> str:
+        """Create a playlist for the authenticated user and return its id."""
+        if not self._user_id:
+            me = self._get(f"{API_BASE}/me")
+            self._user_id = me["id"]
+
+        url = f"{API_BASE}/users/{self._user_id}/playlists"
+        data = self._post(
+            url,
+            json={
+                "name": name,
+                "description": description,
+                "public": public,
+            },
+        )
+        playlist_id = data["id"]
+        print(f"✅ Created archive playlist {playlist_id}")
+        return playlist_id
+
     def update_playlist_description(self, playlist_id: str, description: str) -> None:
         """Update a playlist's description.
 
@@ -114,6 +134,12 @@ class SpotifyClient:
 
     def _put(self, url: str, json: dict | None = None) -> dict | None:
         return self._request("PUT", url, json=json)
+
+    def _post(self, url: str, json: dict | None = None) -> dict:
+        data = self._request("POST", url, json=json)
+        if data is None:
+            raise RuntimeError(f"Expected JSON response for POST {url}")
+        return data
 
     def _request(self, method: str, url: str, **kwargs) -> dict | None:
         last_error: SpotifyApiError | None = None

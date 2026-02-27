@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 
 from src.config import load_config, validate_config
 from src.spotify_client import SpotifyApiError, SpotifyClient
-from src.selection import select_tracks
+from src.selection import append_history, load_history, parse_tracks, select_tracks_from_tracks
 
 
 def main() -> None:
@@ -18,6 +18,10 @@ def main() -> None:
     print(f"🎵 Fresh 100 — mode={cfg.mode}, count={cfg.count}, dry_run={cfg.dry_run}")
     if cfg.seed is not None:
         print(f"🎲 Seed: {cfg.seed}")
+    print(
+        f"🧠 HISTORY_WEEKS={cfg.history_weeks}, MAX_TRACKS_PER_ARTIST={cfg.max_tracks_per_artist}, "
+        f"FRESH_DAYS_1={cfg.fresh_days_1}, FRESH_DAYS_2={cfg.fresh_days_2}, ARCHIVE={cfg.archive}"
+    )
 
     # ── Auth ──────────────────────────────────────────────────────
     client = SpotifyClient(cfg.spotify_client_id, cfg.spotify_client_secret, cfg.spotify_refresh_token)
@@ -41,7 +45,20 @@ def main() -> None:
 
     # ── Select ────────────────────────────────────────────────────
     print(f"\n🔀 Selecting {cfg.count} tracks (mode={cfg.mode}) …")
-    selected = select_tracks(raw_items, cfg.mode, cfg.count, cfg.seed)
+    parsed = parse_tracks(raw_items)
+    print(f"📋 Parsed {len(parsed)} valid tracks")
+    history_runs = load_history()
+    selected, _meta = select_tracks_from_tracks(
+        parsed,
+        mode=cfg.mode,
+        count=cfg.count,
+        seed=cfg.seed,
+        history_runs=history_runs,
+        history_weeks=cfg.history_weeks,
+        max_tracks_per_artist=cfg.max_tracks_per_artist,
+        fresh_days_1=cfg.fresh_days_1,
+        fresh_days_2=cfg.fresh_days_2,
+    )
 
     if not selected:
         print("⚠️  No valid tracks found after filtering. Nothing to do.")
@@ -54,10 +71,26 @@ def main() -> None:
 
     # ── Write or dry-run ──────────────────────────────────────────
     if cfg.dry_run:
+        if cfg.archive:
+            archive_name = f"Fresh 100 — {datetime.now(timezone.utc).strftime('%Y-%m-%d')}"
+            print(f"\n🗂️  DRY RUN — would create archive playlist '{archive_name}'.")
+        append_history(selected, cfg.mode, cfg.seed)
+        print("🧾 Recorded run in data/history.json")
         print("\n🏜️  DRY RUN — no changes made to Spotify.")
         return
 
     uris = [t.uri for t in selected]
+    if cfg.archive:
+        archive_name = f"Fresh 100 — {datetime.now(timezone.utc).strftime('%Y-%m-%d')}"
+        archive_desc = f"Archive · mode={cfg.mode} · seed={cfg.seed}"
+        print(f"\n🗂️  Creating archive playlist '{archive_name}' …")
+        try:
+            archive_id = client.create_playlist(archive_name, archive_desc, public=False)
+            client.replace_playlist_tracks(archive_id, uris)
+        except SpotifyApiError as err:
+            _print_spotify_error_help(err)
+            sys.exit(1)
+
     print(f"\n✍️  Replacing Fresh 100 playlist {cfg.fresh_playlist_id} …")
     try:
         client.replace_playlist_tracks(cfg.fresh_playlist_id, uris)
@@ -69,6 +102,8 @@ def main() -> None:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     desc = f"Auto-updated {now} · Mode: {cfg.mode} · {len(selected)} tracks from Master"
     client.update_playlist_description(cfg.fresh_playlist_id, desc)
+    append_history(selected, cfg.mode, cfg.seed)
+    print("🧾 Recorded run in data/history.json")
 
     print("\n🎉 Done!")
 
