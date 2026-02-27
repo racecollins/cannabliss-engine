@@ -1,0 +1,56 @@
+name: Fresh 100 Weekly Update
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"  # Every Monday at 9:00 AM UTC
+  workflow_dispatch:       # Manual trigger
+    inputs:
+      mode:
+        description: "Selection mode"
+        required: false
+        default: "random"
+        type: choice
+        options:
+          - random
+          - recent
+      seed:
+        description: "Random seed (optional, for reproducibility)"
+        required: false
+        type: string
+      dry_run:
+        description: "Dry run (1 = no Spotify writes)"
+        required: false
+        default: "0"
+        type: choice
+        options:
+          - "0"
+          - "1"
+
+jobs:
+  update-playlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Fresh 100
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          MASTER_PLAYLIST_ID: "3P9XkucRpg9Naz8cGyZOpW"
+          FRESH_PLAYLIST_ID: "1h9wSgaNgFMTvt73qrgccn"
+          MODE: ${{ inputs.mode || 'random' }}
+          COUNT: "100"
+          DRY_RUN: ${{ inputs.dry_run || '0' }}
+          SEED: ${{ inputs.seed || '' }}
+        run: python -m src.main
