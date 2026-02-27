@@ -22,6 +22,15 @@ class Config:
     max_tracks_per_artist: int
     fresh_days_1: int
     fresh_days_2: int
+    evolve: bool
+    candidates: int
+    candidate_seed_base: int | None
+    score_w_novelty: float
+    score_w_diversity: float
+    score_w_cohesion: float
+    score_w_freshness: float
+    evolve_log_path: str
+    archive_winner: bool
 
 
 def load_config() -> Config:
@@ -46,6 +55,15 @@ def load_config() -> Config:
         max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
         fresh_days_1=int(_env("FRESH_DAYS_1", "30")),
         fresh_days_2=int(_env("FRESH_DAYS_2", "180")),
+        evolve=_env("EVOLVE", "0") == "1",
+        candidates=int(_env("CANDIDATES", "7")),
+        candidate_seed_base=_int_optional("CANDIDATE_SEED_BASE"),
+        score_w_novelty=float(_env("SCORE_W_NOVELTY", "1.0")),
+        score_w_diversity=float(_env("SCORE_W_DIVERSITY", "1.0")),
+        score_w_cohesion=float(_env("SCORE_W_COHESION", "1.0")),
+        score_w_freshness=float(_env("SCORE_W_FRESHNESS", "0.5")),
+        evolve_log_path=_env("EVOLVE_LOG_PATH", "data/evolve_log.jsonl"),
+        archive_winner=_env("ARCHIVE_WINNER", "0") == "1",
     )
 
 
@@ -68,6 +86,18 @@ def validate_config(cfg: Config) -> None:
         errors.append(
             f"FRESH_DAYS_2 must be >= FRESH_DAYS_1 ({cfg.fresh_days_1}), got {cfg.fresh_days_2}"
         )
+    if cfg.candidates < 1:
+        errors.append(f"CANDIDATES must be >= 1, got {cfg.candidates}")
+    for name, value in [
+        ("SCORE_W_NOVELTY", cfg.score_w_novelty),
+        ("SCORE_W_DIVERSITY", cfg.score_w_diversity),
+        ("SCORE_W_COHESION", cfg.score_w_cohesion),
+        ("SCORE_W_FRESHNESS", cfg.score_w_freshness),
+    ]:
+        if value < 0:
+            errors.append(f"{name} must be >= 0, got {value}")
+    if not cfg.evolve_log_path:
+        errors.append("EVOLVE_LOG_PATH must not be empty")
 
     if not cfg.master_playlist_id:
         errors.append("MASTER_PLAYLIST_ID is empty")
@@ -96,3 +126,10 @@ def _require(name: str) -> str:
 
 def _env(name: str, default: str) -> str:
     return os.environ.get(name, default).strip()
+
+
+def _int_optional(name: str) -> int | None:
+    val = os.environ.get(name, "").strip()
+    if not val:
+        return None
+    return int(val)

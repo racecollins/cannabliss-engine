@@ -45,6 +45,19 @@ on:
         required: false
         default: "180"
         type: string
+      evolve:
+        description: "Enable evolutionary mode (1/0)"
+        required: false
+        default: "0"
+        type: choice
+        options:
+          - "0"
+          - "1"
+      candidates:
+        description: "Number of evolutionary candidates"
+        required: false
+        default: "7"
+        type: string
 
 jobs:
   update-playlist:
@@ -77,4 +90,12 @@ jobs:
           MAX_TRACKS_PER_ARTIST: ${{ inputs.max_tracks_per_artist || '2' }}
           FRESH_DAYS_1: ${{ inputs.fresh_days_1 || '30' }}
           FRESH_DAYS_2: ${{ inputs.fresh_days_2 || '180' }}
+          EVOLVE: ${{ inputs.evolve || '0' }}
+          CANDIDATES: ${{ inputs.candidates || '7' }}
+          SCORE_W_NOVELTY: "1.0"
+          SCORE_W_DIVERSITY: "1.0"
+          SCORE_W_COHESION: "1.0"
+          SCORE_W_FRESHNESS: "0.5"
+          EVOLVE_LOG_PATH: "data/evolve_log.jsonl"
+          ARCHIVE_WINNER: "0"
         run: python -m src.main

@@ -50,6 +50,14 @@ HISTORY_WEEKS=6
 MAX_TRACKS_PER_ARTIST=2
 FRESH_DAYS_1=30
 FRESH_DAYS_2=180
+EVOLVE=0
+CANDIDATES=7
+SCORE_W_NOVELTY=1.0
+SCORE_W_DIVERSITY=1.0
+SCORE_W_COHESION=1.0
+SCORE_W_FRESHNESS=0.5
+EVOLVE_LOG_PATH=data/evolve_log.jsonl
+ARCHIVE_WINNER=0
 ```
 
 ### 4. Get Your Refresh Token (One Time)
@@ -84,6 +92,9 @@ MODE=recent python -m src.main
 
 # Reproducible random selection
 SEED=42 python -m src.main
+
+# Evolution mode dry run (generate/score candidates, no Spotify writes)
+EVOLVE=1 CANDIDATES=7 DRY_RUN=1 python -m src.main
 ```
 
 ### Smoke Test
@@ -141,6 +152,15 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `MAX_TRACKS_PER_ARTIST`  |          | `2`        | Artist cap per selection                 |
 | `FRESH_DAYS_1`           |          | `30`       | Recent-tier days (weight 3 in random)    |
 | `FRESH_DAYS_2`           |          | `180`      | Mid-tier days (weight 2 in random)       |
+| `EVOLVE`                 |          | `0`        | `1` enables evolutionary candidate scoring |
+| `CANDIDATES`             |          | `7`        | Number of candidates to generate          |
+| `CANDIDATE_SEED_BASE`    |          |            | Stable base seed for deterministic candidates |
+| `SCORE_W_NOVELTY`        |          | `1.0`      | Novelty weight in evolution score         |
+| `SCORE_W_DIVERSITY`      |          | `1.0`      | Diversity weight in evolution score       |
+| `SCORE_W_COHESION`       |          | `1.0`      | Cohesion weight in evolution score        |
+| `SCORE_W_FRESHNESS`      |          | `0.5`      | Freshness weight in evolution score       |
+| `EVOLVE_LOG_PATH`        |          | `data/evolve_log.jsonl` | JSONL run log for candidates/winner |
+| `ARCHIVE_WINNER`         |          | `0`        | `1` creates dated winner archive playlist |
 
 ---
 
@@ -151,3 +171,9 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 - ✅ No secrets in code — all via env vars / GitHub Secrets
 - ✅ DRY_RUN mode for safe previews
 - ✅ `.env` is gitignored
+
+## Evolution Mode
+
+Set `EVOLVE=1` to generate multiple playlist candidates (`CANDIDATES`) per run, score them, and choose the highest-scoring winner.
+Scoring combines novelty, artist diversity, feature cohesion, and freshness using `SCORE_W_*` weights.
+Each run appends a reproducible candidate/winner record to `EVOLVE_LOG_PATH` (JSONL, no secrets).

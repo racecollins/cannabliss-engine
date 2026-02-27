@@ -2,6 +2,7 @@
 .env.save
 .DS_Store
 venv/
+data/evolve_log.jsonl
 __pycache__/
 *.pyc
 .pytest_cache/

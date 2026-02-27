@@ -32,6 +32,8 @@ class SpotifyClient:
         self._client_secret = client_secret
         self._refresh_token = refresh_token
         self._access_token: str | None = None
+        self._audio_features_cache: dict[str, dict | None] = {}
+        self._user_id: str | None = None
 
     # -- Auth -----------------------------------------------------
 
@@ -102,6 +104,55 @@ class SpotifyClient:
             raise
         print("✅ Updated playlist description")
 
+    def create_playlist(self, name: str, description: str, public: bool = False) -> str:
+        """Create a playlist for the authenticated user and return playlist id."""
+        if not self._user_id:
+            me = self._get(f"{API_BASE}/me")
+            self._user_id = me["id"]
+
+        data = self._post(
+            f"{API_BASE}/users/{self._user_id}/playlists",
+            json={
+                "name": name,
+                "description": description,
+                "public": public,
+            },
+        )
+        playlist_id = data["id"]
+        print(f"✅ Created playlist {playlist_id}")
+        return playlist_id
+
+    def get_audio_features(self, track_ids: list[str]) -> dict[str, dict]:
+        """Fetch audio features for track IDs in batches with run-local cache."""
+        unique_ids: list[str] = []
+        for tid in track_ids:
+            if tid and tid not in unique_ids:
+                unique_ids.append(tid)
+
+        missing = [tid for tid in unique_ids if tid not in self._audio_features_cache]
+        for i in range(0, len(missing), 100):
+            batch = missing[i:i + 100]
+            if not batch:
+                continue
+            data = self._get(f"{API_BASE}/audio-features", params={"ids": ",".join(batch)})
+            returned_ids: set[str] = set()
+            for feat in data.get("audio_features", []):
+                if not feat:
+                    continue
+                tid = feat.get("id")
+                if tid:
+                    self._audio_features_cache[tid] = feat
+                    returned_ids.add(tid)
+            for tid in batch:
+                if tid not in returned_ids:
+                    self._audio_features_cache[tid] = None
+
+        return {
+            tid: feat
+            for tid in unique_ids
+            if (feat := self._audio_features_cache.get(tid)) is not None
+        }
+
     # -- HTTP helpers with retry ---------------------------------
 
     def _headers(self) -> dict:
@@ -114,6 +165,12 @@ class SpotifyClient:
 
     def _put(self, url: str, json: dict | None = None) -> dict | None:
         return self._request("PUT", url, json=json)
+
+    def _post(self, url: str, json: dict | None = None) -> dict:
+        data = self._request("POST", url, json=json)
+        if data is None:
+            raise RuntimeError(f"Expected JSON response from POST {url}")
+        return data
 
     def _request(self, method: str, url: str, **kwargs) -> dict | None:
         last_error: SpotifyApiError | None = None
