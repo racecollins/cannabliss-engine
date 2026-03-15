@@ -1,10 +1,17 @@
-"""Fresh 100 — main entrypoint."""
+"""Playlist automation entrypoint."""
 
 from __future__ import annotations
 
 import sys
 from datetime import datetime, timezone
 
+from src.cannabliss import (
+    ListeningSignals,
+    append_cannabliss_run,
+    build_cannabliss_playlist,
+    load_cannabliss_state,
+    parse_source_items,
+)
 from src.config import load_config, validate_config
 from src.evolution import (
     ScoreWeights,
@@ -23,7 +30,10 @@ def main() -> None:
     cfg = load_config()
     validate_config(cfg)
 
-    print(f"🎵 Fresh 100 — mode={cfg.mode}, count={cfg.count}, dry_run={cfg.dry_run}")
+    print(
+        f"🎵 Playlist automation — profile={cfg.profile}, mode={cfg.mode}, "
+        f"count={cfg.count}, dry_run={cfg.dry_run}"
+    )
     if cfg.seed is not None:
         print(f"🎲 Seed: {cfg.seed}")
     print(
@@ -42,6 +52,16 @@ def main() -> None:
     except SpotifyApiError as err:
         _print_spotify_error_help(err)
         sys.exit(1)
+
+    if cfg.profile == "cannabliss":
+        run_cannabliss(cfg, client)
+        return
+
+    run_fresh100(cfg, client)
+
+
+def run_fresh100(cfg, client: SpotifyClient) -> None:
+    """Existing Fresh 100 flow."""
 
     # ── Read Master ───────────────────────────────────────────────
     print(f"\n📖 Reading Master playlist {cfg.master_playlist_id} …")
@@ -179,6 +199,124 @@ def main() -> None:
     print("🧾 Recorded run in data/history.json")
 
     print("\n🎉 Done!")
+
+
+def run_cannabliss(cfg, client: SpotifyClient) -> None:
+    """Cannabliss rolling playlist flow."""
+    print(
+        f"🌿 Cannabliss — target_size={cfg.cannabliss_target_size}, "
+        f"weekly_insertions={cfg.cannabliss_weekly_insertions}"
+    )
+    print(f"🛡️  Master {cfg.master_playlist_id} is read-only in this profile.")
+
+    print(f"\n📖 Reading Cannabliss Master playlist {cfg.master_playlist_id} …")
+    try:
+        master_items = client.get_all_playlist_items(cfg.master_playlist_id)
+        current_items = client.get_all_playlist_items(cfg.cannabliss_target_playlist_id)
+        hall_items = (
+            client.get_all_playlist_items(cfg.cannabliss_hall_of_fame_playlist_id)
+            if cfg.cannabliss_hall_of_fame_playlist_id
+            else []
+        )
+    except SpotifyApiError as err:
+        _print_spotify_error_help(err)
+        sys.exit(1)
+
+    feeder_tracks = []
+    for playlist_id in cfg.cannabliss_feeder_playlist_ids:
+        print(f"\n📡 Reading feeder playlist {playlist_id} …")
+        try:
+            feeder_items = client.get_all_playlist_items(playlist_id)
+        except SpotifyApiError as err:
+            print(f"⚠️  Skipping feeder playlist {playlist_id}: {err}")
+            continue
+        feeder_tracks.extend(
+            parse_source_items(feeder_items, source_tag=f"feeder:{playlist_id}")
+        )
+
+    top_track_ids: set[str] = set()
+    if cfg.cannabliss_use_top_tracks:
+        print(
+            f"\n🎧 Reading your top tracks "
+            f"(term={cfg.cannabliss_top_tracks_term}, limit={cfg.cannabliss_top_tracks_limit}) …"
+        )
+        try:
+            top_track_ids = client.get_top_track_ids(
+                time_range=cfg.cannabliss_top_tracks_term,
+                limit=cfg.cannabliss_top_tracks_limit,
+            )
+            print(f"✅ Loaded {len(top_track_ids)} top-track IDs")
+        except SpotifyApiError as err:
+            print(f"⚠️  Could not load top tracks: {err}")
+            print("   Continuing without top-track listening boosts.")
+
+    recently_played_ids: set[str] = set()
+    if cfg.cannabliss_use_recently_played:
+        print(f"\n🕒 Reading your recently played tracks (limit={cfg.cannabliss_recently_played_limit}) …")
+        try:
+            recently_played_ids = client.get_recently_played_track_ids(
+                limit=cfg.cannabliss_recently_played_limit,
+            )
+            print(f"✅ Loaded {len(recently_played_ids)} recently-played track IDs")
+        except SpotifyApiError as err:
+            print(f"⚠️  Could not load recently played tracks: {err}")
+            print("   Continuing without recent-listening boosts.")
+
+    state = load_cannabliss_state(cfg.cannabliss_state_path)
+    print(f"🧾 Loaded Cannabliss state with {len(state.get('runs', []))} prior runs")
+
+    result = build_cannabliss_playlist(
+        master_tracks=parse_source_items(master_items, source_tag="master"),
+        current_tracks=parse_source_items(current_items, source_tag="current", current_order=True),
+        feeder_tracks=feeder_tracks,
+        hall_tracks=parse_source_items(hall_items, source_tag="hall"),
+        target_size=cfg.cannabliss_target_size,
+        weekly_insertions=cfg.cannabliss_weekly_insertions,
+        max_tracks_per_artist=cfg.max_tracks_per_artist,
+        listening_signals=ListeningSignals(
+            top_track_ids=frozenset(top_track_ids),
+            recently_played_ids=frozenset(recently_played_ids),
+            top_tracks_boost=cfg.cannabliss_top_tracks_boost,
+            recently_played_boost=cfg.cannabliss_recently_played_boost,
+        ),
+    )
+
+    print(f"\n🎛️  Cannabliss top 50 preview ({len(result.ordered_tracks)} total tracks):")
+    for i, track in enumerate(result.ordered_tracks[:50], start=1):
+        print(f"  {i:>3}. {track.name} — {track.artists}")
+
+    print("\n📦 Cannabliss changes:")
+    for label in ("added", "promoted", "held", "shifted_down", "removed"):
+        values = result.summary.get(label, [])
+        preview = ", ".join(values[:10]) if values else "none"
+        suffix = " …" if len(values) > 10 else ""
+        print(f"  • {label}: {len(values)} ({preview}{suffix})")
+
+    append_cannabliss_run(result, path=cfg.cannabliss_state_path)
+    print(f"🧾 Recorded Cannabliss run in {cfg.cannabliss_state_path}")
+
+    if cfg.dry_run:
+        print("\n🏜️  DRY RUN — no changes made to Spotify.")
+        return
+
+    uris = [track.uri for track in result.ordered_tracks]
+    print(
+        f"\n✍️  Replacing Cannabliss Rolling 160 playlist "
+        f"{cfg.cannabliss_target_playlist_id} …"
+    )
+    try:
+        client.replace_playlist_tracks(cfg.cannabliss_target_playlist_id, uris)
+    except SpotifyApiError as err:
+        _print_spotify_error_help(err)
+        sys.exit(1)
+
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    desc = (
+        f"Auto-updated {now} · Cannabliss Rolling 160 · "
+        f"{cfg.cannabliss_weekly_insertions} weekly insertions"
+    )
+    client.update_playlist_description(cfg.cannabliss_target_playlist_id, desc)
+    print("\n🎉 Cannabliss update complete!")
 
 
 def _print_spotify_error_help(err: SpotifyApiError) -> None:

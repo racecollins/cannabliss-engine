@@ -20,7 +20,14 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 
 import requests
 
-SCOPES = "playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private"
+SCOPES = (
+    "playlist-read-private "
+    "playlist-read-collaborative "
+    "playlist-modify-public "
+    "playlist-modify-private "
+    "user-top-read "
+    "user-read-recently-played"
+)
 AUTH_URL = "https://accounts.spotify.com/authorize"
 TOKEN_URL = "https://accounts.spotify.com/api/token"
 DEFAULT_REDIRECT_URI = "http://127.0.0.1:8888/callback"

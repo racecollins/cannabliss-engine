@@ -5,6 +5,14 @@ on:
     - cron: "0 9 * * 1"  # Every Monday at 9:00 AM UTC
   workflow_dispatch:       # Manual trigger
     inputs:
+      profile:
+        description: "Automation profile"
+        required: false
+        default: "fresh100"
+        type: choice
+        options:
+          - fresh100
+          - cannabliss
       mode:
         description: "Selection mode"
         required: false
@@ -75,13 +83,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Fresh 100
+      - name: Run Playlist Automation
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          PROFILE: ${{ inputs.profile || 'fresh100' }}
           MASTER_PLAYLIST_ID: "3P9XkucRpg9Naz8cGyZOpW"
           FRESH_PLAYLIST_ID: "1h9wSgaNgFMTvt73qrgccn"
+          CANNABLISS_TARGET_PLAYLIST_ID: "47W5136lY5XazjWDHmfyxm"
+          CANNABLISS_HALL_OF_FAME_PLAYLIST_ID: "6rdvXMnttC3muaQICqpNmc"
+          CANNABLISS_FEEDER_PLAYLIST_IDS: "37i9dQZF1DXdwmD5Q7Gxah,37i9dQZF1DWWqNV5cS50j6,6rdvXMnttC3muaQICqpNmc"
+          CANNABLISS_TARGET_SIZE: "160"
+          CANNABLISS_WEEKLY_INSERTIONS: "40"
+          CANNABLISS_STATE_PATH: "data/cannabliss_state.json"
           MODE: ${{ inputs.mode || 'random' }}
           COUNT: "100"
           DRY_RUN: ${{ inputs.dry_run || '0' }}

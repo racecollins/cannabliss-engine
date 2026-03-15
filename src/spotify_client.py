@@ -81,10 +81,18 @@ class SpotifyClient:
     # -- Playlist writes -----------------------------------------
 
     def replace_playlist_tracks(self, playlist_id: str, uris: list[str]) -> None:
-        """Replace all tracks in a playlist (max 100 per call)."""
+        """Replace all tracks in a playlist.
+
+        Spotify allows at most 100 URIs per request. We replace with the first
+        batch and append the remaining tracks in 100-item chunks.
+        """
         # `/items` works reliably for both read and replace operations.
         url = f"{API_BASE}/playlists/{playlist_id}/items"
-        self._put(url, json={"uris": uris})
+        first_batch = uris[:100]
+        self._put(url, json={"uris": first_batch})
+        for i in range(100, len(uris), 100):
+            batch = uris[i:i + 100]
+            self._post(url, json={"uris": batch})
         print(f"✅ Replaced playlist {playlist_id} with {len(uris)} tracks")
 
     def update_playlist_description(self, playlist_id: str, description: str) -> None:
@@ -152,6 +160,38 @@ class SpotifyClient:
             for tid in unique_ids
             if (feat := self._audio_features_cache.get(tid)) is not None
         }
+
+    def get_top_track_ids(
+        self,
+        *,
+        time_range: str = "short_term",
+        limit: int = 50,
+    ) -> set[str]:
+        """Fetch the current user's top track IDs."""
+        data = self._get(
+            f"{API_BASE}/me/top/tracks",
+            params={"time_range": time_range, "limit": min(limit, 50)},
+        )
+        ids: set[str] = set()
+        for item in data.get("items", []):
+            tid = item.get("id")
+            if tid:
+                ids.add(tid)
+        return ids
+
+    def get_recently_played_track_ids(self, *, limit: int = 50) -> set[str]:
+        """Fetch the current user's recently played track IDs."""
+        data = self._get(
+            f"{API_BASE}/me/player/recently-played",
+            params={"limit": min(limit, 50)},
+        )
+        ids: set[str] = set()
+        for item in data.get("items", []):
+            track = item.get("track") or {}
+            tid = track.get("id")
+            if tid:
+                ids.add(tid)
+        return ids
 
     # -- HTTP helpers with retry ---------------------------------
 

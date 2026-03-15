@@ -1,6 +1,9 @@
-# 🎵 Spotify Fresh 100
+# 🎵 Spotify Playlist Automation
 
-Automated playlist curator that maintains a **Fresh 100** playlist from your large **Master** playlist. Picks 100 random (or most recent) tracks weekly and replaces the Fresh 100 playlist contents.
+Automated Spotify playlist curator with two profiles:
+
+- `fresh100`: maintains a Fresh 100 playlist from your large Master playlist
+- `cannabliss`: builds a rolling 160-song Cannabliss playlist from a read-only Master source, Hall of Fame, and feeder playlists
 
 ## How It Works
 
@@ -41,6 +44,7 @@ Create a `.env` file:
 SPOTIFY_CLIENT_ID=your_client_id_here
 SPOTIFY_CLIENT_SECRET=your_client_secret_here
 SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
+PROFILE=fresh100
 MASTER_PLAYLIST_ID=3P9XkucRpg9Naz8cGyZOpW
 FRESH_PLAYLIST_ID=1h9wSgaNgFMTvt73qrgccn
 MODE=random
@@ -58,6 +62,26 @@ SCORE_W_COHESION=1.0
 SCORE_W_FRESHNESS=0.5
 EVOLVE_LOG_PATH=data/evolve_log.jsonl
 ARCHIVE_WINNER=0
+```
+
+For Cannabliss, add:
+
+```env
+PROFILE=cannabliss
+MASTER_PLAYLIST_ID=3P9XkucRpg9Naz8cGyZOpW
+CANNABLISS_TARGET_PLAYLIST_ID=47W5136lY5XazjWDHmfyxm
+CANNABLISS_HALL_OF_FAME_PLAYLIST_ID=6rdvXMnttC3muaQICqpNmc
+CANNABLISS_FEEDER_PLAYLIST_IDS=37i9dQZF1DXdwmD5Q7Gxah,37i9dQZF1DWWqNV5cS50j6,6rdvXMnttC3muaQICqpNmc
+CANNABLISS_TARGET_SIZE=160
+CANNABLISS_WEEKLY_INSERTIONS=40
+CANNABLISS_STATE_PATH=data/cannabliss_state.json
+CANNABLISS_USE_TOP_TRACKS=0
+CANNABLISS_USE_RECENTLY_PLAYED=0
+CANNABLISS_TOP_TRACKS_TERM=short_term
+CANNABLISS_TOP_TRACKS_LIMIT=50
+CANNABLISS_RECENTLY_PLAYED_LIMIT=50
+CANNABLISS_TOP_TRACKS_BOOST=0.35
+CANNABLISS_RECENTLY_PLAYED_BOOST=0.25
 ```
 
 ### 4. Get Your Refresh Token (One Time)
@@ -95,6 +119,12 @@ SEED=42 python -m src.main
 
 # Evolution mode dry run (generate/score candidates, no Spotify writes)
 EVOLVE=1 CANDIDATES=7 DRY_RUN=1 python -m src.main
+
+# Cannabliss dry run (build rolling ordered playlist, no Spotify writes)
+PROFILE=cannabliss DRY_RUN=1 python -m src.main
+
+# Cannabliss dry run with your Spotify listening boosts
+PROFILE=cannabliss CANNABLISS_USE_TOP_TRACKS=1 CANNABLISS_USE_RECENTLY_PLAYED=1 DRY_RUN=1 python -m src.main
 ```
 
 ### Smoke Test
@@ -142,8 +172,9 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `SPOTIFY_CLIENT_ID`      | ✅       |            | Spotify app client ID                    |
 | `SPOTIFY_CLIENT_SECRET`  | ✅       |            | Spotify app client secret                |
 | `SPOTIFY_REFRESH_TOKEN`  | ✅       |            | OAuth refresh token                      |
+| `PROFILE`                |          | `fresh100` | `fresh100` or `cannabliss`               |
 | `MASTER_PLAYLIST_ID`     | ✅       |            | Source playlist ID                       |
-| `FRESH_PLAYLIST_ID`      | ✅       |            | Destination playlist ID                  |
+| `FRESH_PLAYLIST_ID`      |          |            | Destination playlist ID for Fresh 100    |
 | `MODE`                   |          | `random`   | `random` or `recent`                     |
 | `COUNT`                  |          | `100`      | Number of tracks to select               |
 | `DRY_RUN`                |          | `0`        | `1` to preview without Spotify writes    |
@@ -161,6 +192,19 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `SCORE_W_FRESHNESS`      |          | `0.5`      | Freshness weight in evolution score       |
 | `EVOLVE_LOG_PATH`        |          | `data/evolve_log.jsonl` | JSONL run log for candidates/winner |
 | `ARCHIVE_WINNER`         |          | `0`        | `1` creates dated winner archive playlist |
+| `CANNABLISS_TARGET_PLAYLIST_ID` |          |            | Destination playlist ID for Cannabliss |
+| `CANNABLISS_HALL_OF_FAME_PLAYLIST_ID` |          |        | Hall of Fame source/archive playlist |
+| `CANNABLISS_FEEDER_PLAYLIST_IDS` |          |            | Comma-separated feeder playlist IDs |
+| `CANNABLISS_TARGET_SIZE` |          | `160`      | Cannabliss target size                   |
+| `CANNABLISS_WEEKLY_INSERTIONS` |          | `40`   | Intended number of new weekly insertions |
+| `CANNABLISS_STATE_PATH`  |          | `data/cannabliss_state.json` | Cannabliss ordered-state log |
+| `CANNABLISS_USE_TOP_TRACKS` |      | `0`        | `1` enables `/me/top/tracks` boosts      |
+| `CANNABLISS_USE_RECENTLY_PLAYED` | | `0`      | `1` enables recently-played boosts       |
+| `CANNABLISS_TOP_TRACKS_TERM` |    | `short_term` | Spotify top-track window               |
+| `CANNABLISS_TOP_TRACKS_LIMIT` |   | `50`       | Max top tracks to read                   |
+| `CANNABLISS_RECENTLY_PLAYED_LIMIT` | | `50`    | Max recently played items to read        |
+| `CANNABLISS_TOP_TRACKS_BOOST` |   | `0.35`     | Premium/current listening boost          |
+| `CANNABLISS_RECENTLY_PLAYED_BOOST` | | `0.25`  | Recent listening boost                   |
 
 ---
 
@@ -168,9 +212,38 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 
 - ✅ Master playlist is **never modified** — only read
 - ✅ Fresh 100 is **replaced entirely** each run — no bloat
+- ✅ Cannabliss Master is **read-only by construction**
 - ✅ No secrets in code — all via env vars / GitHub Secrets
 - ✅ DRY_RUN mode for safe previews
 - ✅ `.env` is gitignored
+
+## Cannabliss Mode
+
+Set `PROFILE=cannabliss` to build the Cannabliss Rolling 160 playlist from:
+
+- `MASTER_PLAYLIST_ID` as the read-only Cannabliss Master source
+- `CANNABLISS_FEEDER_PLAYLIST_IDS` for discovery intake
+- `CANNABLISS_HALL_OF_FAME_PLAYLIST_ID` for occasional legacy context
+
+The Cannabliss builder:
+
+- preserves a front-half structure (`1-10`, `11-25`, `26-40`, `41-50`)
+- targets `160` total songs by default
+- plans `40` weekly additions by default
+- records ordered run summaries to `CANNABLISS_STATE_PATH`
+- writes only to `CANNABLISS_TARGET_PLAYLIST_ID`
+
+Optional personal-listening boosts:
+
+- `CANNABLISS_USE_TOP_TRACKS=1` reads your Spotify top tracks
+- `CANNABLISS_USE_RECENTLY_PLAYED=1` reads your recently played tracks
+- these signals softly boost songs already in the Cannabliss pool
+- if your token does not have the required scopes, the run warns and continues without those boosts
+
+If you want to use those signals, regenerate your refresh token with:
+
+- `user-top-read`
+- `user-read-recently-played`
 
 ## Evolution Mode
 
