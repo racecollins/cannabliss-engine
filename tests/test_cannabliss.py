@@ -247,6 +247,93 @@ def test_recently_played_signal_can_help_front_half_placement():
     assert focus_track.uri in front_half_ids
 
 
+def test_top_10_prefers_signaled_listens_when_available():
+    signaled = [
+        _track(
+            1000 + i,
+            source_tags={"master"},
+            added_at="2025-12-01T00:00:00Z",
+            popularity=20,
+            release_date="2018-01-01",
+            artist=f"Signal Artist {i}",
+        )
+        for i in range(12)
+    ]
+    fresh_unsignaled = [
+        _track(
+            i,
+            source_tags={"master"},
+            added_at=f"2026-03-{(i % 20) + 1:02d}T00:00:00Z",
+            popularity=90,
+            release_date="2026-03-01",
+            artist=f"Fresh Artist {i}",
+        )
+        for i in range(40)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=signaled + fresh_unsignaled,
+        current_tracks=[],
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=50,
+        weekly_insertions=20,
+        listening_signals=ListeningSignals(
+            top_track_ids=frozenset({track.uri.rsplit(":", 1)[-1] for track in signaled}),
+            top_tracks_boost=0.8,
+        ),
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    top_10_uris = {track.uri for track in result.zones["premium_current"]}
+    signaled_uris = {track.uri for track in signaled}
+    assert top_10_uris <= signaled_uris
+
+
+def test_top_10_falls_back_when_signaled_pool_is_small():
+    signaled = [
+        _track(
+            2000 + i,
+            source_tags={"master"},
+            added_at="2025-12-01T00:00:00Z",
+            popularity=20,
+            release_date="2019-01-01",
+            artist=f"Signal Artist {i}",
+        )
+        for i in range(3)
+    ]
+    fresh_unsignaled = [
+        _track(
+            i,
+            source_tags={"master"},
+            added_at=f"2026-03-{(i % 20) + 1:02d}T00:00:00Z",
+            popularity=90,
+            release_date="2026-03-01",
+            artist=f"Fresh Artist {i}",
+        )
+        for i in range(40)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=signaled + fresh_unsignaled,
+        current_tracks=[],
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=50,
+        weekly_insertions=20,
+        listening_signals=ListeningSignals(
+            recently_played_ids=frozenset({track.uri.rsplit(":", 1)[-1] for track in signaled}),
+            recently_played_boost=0.8,
+        ),
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    assert len(result.zones["premium_current"]) == 10
+    top_10_uris = {track.uri for track in result.zones["premium_current"]}
+    signaled_uris = {track.uri for track in signaled}
+    assert len(top_10_uris & signaled_uris) == 3
+
+
 def test_dedupes_same_song_variants_by_artist_and_title():
     variant_a = _track(
         1,

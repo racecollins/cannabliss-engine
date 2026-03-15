@@ -11,6 +11,7 @@ API_BASE = "https://api.spotify.com/v1"
 
 MAX_RETRIES = 3
 BACKOFF_BASE = 1.0  # seconds
+MAX_RETRY_AFTER = 60  # seconds
 
 
 class SpotifyApiError(RuntimeError):
@@ -219,7 +220,12 @@ class SpotifyClient:
             resp = requests.request(method, url, headers=self._headers(), timeout=30, **kwargs)
 
             if resp.status_code == 429:
-                retry_after = int(resp.headers.get("Retry-After", BACKOFF_BASE * attempt))
+                raw_retry_after = resp.headers.get("Retry-After", BACKOFF_BASE * attempt)
+                try:
+                    retry_after = int(raw_retry_after)
+                except (TypeError, ValueError):
+                    retry_after = int(BACKOFF_BASE * attempt)
+                retry_after = max(1, min(retry_after, MAX_RETRY_AFTER))
                 print(
                     f"⏳ Rate limited, retrying in {retry_after}s "
                     f"(attempt {attempt}/{MAX_RETRIES})"

@@ -254,25 +254,14 @@ def build_cannabliss_playlist(
     new_ids = {track.uri for track in chosen_new}
 
     listening_priority_tracks = _top_ranked(
-        [
-            track
-            for track in merged.values()
-            if track.uri not in current_ids and _has_listening_signal(track, signals)
-        ],
-        15,
-        score_kind="premium",
-        now=current,
-        listening_signals=signals,
-    )
-    top_pool = chosen_new + listening_priority_tracks + _top_ranked(
-        incumbents,
-        25,
+        [track for track in merged.values() if _has_listening_signal(track, signals)],
+        40,
         score_kind="premium",
         now=current,
         listening_signals=signals,
     )
     top_10 = _select_scored(
-        top_pool,
+        listening_priority_tracks,
         10,
         selected_ids,
         artist_counts,
@@ -281,6 +270,26 @@ def build_cannabliss_playlist(
         listening_signals=signals,
         now=current,
     )
+    if len(top_10) < 10:
+        top_pool = chosen_new + _top_ranked(
+            incumbents,
+            25,
+            score_kind="premium",
+            now=current,
+            listening_signals=signals,
+        )
+        top_10.extend(
+            _select_scored(
+                top_pool,
+                10 - len(top_10),
+                selected_ids,
+                artist_counts,
+                max_tracks_per_artist=1,
+                score_kind="premium",
+                listening_signals=signals,
+                now=current,
+            )
+        )
 
     zone_11_25 = _select_scored(
         [track for track in chosen_new if track.uri not in selected_ids],
