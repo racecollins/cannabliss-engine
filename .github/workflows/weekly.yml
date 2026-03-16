@@ -1,18 +1,10 @@
-name: Playlist Weekly Update
+name: Cannabliss Weekly Update
 
 on:
   schedule:
     - cron: "0 15 * * 5"  # Every Friday at 15:00 UTC (10:00 AM CDT / 9:00 AM CST)
   workflow_dispatch:       # Manual trigger
     inputs:
-      profile:
-        description: "Automation profile"
-        required: false
-        default: "fresh100"
-        type: choice
-        options:
-          - fresh100
-          - cannabliss
       mode:
         description: "Selection mode"
         required: false
@@ -88,9 +80,9 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          PROFILE: ${{ inputs.profile || 'fresh100' }}
+          PROFILE: "cannabliss"
           MASTER_PLAYLIST_ID: "47W5136lY5XazjWDHmfyxm"
-          FRESH_PLAYLIST_ID: "1h9wSgaNgFMTvt73qrgccn"
+          FRESH_PLAYLIST_ID: ""
           CANNABLISS_TARGET_PLAYLIST_ID: "3P9XkucRpg9Naz8cGyZOpW"
           CANNABLISS_HALL_OF_FAME_PLAYLIST_ID: "6rdvXMnttC3muaQICqpNmc"
           CANNABLISS_FEEDER_PLAYLIST_IDS: "6rdvXMnttC3muaQICqpNmc"
@@ -104,6 +96,9 @@ jobs:
           CANNABLISS_RECENTLY_PLAYED_LIMIT: "50"
           CANNABLISS_TOP_TRACKS_BOOST: "0.35"
           CANNABLISS_RECENTLY_PLAYED_BOOST: "0.25"
+          PLAYLIST_CACHE_DIR: "data/cache/playlists"
+          PLAYLIST_CACHE_TTL_HOURS: "12"
+          FORCE_REFRESH: ${{ github.event_name == 'schedule' && '1' || '0' }}
           MODE: ${{ inputs.mode || 'random' }}
           COUNT: "100"
           DRY_RUN: ${{ inputs.dry_run || '0' }}

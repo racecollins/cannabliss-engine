@@ -13,7 +13,7 @@ Automated Spotify playlist curator with two profiles:
 4. Replaces your Fresh 100 playlist with the selection
 5. Updates the playlist description with run metadata
 
-Runs locally or automatically via GitHub Actions every Monday.
+Runs locally or automatically via GitHub Actions every Friday.
 
 ---
 
@@ -68,10 +68,10 @@ For Cannabliss, add:
 
 ```env
 PROFILE=cannabliss
-MASTER_PLAYLIST_ID=3P9XkucRpg9Naz8cGyZOpW
-CANNABLISS_TARGET_PLAYLIST_ID=47W5136lY5XazjWDHmfyxm
+MASTER_PLAYLIST_ID=47W5136lY5XazjWDHmfyxm
+CANNABLISS_TARGET_PLAYLIST_ID=3P9XkucRpg9Naz8cGyZOpW
 CANNABLISS_HALL_OF_FAME_PLAYLIST_ID=6rdvXMnttC3muaQICqpNmc
-CANNABLISS_FEEDER_PLAYLIST_IDS=37i9dQZF1DXdwmD5Q7Gxah,37i9dQZF1DWWqNV5cS50j6,6rdvXMnttC3muaQICqpNmc
+CANNABLISS_FEEDER_PLAYLIST_IDS=6rdvXMnttC3muaQICqpNmc
 CANNABLISS_TARGET_SIZE=160
 CANNABLISS_WEEKLY_INSERTIONS=40
 CANNABLISS_STATE_PATH=data/cannabliss_state.json
@@ -82,6 +82,9 @@ CANNABLISS_TOP_TRACKS_LIMIT=50
 CANNABLISS_RECENTLY_PLAYED_LIMIT=50
 CANNABLISS_TOP_TRACKS_BOOST=0.35
 CANNABLISS_RECENTLY_PLAYED_BOOST=0.25
+PLAYLIST_CACHE_DIR=data/cache/playlists
+PLAYLIST_CACHE_TTL_HOURS=12
+FORCE_REFRESH=0
 ```
 
 ### 4. Get Your Refresh Token (One Time)
@@ -125,6 +128,9 @@ PROFILE=cannabliss DRY_RUN=1 python -m src.main
 
 # Cannabliss dry run with your Spotify listening boosts
 PROFILE=cannabliss CANNABLISS_USE_TOP_TRACKS=1 CANNABLISS_USE_RECENTLY_PLAYED=1 DRY_RUN=1 python -m src.main
+
+# Force-refresh playlist sources instead of using cache
+FORCE_REFRESH=1 PROFILE=cannabliss DRY_RUN=1 python -m src.main
 ```
 
 ### Smoke Test
@@ -157,11 +163,11 @@ In your repo → **Settings → Secrets and variables → Actions**, add:
 
 ### Schedule
 
-The workflow runs **every Monday at 9:00 AM UTC** automatically. You can also trigger it manually from the **Actions** tab with options for mode, seed, dry run, history window, artist cap, and freshness tiers.
+The workflow runs **every Friday at 15:00 UTC** automatically. That maps to **10:00 AM CDT** or **9:00 AM CST** in America/Chicago. Scheduled runs force-refresh playlist sources so they always use fresh Spotify data.
 
 ### Manual Trigger
 
-Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your options.
+Go to **Actions → Cannabliss Weekly Update → Run workflow** and choose your options.
 
 ---
 
@@ -205,6 +211,9 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 | `CANNABLISS_RECENTLY_PLAYED_LIMIT` | | `50`    | Max recently played items to read        |
 | `CANNABLISS_TOP_TRACKS_BOOST` |   | `0.35`     | Premium/current listening boost          |
 | `CANNABLISS_RECENTLY_PLAYED_BOOST` | | `0.25`  | Recent listening boost                   |
+| `PLAYLIST_CACHE_DIR`      |          | `data/cache/playlists` | Local cache directory for playlist reads |
+| `PLAYLIST_CACHE_TTL_HOURS` |         | `12`       | Cache freshness window in hours          |
+| `FORCE_REFRESH`           |          | `0`        | `1` bypasses playlist cache and refetches |
 
 ---
 
@@ -222,8 +231,10 @@ Go to **Actions → Fresh 100 Weekly Update → Run workflow** and choose your o
 Set `PROFILE=cannabliss` to build the Cannabliss Rolling 160 playlist from:
 
 - `MASTER_PLAYLIST_ID` as the read-only Cannabliss Master source
+- current default Cannabliss source: `47W5136lY5XazjWDHmfyxm` (`Cannabliss Master Clone`)
 - `CANNABLISS_FEEDER_PLAYLIST_IDS` for discovery intake
 - `CANNABLISS_HALL_OF_FAME_PLAYLIST_ID` for occasional legacy context
+- current default public Cannabliss target: `3P9XkucRpg9Naz8cGyZOpW`
 
 The Cannabliss builder:
 
@@ -232,6 +243,14 @@ The Cannabliss builder:
 - plans `40` weekly additions by default
 - records ordered run summaries to `CANNABLISS_STATE_PATH`
 - writes only to `CANNABLISS_TARGET_PLAYLIST_ID`
+
+Playlist read caching:
+
+- source playlists are cached locally by playlist ID
+- default TTL is `12` hours
+- this reduces repeated large reads of the master clone and Hall of Fame
+- use `FORCE_REFRESH=1` when you explicitly want fresh reads from Spotify
+- scheduled Friday workflow runs use `FORCE_REFRESH=1` automatically
 
 Optional personal-listening boosts:
 

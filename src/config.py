@@ -45,6 +45,9 @@ class Config:
     cannabliss_recently_played_limit: int
     cannabliss_top_tracks_boost: float
     cannabliss_recently_played_boost: float
+    playlist_cache_dir: str
+    playlist_cache_ttl_hours: int
+    force_refresh: bool
 
 
 def load_config() -> Config:
@@ -92,6 +95,9 @@ def load_config() -> Config:
         cannabliss_recently_played_limit=int(_env("CANNABLISS_RECENTLY_PLAYED_LIMIT", "50")),
         cannabliss_top_tracks_boost=float(_env("CANNABLISS_TOP_TRACKS_BOOST", "0.35")),
         cannabliss_recently_played_boost=float(_env("CANNABLISS_RECENTLY_PLAYED_BOOST", "0.25")),
+        playlist_cache_dir=_env("PLAYLIST_CACHE_DIR", "data/cache/playlists"),
+        playlist_cache_ttl_hours=int(_env("PLAYLIST_CACHE_TTL_HOURS", "12")),
+        force_refresh=_env("FORCE_REFRESH", "0") == "1",
     )
 
 
@@ -135,6 +141,10 @@ def validate_config(cfg: Config) -> None:
             "CANNABLISS_RECENTLY_PLAYED_LIMIT must be >= 1, "
             f"got {cfg.cannabliss_recently_played_limit}"
         )
+    if cfg.playlist_cache_ttl_hours < 0:
+        errors.append(
+            f"PLAYLIST_CACHE_TTL_HOURS must be >= 0, got {cfg.playlist_cache_ttl_hours}"
+        )
     for name, value in [
         ("SCORE_W_NOVELTY", cfg.score_w_novelty),
         ("SCORE_W_DIVERSITY", cfg.score_w_diversity),
@@ -149,6 +159,8 @@ def validate_config(cfg: Config) -> None:
         errors.append("EVOLVE_LOG_PATH must not be empty")
     if not cfg.cannabliss_state_path:
         errors.append("CANNABLISS_STATE_PATH must not be empty")
+    if not cfg.playlist_cache_dir:
+        errors.append("PLAYLIST_CACHE_DIR must not be empty")
     if cfg.cannabliss_top_tracks_term not in ("short_term", "medium_term", "long_term"):
         errors.append(
             "CANNABLISS_TOP_TRACKS_TERM must be one of short_term, medium_term, long_term, "

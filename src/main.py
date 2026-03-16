@@ -5,6 +5,7 @@ from __future__ import annotations
 import sys
 from datetime import datetime, timezone
 
+from src.cache import get_cached_playlist_items
 from src.cannabliss import (
     ListeningSignals,
     append_cannabliss_run,
@@ -66,7 +67,13 @@ def run_fresh100(cfg, client: SpotifyClient) -> None:
     # ── Read Master ───────────────────────────────────────────────
     print(f"\n📖 Reading Master playlist {cfg.master_playlist_id} …")
     try:
-        raw_items = client.get_all_playlist_items(cfg.master_playlist_id)
+        raw_items = get_cached_playlist_items(
+            client,
+            cfg.master_playlist_id,
+            cache_dir=cfg.playlist_cache_dir,
+            ttl_hours=cfg.playlist_cache_ttl_hours,
+            force_refresh=cfg.force_refresh,
+        )
     except SpotifyApiError as err:
         _print_spotify_error_help(err)
         sys.exit(1)
@@ -211,10 +218,28 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
 
     print(f"\n📖 Reading Cannabliss Master playlist {cfg.master_playlist_id} …")
     try:
-        master_items = client.get_all_playlist_items(cfg.master_playlist_id)
-        current_items = client.get_all_playlist_items(cfg.cannabliss_target_playlist_id)
+        master_items = get_cached_playlist_items(
+            client,
+            cfg.master_playlist_id,
+            cache_dir=cfg.playlist_cache_dir,
+            ttl_hours=cfg.playlist_cache_ttl_hours,
+            force_refresh=cfg.force_refresh,
+        )
+        current_items = get_cached_playlist_items(
+            client,
+            cfg.cannabliss_target_playlist_id,
+            cache_dir=cfg.playlist_cache_dir,
+            ttl_hours=cfg.playlist_cache_ttl_hours,
+            force_refresh=cfg.force_refresh,
+        )
         hall_items = (
-            client.get_all_playlist_items(cfg.cannabliss_hall_of_fame_playlist_id)
+            get_cached_playlist_items(
+                client,
+                cfg.cannabliss_hall_of_fame_playlist_id,
+                cache_dir=cfg.playlist_cache_dir,
+                ttl_hours=cfg.playlist_cache_ttl_hours,
+                force_refresh=cfg.force_refresh,
+            )
             if cfg.cannabliss_hall_of_fame_playlist_id
             else []
         )
@@ -226,7 +251,13 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
     for playlist_id in cfg.cannabliss_feeder_playlist_ids:
         print(f"\n📡 Reading feeder playlist {playlist_id} …")
         try:
-            feeder_items = client.get_all_playlist_items(playlist_id)
+            feeder_items = get_cached_playlist_items(
+                client,
+                playlist_id,
+                cache_dir=cfg.playlist_cache_dir,
+                ttl_hours=cfg.playlist_cache_ttl_hours,
+                force_refresh=cfg.force_refresh,
+            )
         except SpotifyApiError as err:
             print(f"⚠️  Skipping feeder playlist {playlist_id}: {err}")
             continue
