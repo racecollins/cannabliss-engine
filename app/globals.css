@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  border-color: theme("colors.line");
+}
+
+html {
+  min-height: 100%;
+  background-color: theme("colors.background");
+}
+
+body {
+  min-height: 100vh;
+  background-color: theme("colors.background");
+  background-image: theme("backgroundImage.halo");
+}
+
+::selection {
+  background: rgba(126, 240, 178, 0.24);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-foreground;
+  }
+
+  p {
+    @apply text-sm leading-6 text-slate-300;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-line/60 bg-panel/80 shadow-panel backdrop-blur-xl;
+  }
+}
