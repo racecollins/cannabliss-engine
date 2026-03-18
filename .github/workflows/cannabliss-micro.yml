@@ -1,8 +1,9 @@
-name: Cannabliss Weekly Update
+name: Cannabliss Midweek Micro Refresh
 
 on:
   schedule:
-    - cron: "0 15 * * 5"  # Every Friday at 15:00 UTC (10:00 AM CDT / 9:00 AM CST)
+    - cron: "0 15 * * 1"  # Every Monday at 15:00 UTC (10:00 AM CDT / 9:00 AM CST)
+    - cron: "0 15 * * 3"  # Every Wednesday at 15:00 UTC (10:00 AM CDT / 9:00 AM CST)
   workflow_dispatch:
     inputs:
       dry_run:
@@ -15,7 +16,7 @@ on:
           - "1"
 
 jobs:
-  weekly-refresh:
+  micro-refresh:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Cannabliss Weekly Refresh
+      - name: Run Cannabliss Micro Refresh
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
@@ -42,7 +43,7 @@ jobs:
           CANNABLISS_FEEDER_PLAYLIST_IDS: "6rdvXMnttC3muaQICqpNmc"
           CANNABLISS_TARGET_SIZE: "100"
           CANNABLISS_WEEKLY_INSERTIONS: "25"
-          CANNABLISS_UPDATE_MODE: "major"
+          CANNABLISS_UPDATE_MODE: "micro"
           CANNABLISS_MICRO_REFRESH_COUNT: "5"
           CANNABLISS_STATE_PATH: "data/cannabliss_state.json"
           CANNABLISS_USE_TOP_TRACKS: "1"
@@ -52,9 +53,8 @@ jobs:
           CANNABLISS_RECENTLY_PLAYED_LIMIT: "50"
           CANNABLISS_TOP_TRACKS_BOOST: "0.35"
           CANNABLISS_RECENTLY_PLAYED_BOOST: "0.25"
-          MAX_TRACKS_PER_ARTIST: "2"
-          DRY_RUN: ${{ inputs.dry_run || '0' }}
           PLAYLIST_CACHE_DIR: "data/cache/playlists"
           PLAYLIST_CACHE_TTL_HOURS: "12"
           FORCE_REFRESH: ${{ github.event_name == 'schedule' && '1' || '0' }}
+          DRY_RUN: ${{ inputs.dry_run || '0' }}
         run: python -m src.main

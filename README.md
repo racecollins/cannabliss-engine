@@ -19,7 +19,7 @@ The playlist is designed to feel alive, intentional, and taste-driven while pres
 
 ## Setup
 
-### 1. Create a Spotify App
+### 1. Spotify App
 
 1. Go to [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
 2. Open your shared Spotify automation app
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ### 3. Configure Environment
 
-Create a `.env` file:
+Create a `.env` file with your Cannabliss settings:
 
 ```env
 SPOTIFY_CLIENT_ID=your_client_id_here
@@ -57,18 +57,18 @@ CANNABLISS_WEEKLY_INSERTIONS=25
 CANNABLISS_UPDATE_MODE=major
 CANNABLISS_MICRO_REFRESH_COUNT=5
 CANNABLISS_STATE_PATH=data/cannabliss_state.json
-CANNABLISS_USE_TOP_TRACKS=0
-CANNABLISS_USE_RECENTLY_PLAYED=0
+CANNABLISS_USE_TOP_TRACKS=1
+CANNABLISS_USE_RECENTLY_PLAYED=1
 CANNABLISS_TOP_TRACKS_TERM=short_term
 CANNABLISS_TOP_TRACKS_LIMIT=50
 CANNABLISS_RECENTLY_PLAYED_LIMIT=50
 CANNABLISS_TOP_TRACKS_BOOST=0.35
 CANNABLISS_RECENTLY_PLAYED_BOOST=0.25
 MAX_TRACKS_PER_ARTIST=2
-DRY_RUN=0
 PLAYLIST_CACHE_DIR=data/cache/playlists
 PLAYLIST_CACHE_TTL_HOURS=12
 FORCE_REFRESH=0
+DRY_RUN=0
 ```
 
 ### 4. Get Your Refresh Token
@@ -83,7 +83,7 @@ If you want listening boosts, regenerate your token with scopes that include:
 
 ## Usage
 
-### Local Run
+### Local Dry Runs
 
 ```bash
 # Major refresh dry run
@@ -118,12 +118,25 @@ In GitHub → Settings → Secrets and variables → Actions:
 - `SPOTIFY_CLIENT_SECRET`
 - `SPOTIFY_REFRESH_TOKEN`
 
-### Schedule
+### Scheduled Workflows
 
-The workflow runs every Friday at 15:00 UTC.
-That maps to 10:00 AM CDT or 9:00 AM CST in America/Chicago.
+This repo now has two scheduled Cannabliss workflows:
+
+- `Cannabliss Weekly Update`
+  - every Friday at `15:00 UTC`
+  - `10:00 AM CDT` / `9:00 AM CST`
+  - runs a `major` refresh
+
+- `Cannabliss Midweek Micro Refresh`
+  - every Monday and Wednesday at `15:00 UTC`
+  - `10:00 AM CDT` / `9:00 AM CST`
+  - runs a `micro` refresh
 
 Scheduled runs force-refresh playlist sources so they use fresh Spotify data.
+
+### Manual Trigger
+
+From **Actions**, you can manually run either workflow and choose whether to do a dry run.
 
 ## Environment Variables
 
@@ -157,12 +170,12 @@ Scheduled runs force-refresh playlist sources so they use fresh Spotify data.
 
 ## Safety
 
-- ✅ Cannabliss Master is read-only
-- ✅ The public Cannabliss playlist is rewritten from the planned ordered result
-- ✅ Playlist description is preserved during Cannabliss updates
-- ✅ DRY_RUN mode prevents Spotify writes
-- ✅ Secrets stay in env vars / GitHub secrets
-- ✅ `.env` is gitignored
+- Cannabliss Master is read-only
+- The public Cannabliss playlist is rewritten from the planned ordered result
+- Playlist description is preserved during Cannabliss updates
+- `DRY_RUN` mode prevents Spotify writes
+- Secrets stay in env vars / GitHub secrets
+- `.env` is gitignored
 
 ## Cannabliss Model
 
