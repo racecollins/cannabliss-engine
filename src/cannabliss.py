@@ -7,7 +7,6 @@ import os
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 
-from src.selection import Track
 
 
 @dataclass
@@ -20,9 +19,6 @@ class CannablissTrack:
     current_position: int | None = None
     popularity: int | None = None
     release_date: str = ""
-
-    def as_track(self) -> Track:
-        return Track(uri=self.uri, name=self.name, artists=self.artists, added_at=self.added_at)
 
 
 @dataclass
