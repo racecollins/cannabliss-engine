@@ -554,3 +554,52 @@ def test_top_10_stays_stable_during_micro_refresh_without_elite_challengers():
     expected_top = {track.uri for track in current[:10]}
     actual_top = {track.uri for track in result.zones["premium_current"]}
     assert actual_top == expected_top
+
+
+def test_micro_refresh_keeps_existing_top_10_even_with_strong_new_candidates():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2025-12-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=85 if i < 10 else 45,
+            release_date="2024-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(100)
+    ]
+    strong_new = [
+        _track(
+            5000 + i,
+            source_tags={"master"},
+            added_at="2026-03-15T00:00:00Z",
+            popularity=95,
+            release_date="2026-03-10",
+            artist=f"Strong New Artist {i}",
+        )
+        for i in range(10)
+    ]
+    signals = ListeningSignals(
+        top_track_ids=frozenset(track.uri.rsplit(":", 1)[-1] for track in strong_new[:5]),
+        recently_played_ids=frozenset(track.uri.rsplit(":", 1)[-1] for track in strong_new[:5]),
+    )
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + strong_new,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="micro",
+        micro_refresh_count=5,
+        listening_signals=signals,
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    expected_top = [track.uri for track in current[:10]]
+    actual_top = [track.uri for track in result.zones["premium_current"]]
+    assert actual_top == expected_top
+    assert result.summary["top_10_added"] == []
+    assert result.summary["top_10_removed"] == []
