@@ -1,4 +1,4 @@
-"""Cannabliss-specific rolling playlist builder and state tracking."""
+"""Cannabliss-specific curated playlist builder and state tracking."""
 
 from __future__ import annotations
 
@@ -31,6 +31,7 @@ class CannablissBuildResult:
     zones: dict[str, list[CannablissTrack]]
     summary: dict[str, list[str]]
     new_track_count: int
+    update_mode: str
 
 
 @dataclass(frozen=True)
@@ -202,17 +203,20 @@ def build_cannabliss_playlist(
     hall_tracks: list[CannablissTrack],
     target_size: int,
     weekly_insertions: int,
+    update_mode: str = "major",
+    micro_refresh_count: int = 5,
     max_tracks_per_artist: int = 2,
     max_hall_returns: int = 3,
     listening_signals: ListeningSignals | None = None,
     now: datetime | None = None,
 ) -> CannablissBuildResult:
-    """Build the ordered Cannabliss rolling playlist."""
+    """Build the ordered Cannabliss curated playlist."""
     current = now or datetime.now(timezone.utc)
     signals = listening_signals or ListeningSignals()
     merged = _dedupe_song_variants(merge_track_sets([master_tracks, current_tracks, feeder_tracks, hall_tracks]))
     current_order = [track.uri for track in sorted(current_tracks, key=lambda t: t.current_position or 10**9)]
     current_ids = set(current_order)
+    is_initial_build = not current_order
 
     incumbents = [merged[uri] for uri in current_order if uri in merged]
     fresh_candidates = [
@@ -225,7 +229,12 @@ def build_cannabliss_playlist(
     ]
     library_candidates = [track for uri, track in merged.items() if uri not in current_ids]
 
-    desired_new = min(target_size, weekly_insertions, len(fresh_candidates) + min(len(hall_returners), max_hall_returns))
+    insertion_goal = weekly_insertions if update_mode == "major" else micro_refresh_count
+    desired_new = min(
+        target_size,
+        insertion_goal,
+        len(fresh_candidates) + min(len(hall_returners), max_hall_returns),
+    )
     selected_ids: set[str] = set()
     artist_counts: dict[str, int] = {}
 
@@ -253,30 +262,61 @@ def build_cannabliss_playlist(
 
     new_ids = {track.uri for track in chosen_new}
 
-    listening_priority_tracks = _top_ranked(
+    signaled_tracks = _top_ranked(
         [track for track in merged.values() if _has_listening_signal(track, signals)],
         40,
         score_kind="premium",
         now=current,
         listening_signals=signals,
     )
-    top_10 = _select_scored(
-        listening_priority_tracks,
-        10,
-        selected_ids,
-        artist_counts,
-        max_tracks_per_artist=1,
-        score_kind="premium",
-        listening_signals=signals,
+    fresh_ranked = _top_ranked(
+        fresh_candidates,
+        len(fresh_candidates),
+        score_kind="new",
         now=current,
+        listening_signals=signals,
     )
+    incumbents_ranked = _top_ranked(
+        incumbents,
+        len(incumbents),
+        score_kind="premium",
+        now=current,
+        listening_signals=signals,
+    )
+    top_10: list[CannablissTrack] = []
+    if update_mode == "micro" and incumbents:
+        top_10.extend(
+            _select_scored(
+                _ordered_unique(
+                    incumbents_ranked[:10]
+                    + [track for track in chosen_new if _has_listening_signal(track, signals)]
+                ),
+                10,
+                selected_ids,
+                artist_counts,
+                max_tracks_per_artist=1,
+                score_kind="premium",
+                listening_signals=signals,
+                now=current,
+            )
+        )
+    else:
+        top_10.extend(
+            _select_scored(
+                signaled_tracks,
+                10,
+                selected_ids,
+                artist_counts,
+                max_tracks_per_artist=1,
+                score_kind="premium",
+                listening_signals=signals,
+                now=current,
+            )
+        )
     if len(top_10) < 10:
-        top_pool = chosen_new + _top_ranked(
-            incumbents,
-            25,
-            score_kind="premium",
-            now=current,
-            listening_signals=signals,
+        top_pool = _ordered_unique(
+            chosen_new
+            + (fresh_ranked[:25] if is_initial_build else incumbents_ranked[:25])
         )
         top_10.extend(
             _select_scored(
@@ -291,22 +331,33 @@ def build_cannabliss_playlist(
             )
         )
 
-    zone_11_25 = _select_scored(
-        [track for track in chosen_new if track.uri not in selected_ids],
-        15,
-        selected_ids,
-        artist_counts,
+    zone_11_25 = _fill_zone(
+        primary_tracks=[track for track in chosen_new if track.uri not in selected_ids],
+        fallback_tracks=[
+            track
+            for track in (fresh_ranked if is_initial_build else incumbents_ranked)
+            if track.uri not in selected_ids
+        ],
+        limit=15,
+        selected_ids=selected_ids,
+        artist_counts=artist_counts,
         max_tracks_per_artist=1,
         score_kind="new",
         listening_signals=signals,
         now=current,
     )
 
-    zone_26_40 = _select_scored(
-        [track for track in chosen_new if track.uri not in selected_ids],
-        15,
-        selected_ids,
-        artist_counts,
+    discovery_limit = 15 if update_mode == "major" else min(15, max(3, desired_new))
+    zone_26_40 = _fill_zone(
+        primary_tracks=[track for track in chosen_new if track.uri not in selected_ids],
+        fallback_tracks=[
+            track
+            for track in (fresh_ranked if is_initial_build else incumbents_ranked)
+            if track.uri not in selected_ids
+        ],
+        limit=discovery_limit,
+        selected_ids=selected_ids,
+        artist_counts=artist_counts,
         max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
         score_kind="discovery",
         listening_signals=signals,
@@ -314,36 +365,53 @@ def build_cannabliss_playlist(
     )
 
     remaining_new_tracks = [track for track in chosen_new if track.uri not in selected_ids]
-    stabilizer_new = _select_scored(
-        [track for track in chosen_new if track.uri not in selected_ids],
-        min(10, len(remaining_new_tracks)),
-        selected_ids,
-        artist_counts,
-        max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
-        score_kind="stabilizer",
-        listening_signals=signals,
-        now=current,
-    )
-    stabilizer_incumbents = _select_scored(
-        [track for track in incumbents if track.uri not in selected_ids],
-        max(0, 10 - len(stabilizer_new)),
-        selected_ids,
-        artist_counts,
-        max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
-        score_kind="stabilizer",
-        listening_signals=signals,
-        now=current,
-    )
+    if is_initial_build:
+        stabilizer_new = _fill_zone(
+            primary_tracks=remaining_new_tracks,
+            fallback_tracks=[track for track in fresh_ranked if track.uri not in selected_ids],
+            limit=10,
+            selected_ids=selected_ids,
+            artist_counts=artist_counts,
+            max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
+            score_kind="stabilizer",
+            listening_signals=signals,
+            now=current,
+        )
+        stabilizer_incumbents = []
+    else:
+        stabilizer_new = _select_scored(
+            remaining_new_tracks,
+            min(10, len(remaining_new_tracks)),
+            selected_ids,
+            artist_counts,
+            max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
+            score_kind="stabilizer",
+            listening_signals=signals,
+            now=current,
+        )
+        stabilizer_incumbents = _select_scored(
+            [track for track in incumbents if track.uri not in selected_ids],
+            max(0, 10 - len(stabilizer_new)),
+            selected_ids,
+            artist_counts,
+            max_tracks_per_artist=max(2, min(max_tracks_per_artist, 2)),
+            score_kind="stabilizer",
+            listening_signals=signals,
+            now=current,
+        )
     zone_41_50 = _interleave_tracks(stabilizer_incumbents, stabilizer_new, 10)
 
-    remaining_slots = max(0, target_size - (len(top_10) + len(zone_11_25) + len(zone_26_40) + len(zone_41_50)))
-    remainder = _select_scored(
-        [track for track in incumbents if track.uri not in selected_ids],
-        remaining_slots,
-        selected_ids,
-        artist_counts,
-        max_tracks_per_artist=max_tracks_per_artist,
-        score_kind="library",
+    remaining_slots = max(
+        0,
+        target_size - (len(top_10) + len(zone_11_25) + len(zone_26_40) + len(zone_41_50)),
+    )
+    protected_uris = {track.uri for track in top_10 + zone_11_25 + zone_26_40 + zone_41_50}
+    provisional_tail = _ordered_unique(
+        [track for track in incumbents if track.uri not in protected_uris]
+    )
+    remainder = _prune_tail_candidates(
+        provisional_tail,
+        limit=remaining_slots,
         listening_signals=signals,
         now=current,
     )
@@ -362,13 +430,14 @@ def build_cannabliss_playlist(
         )
 
     ordered = top_10 + zone_11_25 + zone_26_40 + zone_41_50 + remainder
-    if len(ordered) > target_size:
-        ordered = ordered[:target_size]
 
     positions_before = {uri: index for index, uri in enumerate(current_order, start=1)}
     positions_after = {track.uri: index for index, track in enumerate(ordered, start=1)}
+    top_10_before = current_order[:10]
+    top_10_after = [track.uri for track in top_10]
 
     summary = {
+        "update_mode": [update_mode],
         "added": [track_id(track.uri) for track in ordered if track.uri not in current_ids],
         "promoted": [
             track_id(uri)
@@ -386,7 +455,20 @@ def build_cannabliss_playlist(
             if uri in positions_after and positions_after[uri] > old_pos
         ],
         "removed": [track_id(uri) for uri in current_order if uri not in positions_after],
+        "top_10_added": [
+            track_id(uri) for uri in top_10_after if uri not in set(top_10_before)
+        ],
+        "top_10_removed": [
+            track_id(uri) for uri in top_10_before if uri not in set(top_10_after)
+        ],
+        "retained": [
+            track_id(uri) for uri in current_order if uri in positions_after
+        ],
     }
+    total_changed = len(set(summary["added"] + summary["removed"] + summary["promoted"]))
+    summary["total_changed"] = [str(total_changed)]
+    if update_mode == "micro":
+        summary["micro_adjustments"] = [str(min(total_changed, insertion_goal))]
 
     return CannablissBuildResult(
         ordered_tracks=ordered,
@@ -399,6 +481,7 @@ def build_cannabliss_playlist(
         },
         summary=summary,
         new_track_count=sum(1 for track in ordered if track.uri in new_ids or track.uri not in current_ids),
+        update_mode=update_mode,
     )
 
 
@@ -454,6 +537,45 @@ def _plan_batch(
     )
 
 
+def _fill_zone(
+    *,
+    primary_tracks: list[CannablissTrack],
+    fallback_tracks: list[CannablissTrack],
+    limit: int,
+    selected_ids: set[str],
+    artist_counts: dict[str, int],
+    max_tracks_per_artist: int,
+    score_kind: str,
+    listening_signals: ListeningSignals,
+    now: datetime,
+) -> list[CannablissTrack]:
+    chosen = _select_scored(
+        primary_tracks,
+        limit,
+        selected_ids,
+        artist_counts,
+        max_tracks_per_artist=max_tracks_per_artist,
+        score_kind=score_kind,
+        listening_signals=listening_signals,
+        now=now,
+    )
+    if len(chosen) >= limit:
+        return chosen
+    chosen.extend(
+        _select_scored(
+            fallback_tracks,
+            limit - len(chosen),
+            selected_ids,
+            artist_counts,
+            max_tracks_per_artist=max_tracks_per_artist,
+            score_kind=score_kind,
+            listening_signals=listening_signals,
+            now=now,
+        )
+    )
+    return chosen
+
+
 def _top_ranked(
     tracks: list[CannablissTrack],
     limit: int,
@@ -477,6 +599,77 @@ def _top_ranked(
         reverse=True,
     )
     return scored[:limit]
+
+
+def _ordered_unique(tracks: list[CannablissTrack]) -> list[CannablissTrack]:
+    seen: set[str] = set()
+    out: list[CannablissTrack] = []
+    for track in tracks:
+        if track.uri in seen:
+            continue
+        seen.add(track.uri)
+        out.append(track)
+    return out
+
+
+def _prune_tail_candidates(
+    tracks: list[CannablissTrack],
+    *,
+    limit: int,
+    listening_signals: ListeningSignals,
+    now: datetime,
+) -> list[CannablissTrack]:
+    """Trim the lower-value tail first while preserving stronger anchors."""
+    if limit <= 0:
+        return []
+    if len(tracks) <= limit:
+        return _top_ranked(tracks, len(tracks), "library", now, listening_signals)
+
+    kept = sorted(
+        tracks,
+        key=lambda track: (
+            _tail_strength(track, listening_signals=listening_signals, now=now),
+            _score_track(track, score_kind="library", listening_signals=listening_signals, now=now),
+            -((track.current_position or 10**9)),
+            track.added_at,
+            track.uri,
+        ),
+        reverse=True,
+    )[:limit]
+    return _top_ranked(kept, limit, "library", now, listening_signals)
+
+
+def _tail_strength(
+    track: CannablissTrack,
+    *,
+    listening_signals: ListeningSignals,
+    now: datetime,
+) -> float:
+    score = _score_track(track, score_kind="library", listening_signals=listening_signals, now=now)
+    source_confidence = 0.0
+    if "master" in track.source_tags:
+        source_confidence += 0.05
+    if any(tag.startswith("feeder:") for tag in track.source_tags):
+        source_confidence += 0.04
+    if "hall" in track.source_tags:
+        source_confidence -= 0.02
+
+    incumbency = 0.0
+    if track.current_position is not None:
+        if track.current_position <= 50:
+            incumbency = 0.18
+        elif track.current_position <= 100:
+            incumbency = 0.12
+        else:
+            incumbency = 0.05
+
+    bottom_pressure = 0.0
+    if track.current_position is not None and track.current_position > 100:
+        bottom_pressure = -0.12
+    elif track.current_position is not None and track.current_position > 75:
+        bottom_pressure = -0.05
+
+    return score + source_confidence + incumbency + bottom_pressure
 
 
 def _score_track(

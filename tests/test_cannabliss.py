@@ -1,4 +1,4 @@
-"""Tests for Cannabliss rolling playlist construction."""
+"""Tests for Cannabliss curated playlist construction."""
 
 from datetime import datetime, timezone
 
@@ -37,18 +37,20 @@ def test_build_initial_playlist_hits_target_size():
         current_tracks=[],
         feeder_tracks=[],
         hall_tracks=[],
-        target_size=160,
-        weekly_insertions=40,
+        target_size=100,
+        weekly_insertions=25,
         now=datetime(2026, 2, 1, tzinfo=timezone.utc),
     )
 
-    assert len(result.ordered_tracks) == 160
+    assert len(result.ordered_tracks) == 100
     assert len(result.zones["premium_current"]) == 10
     assert len(result.zones["high_conviction"]) == 15
     assert len(result.zones["discovery"]) == 15
+    assert len(result.zones["stabilizers"]) == 10
+    assert len(result.zones["library"]) == 50
 
 
-def test_build_existing_playlist_keeps_weekly_insertions_to_40():
+def test_build_existing_playlist_keeps_weekly_insertions_to_25():
     current = [
         _track(
             i,
@@ -58,7 +60,7 @@ def test_build_existing_playlist_keeps_weekly_insertions_to_40():
             popularity=40,
             release_date="2024-01-01",
         )
-        for i in range(160)
+        for i in range(100)
     ]
     new_master = [
         _track(
@@ -75,13 +77,13 @@ def test_build_existing_playlist_keeps_weekly_insertions_to_40():
         current_tracks=current,
         feeder_tracks=[],
         hall_tracks=[],
-        target_size=160,
-        weekly_insertions=40,
+        target_size=100,
+        weekly_insertions=25,
         now=datetime(2026, 2, 15, tzinfo=timezone.utc),
     )
 
-    assert len(result.summary["added"]) == 40
-    assert len(result.ordered_tracks) == 160
+    assert len(result.summary["added"]) == 25
+    assert len(result.ordered_tracks) == 100
 
 
 def test_top_ten_prefers_recent_current_songs_over_stale_library():
@@ -130,7 +132,7 @@ def test_stabilizer_zone_interleaves_incumbents_and_new_tracks():
             popularity=60,
             release_date="2025-01-01",
         )
-        for i in range(160)
+        for i in range(100)
     ]
     feeder = [
         _track(
@@ -147,14 +149,14 @@ def test_stabilizer_zone_interleaves_incumbents_and_new_tracks():
         current_tracks=current,
         feeder_tracks=feeder,
         hall_tracks=[],
-        target_size=160,
-        weekly_insertions=40,
+        target_size=100,
+        weekly_insertions=25,
         now=datetime(2026, 3, 20, tzinfo=timezone.utc),
     )
 
     stabilizers = result.zones["stabilizers"]
     assert any(track.current_position is not None for track in stabilizers)
-    front_half = result.ordered_tracks[:80]
+    front_half = result.ordered_tracks[:50]
     assert any(track.current_position is None for track in front_half)
     assert any(track.current_position is not None for track in front_half)
 
@@ -401,8 +403,8 @@ def test_top_25_has_max_one_track_per_primary_artist_and_top_50_has_max_two():
         current_tracks=[],
         feeder_tracks=[],
         hall_tracks=[],
-        target_size=80,
-        weekly_insertions=40,
+        target_size=100,
+        weekly_insertions=25,
         now=datetime(2026, 3, 20, tzinfo=timezone.utc),
     )
 
@@ -416,3 +418,139 @@ def test_top_25_has_max_one_track_per_primary_artist_and_top_50_has_max_two():
     ]
     assert len(top_25_repeat) <= 1
     assert len(top_50_repeat) <= 2
+
+
+def test_micro_refresh_changes_only_a_small_number_of_tracks():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2025-12-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=40,
+            release_date="2024-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(100)
+    ]
+    new_master = [
+        _track(
+            3000 + i,
+            source_tags={"master"},
+            added_at=f"2026-03-{(i % 20) + 1:02d}T00:00:00Z",
+            popularity=60,
+            release_date="2026-03-01",
+            artist=f"New Artist {i}",
+        )
+        for i in range(30)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + new_master,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="micro",
+        micro_refresh_count=5,
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    assert len(result.ordered_tracks) == 100
+    assert len(result.summary["added"]) <= 5
+    assert len(result.summary["removed"]) <= 5
+    assert result.summary["micro_adjustments"] == ["5"]
+
+
+def test_trim_first_prunes_weaker_tail_before_stronger_anchors():
+    strong_anchor = _track(
+        9000,
+        source_tags={"current", "master"},
+        added_at="2025-12-01T00:00:00Z",
+        current_position=60,
+        popularity=85,
+        release_date="2023-01-01",
+        artist="Anchor Artist",
+    )
+    stronger_current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2025-12-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=55,
+            release_date="2024-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(99)
+    ]
+    weak_tail = [
+        _track(
+            10000 + i,
+            source_tags={"current", "master"},
+            added_at="2024-01-01T00:00:00Z",
+            current_position=101 + i,
+            popularity=5,
+            release_date="2018-01-01",
+            artist=f"Weak Artist {i}",
+        )
+        for i in range(30)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=[strong_anchor] + stronger_current + weak_tail,
+        current_tracks=[strong_anchor] + stronger_current + weak_tail,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=0,
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    ordered_ids = {track.uri for track in result.ordered_tracks}
+    assert strong_anchor.uri in ordered_ids
+    assert weak_tail[0].uri not in ordered_ids
+    assert weak_tail[-1].uri not in ordered_ids
+
+
+def test_top_10_stays_stable_during_micro_refresh_without_elite_challengers():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2025-12-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=70 if i < 10 else 40,
+            release_date="2024-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(100)
+    ]
+    modest_new = [
+        _track(
+            4000 + i,
+            source_tags={"master"},
+            added_at="2026-03-10T00:00:00Z",
+            popularity=20,
+            release_date="2026-03-01",
+            artist=f"New Artist {i}",
+        )
+        for i in range(20)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + modest_new,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="micro",
+        micro_refresh_count=5,
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    expected_top = {track.uri for track in current[:10]}
+    actual_top = {track.uri for track in result.zones["premium_current"]}
+    assert actual_top == expected_top

@@ -209,10 +209,12 @@ def run_fresh100(cfg, client: SpotifyClient) -> None:
 
 
 def run_cannabliss(cfg, client: SpotifyClient) -> None:
-    """Cannabliss rolling playlist flow."""
+    """Cannabliss curated playlist flow."""
     print(
         f"🌿 Cannabliss — target_size={cfg.cannabliss_target_size}, "
-        f"weekly_insertions={cfg.cannabliss_weekly_insertions}"
+        f"update_mode={cfg.cannabliss_update_mode}, "
+        f"weekly_insertions={cfg.cannabliss_weekly_insertions}, "
+        f"micro_refresh_count={cfg.cannabliss_micro_refresh_count}"
     )
     print(f"🛡️  Master {cfg.master_playlist_id} is read-only in this profile.")
 
@@ -303,6 +305,8 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         hall_tracks=parse_source_items(hall_items, source_tag="hall"),
         target_size=cfg.cannabliss_target_size,
         weekly_insertions=cfg.cannabliss_weekly_insertions,
+        update_mode=cfg.cannabliss_update_mode,
+        micro_refresh_count=cfg.cannabliss_micro_refresh_count,
         max_tracks_per_artist=cfg.max_tracks_per_artist,
         listening_signals=ListeningSignals(
             top_track_ids=frozenset(top_track_ids),
@@ -312,16 +316,31 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         ),
     )
 
-    print(f"\n🎛️  Cannabliss top 50 preview ({len(result.ordered_tracks)} total tracks):")
+    print(
+        f"\n🎛️  Cannabliss {result.update_mode} refresh preview "
+        f"({len(result.ordered_tracks)} total tracks):"
+    )
     for i, track in enumerate(result.ordered_tracks[:50], start=1):
         print(f"  {i:>3}. {track.name} — {track.artists}")
 
     print("\n📦 Cannabliss changes:")
-    for label in ("added", "promoted", "held", "shifted_down", "removed"):
+    for label in (
+        "added",
+        "promoted",
+        "held",
+        "shifted_down",
+        "removed",
+        "top_10_added",
+        "top_10_removed",
+    ):
         values = result.summary.get(label, [])
         preview = ", ".join(values[:10]) if values else "none"
         suffix = " …" if len(values) > 10 else ""
         print(f"  • {label}: {len(values)} ({preview}{suffix})")
+    if "total_changed" in result.summary:
+        print(f"  • total_changed: {', '.join(result.summary['total_changed'])}")
+    if "micro_adjustments" in result.summary:
+        print(f"  • micro_adjustments: {', '.join(result.summary['micro_adjustments'])}")
 
     append_cannabliss_run(result, path=cfg.cannabliss_state_path)
     print(f"🧾 Recorded Cannabliss run in {cfg.cannabliss_state_path}")
@@ -332,7 +351,7 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
 
     uris = [track.uri for track in result.ordered_tracks]
     print(
-        f"\n✍️  Replacing Cannabliss Rolling 160 playlist "
+        f"\n✍️  Replacing Cannabliss playlist "
         f"{cfg.cannabliss_target_playlist_id} …"
     )
     try:
@@ -341,12 +360,6 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         _print_spotify_error_help(err)
         sys.exit(1)
 
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    desc = (
-        f"Auto-updated {now} · Cannabliss Rolling 160 · "
-        f"{cfg.cannabliss_weekly_insertions} weekly insertions"
-    )
-    client.update_playlist_description(cfg.cannabliss_target_playlist_id, desc)
     print("\n🎉 Cannabliss update complete!")
 
 

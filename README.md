@@ -3,7 +3,7 @@
 Automated Spotify playlist curator with two profiles:
 
 - `fresh100`: maintains a Fresh 100 playlist from your large Master playlist
-- `cannabliss`: builds a rolling 160-song Cannabliss playlist from a read-only Master source, Hall of Fame, and feeder playlists
+- `cannabliss`: builds a curated 100-song Cannabliss playlist from a read-only Master source, Hall of Fame, and feeder playlists
 
 ## How It Works
 
@@ -14,6 +14,14 @@ Automated Spotify playlist curator with two profiles:
 5. Updates the playlist description with run metadata
 
 Runs locally or automatically via GitHub Actions every Friday.
+
+---
+
+## Project Docs
+
+- [Cannabliss philosophy](./docs/cannabliss-philosophy.md)
+- [Spotify project policy](./docs/spotify-project-policy.md)
+- [New Spotify project starter](./docs/new-spotify-project-starter.md)
 
 ---
 
@@ -32,7 +40,7 @@ Runs locally or automatically via GitHub Actions every Friday.
 ### 2. Clone & Install
 
 ```bash
-git clone <your-repo-url> && cd spotify-fresh-100
+git clone <your-repo-url> && cd Cannabliss
 pip install -r requirements.txt
 ```
 
@@ -72,8 +80,10 @@ MASTER_PLAYLIST_ID=47W5136lY5XazjWDHmfyxm
 CANNABLISS_TARGET_PLAYLIST_ID=3P9XkucRpg9Naz8cGyZOpW
 CANNABLISS_HALL_OF_FAME_PLAYLIST_ID=6rdvXMnttC3muaQICqpNmc
 CANNABLISS_FEEDER_PLAYLIST_IDS=6rdvXMnttC3muaQICqpNmc
-CANNABLISS_TARGET_SIZE=160
-CANNABLISS_WEEKLY_INSERTIONS=40
+CANNABLISS_TARGET_SIZE=100
+CANNABLISS_WEEKLY_INSERTIONS=25
+CANNABLISS_UPDATE_MODE=major
+CANNABLISS_MICRO_REFRESH_COUNT=5
 CANNABLISS_STATE_PATH=data/cannabliss_state.json
 CANNABLISS_USE_TOP_TRACKS=0
 CANNABLISS_USE_RECENTLY_PLAYED=0
@@ -123,11 +133,14 @@ SEED=42 python -m src.main
 # Evolution mode dry run (generate/score candidates, no Spotify writes)
 EVOLVE=1 CANDIDATES=7 DRY_RUN=1 python -m src.main
 
-# Cannabliss dry run (build rolling ordered playlist, no Spotify writes)
+# Cannabliss major refresh dry run (build curated ordered playlist, no Spotify writes)
 PROFILE=cannabliss DRY_RUN=1 python -m src.main
 
 # Cannabliss dry run with your Spotify listening boosts
 PROFILE=cannabliss CANNABLISS_USE_TOP_TRACKS=1 CANNABLISS_USE_RECENTLY_PLAYED=1 DRY_RUN=1 python -m src.main
+
+# Cannabliss micro refresh dry run
+PROFILE=cannabliss CANNABLISS_UPDATE_MODE=micro DRY_RUN=1 python -m src.main
 
 # Force-refresh playlist sources instead of using cache
 FORCE_REFRESH=1 PROFILE=cannabliss DRY_RUN=1 python -m src.main
@@ -201,8 +214,10 @@ Go to **Actions → Cannabliss Weekly Update → Run workflow** and choose your 
 | `CANNABLISS_TARGET_PLAYLIST_ID` |          |            | Destination playlist ID for Cannabliss |
 | `CANNABLISS_HALL_OF_FAME_PLAYLIST_ID` |          |        | Hall of Fame source/archive playlist |
 | `CANNABLISS_FEEDER_PLAYLIST_IDS` |          |            | Comma-separated feeder playlist IDs |
-| `CANNABLISS_TARGET_SIZE` |          | `160`      | Cannabliss target size                   |
-| `CANNABLISS_WEEKLY_INSERTIONS` |          | `40`   | Intended number of new weekly insertions |
+| `CANNABLISS_TARGET_SIZE` |          | `100`      | Cannabliss target size                   |
+| `CANNABLISS_WEEKLY_INSERTIONS` |          | `25`   | Major refresh insertion target |
+| `CANNABLISS_UPDATE_MODE` |          | `major`    | `major` or `micro` Cannabliss refresh mode |
+| `CANNABLISS_MICRO_REFRESH_COUNT` |       | `5`      | Small-change budget for micro refreshes |
 | `CANNABLISS_STATE_PATH`  |          | `data/cannabliss_state.json` | Cannabliss ordered-state log |
 | `CANNABLISS_USE_TOP_TRACKS` |      | `0`        | `1` enables `/me/top/tracks` boosts      |
 | `CANNABLISS_USE_RECENTLY_PLAYED` | | `0`      | `1` enables recently-played boosts       |
@@ -228,7 +243,7 @@ Go to **Actions → Cannabliss Weekly Update → Run workflow** and choose your 
 
 ## Cannabliss Mode
 
-Set `PROFILE=cannabliss` to build the Cannabliss Rolling 160 playlist from:
+Set `PROFILE=cannabliss` to build the Cannabliss 100-song public playlist from:
 
 - `MASTER_PLAYLIST_ID` as the read-only Cannabliss Master source
 - current default Cannabliss source: `47W5136lY5XazjWDHmfyxm` (`Cannabliss Master Clone`)
@@ -239,8 +254,9 @@ Set `PROFILE=cannabliss` to build the Cannabliss Rolling 160 playlist from:
 The Cannabliss builder:
 
 - preserves a front-half structure (`1-10`, `11-25`, `26-40`, `41-50`)
-- targets `160` total songs by default
-- plans `40` weekly additions by default
+- targets `100` total songs by default
+- plans `25` new songs on major refreshes by default
+- supports `major` and `micro` refresh modes
 - records ordered run summaries to `CANNABLISS_STATE_PATH`
 - writes only to `CANNABLISS_TARGET_PLAYLIST_ID`
 
