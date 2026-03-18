@@ -285,21 +285,24 @@ def build_cannabliss_playlist(
     )
     top_10: list[CannablissTrack] = []
     if update_mode == "micro" and incumbents:
-        top_10.extend(
-            _select_scored(
-                _ordered_unique(
-                    incumbents_ranked[:10]
-                    + [track for track in chosen_new if _has_listening_signal(track, signals)]
-                ),
-                10,
-                selected_ids,
-                artist_counts,
-                max_tracks_per_artist=1,
-                score_kind="premium",
-                listening_signals=signals,
-                now=current,
-            )
-        )
+        # Micro refreshes should keep the playlist recognizable. Treat the
+        # existing top 10 as the locked identity tier and let the smaller
+        # movement budget play out below it.
+        locked_top_10 = [
+            track for track in incumbents if track.current_position is not None and track.current_position <= 10
+        ]
+        locked_top_10.sort(key=lambda track: track.current_position or 10**9)
+        for track in locked_top_10:
+            if track.uri in selected_ids:
+                continue
+            artist = _primary_artist(track.artists)
+            if artist_counts.get(artist, 0) >= 1:
+                continue
+            selected_ids.add(track.uri)
+            artist_counts[artist] = artist_counts.get(artist, 0) + 1
+            top_10.append(track)
+            if len(top_10) >= 10:
+                break
     else:
         top_10.extend(
             _select_scored(
