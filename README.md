@@ -123,8 +123,8 @@ In GitHub → Settings → Secrets and variables → Actions:
 This repo now has two scheduled Cannabliss workflows:
 
 - `Cannabliss Weekly Update`
-  - every Friday at `15:00 UTC`
-  - `10:00 AM CDT` / `9:00 AM CST`
+  - every Friday at `11:00 UTC`
+  - `6:00 AM CDT` / `5:00 AM CST`
   - runs a `major` refresh
 
 - `Cannabliss Midweek Micro Refresh`
@@ -133,6 +133,7 @@ This repo now has two scheduled Cannabliss workflows:
   - runs a `micro` refresh
 
 Scheduled runs force-refresh playlist sources so they use fresh Spotify data.
+The live Cannabliss target playlist is always fetched fresh before planning an update so manual adds/removes made between runs are seen before the automation rewrites the playlist.
 
 ### Manual Trigger
 

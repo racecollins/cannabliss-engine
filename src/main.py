@@ -62,7 +62,7 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
             cfg.cannabliss_target_playlist_id,
             cache_dir=cfg.playlist_cache_dir,
             ttl_hours=cfg.playlist_cache_ttl_hours,
-            force_refresh=cfg.force_refresh,
+            force_refresh=True,
         )
         hall_items = (
             get_cached_playlist_items(

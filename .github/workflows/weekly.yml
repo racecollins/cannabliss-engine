@@ -2,7 +2,7 @@ name: Cannabliss Weekly Update
 
 on:
   schedule:
-    - cron: "0 15 * * 5"  # Every Friday at 15:00 UTC (10:00 AM CDT / 9:00 AM CST)
+    - cron: "0 11 * * 5"  # Every Friday at 11:00 UTC (6:00 AM CDT / 5:00 AM CST)
   workflow_dispatch:
     inputs:
       dry_run:
