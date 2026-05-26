@@ -163,6 +163,9 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         "removed",
         "top_10_added",
         "top_10_removed",
+        "top_20_added",
+        "top_20_removed",
+        "front_queue",
     ):
         values = result.summary.get(label, [])
         preview = ", ".join(values[:10]) if values else "none"
