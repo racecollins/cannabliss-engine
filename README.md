@@ -189,3 +189,10 @@ Cannabliss uses a structured playlist shape:
 
 Major refreshes are the main weekly update.
 Micro refreshes make small targeted adjustments while keeping the playlist recognizable.
+
+Friday major refreshes treat recently added Cannabliss Master tracks as the front-page queue.
+That means songs added to the Master playlist during the week get first chance at the top
+`10-25` positions, while a small number of listening-signal anchors can remain sprinkled into
+the front half for continuity. Micro refreshes do not use this front-page churn behavior.
+Micro refreshes also preserve the current live playlist size instead of trimming back to `100`,
+so manually added songs can stay in place until the next Friday major refresh resets the list.

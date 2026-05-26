@@ -420,6 +420,96 @@ def test_top_25_has_max_one_track_per_primary_artist_and_top_50_has_max_two():
     assert len(top_50_repeat) <= 2
 
 
+def test_major_refresh_prioritizes_recent_master_queue_in_front():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2026-04-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=65 if i < 20 else 40,
+            release_date="2025-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(100)
+    ]
+    queued = [
+        _track(
+            6000 + i,
+            source_tags={"master"},
+            added_at=f"2026-05-{(i % 20) + 1:02d}T00:00:00Z",
+            popularity=70,
+            release_date="2026-05-01",
+            artist=f"Queued Artist {i}",
+        )
+        for i in range(30)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + queued,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="major",
+        now=datetime(2026, 5, 26, tzinfo=timezone.utc),
+    )
+
+    queued_uris = {track.uri for track in queued}
+    assert len([track for track in result.ordered_tracks[:10] if track.uri in queued_uris]) >= 8
+    assert len([track for track in result.ordered_tracks[:20] if track.uri in queued_uris]) >= 14
+    assert len(result.summary["top_20_added"]) >= 10
+    assert result.summary["front_queue"]
+
+
+def test_major_refresh_sprinkles_listening_anchor_below_top_10():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2026-04-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=40,
+            release_date="2025-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(100)
+    ]
+    listening_anchor = current[35]
+    queued = [
+        _track(
+            7000 + i,
+            source_tags={"master"},
+            added_at=f"2026-05-{(i % 8) + 15:02d}T00:00:00Z",
+            popularity=75,
+            release_date="2026-05-01",
+            artist=f"Queued Artist {i}",
+        )
+        for i in range(8)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + queued,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="major",
+        listening_signals=ListeningSignals(
+            top_track_ids=frozenset({listening_anchor.uri.rsplit(":", 1)[-1]}),
+            top_tracks_boost=0.8,
+        ),
+        now=datetime(2026, 5, 26, tzinfo=timezone.utc),
+    )
+
+    top_10_uris = {track.uri for track in result.ordered_tracks[:10]}
+    top_25_uris = {track.uri for track in result.ordered_tracks[:25]}
+    assert listening_anchor.uri not in top_10_uris
+    assert listening_anchor.uri in top_25_uris
+
+
 def test_micro_refresh_changes_only_a_small_number_of_tracks():
     current = [
         _track(
@@ -457,10 +547,52 @@ def test_micro_refresh_changes_only_a_small_number_of_tracks():
         now=datetime(2026, 3, 20, tzinfo=timezone.utc),
     )
 
-    assert len(result.ordered_tracks) == 100
+    assert len(result.ordered_tracks) == 105
     assert len(result.summary["added"]) <= 5
-    assert len(result.summary["removed"]) <= 5
+    assert result.summary["removed"] == []
     assert result.summary["micro_adjustments"] == ["5"]
+
+
+def test_micro_refresh_preserves_manually_added_tracks_above_target_size():
+    current = [
+        _track(
+            i,
+            source_tags={"current", "master"},
+            added_at="2025-12-01T00:00:00Z",
+            current_position=i + 1,
+            popularity=50,
+            release_date="2024-01-01",
+            artist=f"Current Artist {i}",
+        )
+        for i in range(108)
+    ]
+    new_master = [
+        _track(
+            8000 + i,
+            source_tags={"master"},
+            added_at="2026-03-15T00:00:00Z",
+            popularity=70,
+            release_date="2026-03-01",
+            artist=f"New Artist {i}",
+        )
+        for i in range(10)
+    ]
+
+    result = build_cannabliss_playlist(
+        master_tracks=current + new_master,
+        current_tracks=current,
+        feeder_tracks=[],
+        hall_tracks=[],
+        target_size=100,
+        weekly_insertions=25,
+        update_mode="micro",
+        micro_refresh_count=5,
+        now=datetime(2026, 3, 20, tzinfo=timezone.utc),
+    )
+
+    assert len(result.ordered_tracks) == 113
+    assert result.summary["removed"] == []
+    assert {track.uri for track in current} <= {track.uri for track in result.ordered_tracks}
 
 
 def test_trim_first_prunes_weaker_tail_before_stronger_anchors():

@@ -8,6 +8,10 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 
 
+MAJOR_FRONT_QUEUE_DAYS = 21
+MAJOR_TOP_10_FRESH_TARGET = 8
+MAJOR_TOP_10_CARRYOVER_LIMIT = 2
+
 
 @dataclass
 class CannablissTrack:
@@ -233,6 +237,9 @@ def build_cannabliss_playlist(
     )
     selected_ids: set[str] = set()
     artist_counts: dict[str, int] = {}
+    effective_target_size = target_size
+    if update_mode == "micro" and not is_initial_build:
+        effective_target_size = max(target_size, len(current_order)) + desired_new
 
     chosen_new = _plan_batch(
         fresh_candidates,
@@ -272,6 +279,13 @@ def build_cannabliss_playlist(
         now=current,
         listening_signals=signals,
     )
+    front_queue_ranked = _top_ranked(
+        _front_queue_candidates(list(merged.values()), now=current),
+        len(merged),
+        score_kind="new",
+        now=current,
+        listening_signals=signals,
+    )
     incumbents_ranked = _top_ranked(
         incumbents,
         len(incumbents),
@@ -299,6 +313,41 @@ def build_cannabliss_playlist(
             top_10.append(track)
             if len(top_10) >= 10:
                 break
+    elif update_mode == "major" and not is_initial_build:
+        prior_front_ids = set(current_order[:20])
+        fresh_front_pool = _ordered_unique(
+            [track for track in front_queue_ranked if track.uri not in prior_front_ids]
+            + [track for track in fresh_ranked if track.uri not in prior_front_ids]
+            + [track for track in chosen_new if track.uri not in prior_front_ids]
+        )
+        top_10.extend(
+            _select_scored(
+                fresh_front_pool,
+                MAJOR_TOP_10_FRESH_TARGET,
+                selected_ids,
+                artist_counts,
+                max_tracks_per_artist=1,
+                score_kind="new",
+                listening_signals=signals,
+                now=current,
+            )
+        )
+        carryover_pool = _ordered_unique(
+            [track for track in signaled_tracks if track.uri in prior_front_ids]
+            + [track for track in incumbents_ranked if track.uri in prior_front_ids]
+        )
+        top_10.extend(
+            _select_scored(
+                carryover_pool,
+                min(MAJOR_TOP_10_CARRYOVER_LIMIT, 10 - len(top_10)),
+                selected_ids,
+                artist_counts,
+                max_tracks_per_artist=1,
+                score_kind="premium",
+                listening_signals=signals,
+                now=current,
+            )
+        )
     else:
         top_10.extend(
             _select_scored(
@@ -314,8 +363,10 @@ def build_cannabliss_playlist(
         )
     if len(top_10) < 10:
         top_pool = _ordered_unique(
-            chosen_new
+            front_queue_ranked
+            + chosen_new
             + (fresh_ranked[:25] if is_initial_build else incumbents_ranked[:25])
+            + signaled_tracks
         )
         top_10.extend(
             _select_scored(
@@ -330,11 +381,23 @@ def build_cannabliss_playlist(
             )
         )
 
+    zone_11_25_primary = [track for track in chosen_new if track.uri not in selected_ids]
+    if update_mode == "major":
+        zone_11_25_primary = _ordered_unique(
+            [track for track in front_queue_ranked if track.uri not in selected_ids]
+            + [track for track in chosen_new if track.uri not in selected_ids]
+            + [track for track in signaled_tracks if track.uri not in selected_ids]
+        )
+
     zone_11_25 = _fill_zone(
-        primary_tracks=[track for track in chosen_new if track.uri not in selected_ids],
+        primary_tracks=zone_11_25_primary,
         fallback_tracks=[
             track
-            for track in (fresh_ranked if is_initial_build else incumbents_ranked)
+            for track in (
+                fresh_ranked
+                if is_initial_build or update_mode == "major"
+                else incumbents_ranked
+            )
             if track.uri not in selected_ids
         ],
         limit=15,
@@ -402,7 +465,9 @@ def build_cannabliss_playlist(
 
     remaining_slots = max(
         0,
-        target_size - (len(top_10) + len(zone_11_25) + len(zone_26_40) + len(zone_41_50)),
+        effective_target_size - (
+            len(top_10) + len(zone_11_25) + len(zone_26_40) + len(zone_41_50)
+        ),
     )
     protected_uris = {track.uri for track in top_10 + zone_11_25 + zone_26_40 + zone_41_50}
     provisional_tail = _ordered_unique(
@@ -459,6 +524,21 @@ def build_cannabliss_playlist(
         ],
         "top_10_removed": [
             track_id(uri) for uri in top_10_before if uri not in set(top_10_after)
+        ],
+        "top_20_added": [
+            track_id(track.uri)
+            for track in ordered[:20]
+            if track.uri not in set(current_order[:20])
+        ],
+        "top_20_removed": [
+            track_id(uri)
+            for uri in current_order[:20]
+            if uri not in {track.uri for track in ordered[:20]}
+        ],
+        "front_queue": [
+            track_id(track.uri)
+            for track in ordered[:25]
+            if track.uri in {queued.uri for queued in front_queue_ranked}
         ],
         "retained": [
             track_id(uri) for uri in current_order if uri in positions_after
@@ -609,6 +689,26 @@ def _ordered_unique(tracks: list[CannablissTrack]) -> list[CannablissTrack]:
         seen.add(track.uri)
         out.append(track)
     return out
+
+
+def _front_queue_candidates(
+    tracks: list[CannablissTrack],
+    *,
+    now: datetime,
+) -> list[CannablissTrack]:
+    queued: list[CannablissTrack] = []
+    for track in tracks:
+        if "hall" in track.source_tags:
+            continue
+        if not ("master" in track.source_tags or any(tag.startswith("feeder:") for tag in track.source_tags)):
+            continue
+        added = _parse_datetime(track.added_at)
+        if added is None:
+            continue
+        age_days = max(0.0, (now - added).total_seconds() / 86400)
+        if age_days <= MAJOR_FRONT_QUEUE_DAYS:
+            queued.append(track)
+    return queued
 
 
 def _prune_tail_candidates(
