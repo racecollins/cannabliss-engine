@@ -25,6 +25,25 @@ class SpotifyApiError(RuntimeError):
         self.message = message
 
 
+REAUTH_REMEDIATION = (
+    "Your Spotify refresh token is expired or revoked (invalid_grant).\n"
+    "Spotify refresh tokens expire 6 months after the original sign-in "
+    "(enforced from 2026-07-20); refreshing does not extend them.\n"
+    "Fix (one-time, ~2 min):\n"
+    "  1) Run `python -m src.refresh_token_helper` and sign in.\n"
+    "  2) Copy the new token into the SPOTIFY_REFRESH_TOKEN GitHub Actions secret.\n"
+    "  3) Update SPOTIFY_REFRESH_TOKEN in your local .env."
+)
+
+
+class SpotifyAuthError(SpotifyApiError):
+    """Raised when the stored refresh token is expired or revoked (OAuth invalid_grant)."""
+
+    def __init__(self, method: str, url: str, status_code: int, message: str) -> None:
+        super().__init__(method, url, status_code, message)
+        self.remediation = REAUTH_REMEDIATION
+
+
 class SpotifyClient:
     """Thin Spotify API wrapper using refresh-token auth."""
 
@@ -50,7 +69,10 @@ class SpotifyClient:
             timeout=15,
         )
         if not 200 <= resp.status_code < 300:
-            raise SpotifyApiError("POST", TOKEN_URL, resp.status_code, _spotify_error_message(resp))
+            message = _spotify_error_message(resp)
+            if _is_invalid_grant(resp):
+                raise SpotifyAuthError("POST", TOKEN_URL, resp.status_code, message)
+            raise SpotifyApiError("POST", TOKEN_URL, resp.status_code, message)
         data = resp.json()
         self._access_token = data["access_token"]
         print("✅ Authenticated with Spotify")
@@ -257,6 +279,19 @@ class SpotifyClient:
             raise last_error
 
         raise RuntimeError(f"Spotify API request failed after {MAX_RETRIES} retries: {method} {url}")
+
+
+def _is_invalid_grant(resp: requests.Response) -> bool:
+    """True when the token endpoint reports an expired/revoked refresh token.
+
+    The OAuth token endpoint returns `{"error": "invalid_grant", ...}` (a flat
+    string `error`), unlike the Web API's nested `{"error": {"status": ...}}`.
+    """
+    try:
+        payload = resp.json()
+    except ValueError:
+        return False
+    return isinstance(payload, dict) and payload.get("error") == "invalid_grant"
 
 
 def _spotify_error_message(resp: requests.Response) -> str:

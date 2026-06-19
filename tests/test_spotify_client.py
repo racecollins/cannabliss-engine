@@ -1,7 +1,58 @@
 """Tests for Spotify client helper behavior that doesn't require live API calls."""
 
+import pytest
 import requests
-from src.spotify_client import API_BASE, SpotifyClient
+from src.spotify_client import API_BASE, SpotifyApiError, SpotifyAuthError, SpotifyClient, TOKEN_URL
+
+
+class _FakeTokenResponse:
+    def __init__(self, status_code, json_payload, text=""):
+        self.status_code = status_code
+        self._json_payload = json_payload
+        self.text = text
+
+    def json(self):
+        return self._json_payload
+
+
+def test_authenticate_raises_auth_error_on_invalid_grant(monkeypatch):
+    """An expired/revoked refresh token (OAuth invalid_grant) is a distinct,
+    recoverable condition — not a generic API failure."""
+    client = SpotifyClient("id", "secret", "expired-refresh")
+
+    def fake_post(url, data=None, auth=None, timeout=15):
+        assert url == TOKEN_URL
+        return _FakeTokenResponse(
+            400,
+            {"error": "invalid_grant", "error_description": "Refresh token revoked"},
+            text='{"error": "invalid_grant"}',
+        )
+
+    monkeypatch.setattr(requests, "post", fake_post)
+
+    with pytest.raises(SpotifyAuthError) as excinfo:
+        client.authenticate()
+
+    # The error must be self-explanatory: it has to point at the re-auth fix.
+    assert "refresh_token_helper" in excinfo.value.remediation
+
+
+def test_authenticate_raises_generic_error_on_other_failures(monkeypatch):
+    """A non-invalid_grant token failure stays a plain SpotifyApiError."""
+    client = SpotifyClient("id", "secret", "refresh")
+
+    def fake_post(url, data=None, auth=None, timeout=15):
+        return _FakeTokenResponse(
+            500,
+            {"error": "server_error"},
+            text='{"error": "server_error"}',
+        )
+
+    monkeypatch.setattr(requests, "post", fake_post)
+
+    with pytest.raises(SpotifyApiError) as excinfo:
+        client.authenticate()
+    assert not isinstance(excinfo.value, SpotifyAuthError)
 
 
 def test_replace_playlist_tracks_chunks_over_100(monkeypatch):
