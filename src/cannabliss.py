@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass, field
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 
 MAJOR_FRONT_QUEUE_DAYS = 21
@@ -911,6 +911,50 @@ def _interleave_tracks(
             out.append(right[j])
             j += 1
     return out[:limit]
+
+
+def active_cooldown_uris(
+    cooldown_entries: list[dict], now: datetime, *, days: int
+) -> set[str]:
+    """URIs removed within the cooldown window (`days`) — excluded from re-add."""
+    cutoff = now - timedelta(days=days)
+    active: set[str] = set()
+    for entry in cooldown_entries:
+        removed_at = _parse_datetime(entry.get("removed_at", ""))
+        uri = entry.get("uri")
+        if removed_at is None or not uri:
+            continue
+        if removed_at >= cutoff:
+            active.add(uri)
+    return active
+
+
+def merge_cooldown(
+    cooldown_entries: list[dict],
+    removed_uris: list[str],
+    now: datetime,
+    *,
+    days: int,
+) -> list[dict]:
+    """Prune expired entries, then append newly-removed URIs stamped `now`."""
+    cutoff = now - timedelta(days=days)
+    kept: list[dict] = []
+    seen: set[str] = set()
+    for entry in cooldown_entries:
+        removed_at = _parse_datetime(entry.get("removed_at", ""))
+        uri = entry.get("uri")
+        if removed_at is None or not uri or removed_at < cutoff:
+            continue
+        if uri in seen:
+            continue
+        seen.add(uri)
+        kept.append({"uri": uri, "removed_at": entry["removed_at"]})
+    stamp = now.isoformat()
+    for uri in removed_uris:
+        if uri and uri not in seen:
+            seen.add(uri)
+            kept.append({"uri": uri, "removed_at": stamp})
+    return kept
 
 
 def track_id(uri: str) -> str:
