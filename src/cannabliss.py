@@ -829,6 +829,38 @@ def _body_sort_key(
     )
 
 
+def _build_fresh_front(
+    candidates: list[CannablissTrack],
+    *,
+    weekly_add_ids: set[str],
+    size: int,
+    max_per_artist: int,
+    signals: ListeningSignals,
+    now: datetime,
+) -> list[CannablissTrack]:
+    """The top `size` of the playlist: hot picks, then weekly adds, then fill."""
+    ordered = sorted(
+        _ordered_unique(candidates),
+        key=lambda track: _front_sort_key(track, signals, now, weekly_add_ids),
+        reverse=True,
+    )
+    front: list[CannablissTrack] = []
+    selected: set[str] = set()
+    artist_counts: dict[str, int] = {}
+    for track in ordered:
+        if len(front) >= size:
+            break
+        if track.uri in selected:
+            continue
+        artist = _primary_artist(track.artists)
+        if artist_counts.get(artist, 0) >= max_per_artist:
+            continue
+        selected.add(track.uri)
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+        front.append(track)
+    return front
+
+
 def _score_track(
     track: CannablissTrack,
     *,
