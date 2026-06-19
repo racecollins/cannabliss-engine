@@ -13,7 +13,7 @@ from src.cannabliss import (
     parse_source_items,
 )
 from src.config import load_config, validate_config
-from src.spotify_client import SpotifyApiError, SpotifyClient
+from src.spotify_client import SpotifyApiError, SpotifyAuthError, SpotifyClient
 
 
 def main() -> None:
@@ -196,6 +196,11 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
 
 def _print_spotify_error_help(err: SpotifyApiError) -> None:
     print(f"\n❌ {err}", file=sys.stderr)
+
+    if isinstance(err, SpotifyAuthError):
+        print(err.remediation, file=sys.stderr)
+        return
+
     if err.status_code != 403:
         return
 

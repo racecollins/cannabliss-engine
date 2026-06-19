@@ -2,7 +2,30 @@
 
 from types import SimpleNamespace
 
-from src.main import run_cannabliss
+from src.main import _print_spotify_error_help, run_cannabliss
+from src.spotify_client import SpotifyApiError, SpotifyAuthError
+
+
+def test_error_help_shows_reauth_steps_for_expired_token(capsys):
+    """When the refresh token expires, the failure must tell the operator
+    exactly how to recover, not just print a bare 400."""
+    err = SpotifyAuthError(
+        "POST", "https://accounts.spotify.com/api/token", 400, "invalid_grant"
+    )
+    _print_spotify_error_help(err)
+
+    out = capsys.readouterr().err
+    assert "refresh_token_helper" in out
+    assert "SPOTIFY_REFRESH_TOKEN" in out
+
+
+def test_error_help_stays_quiet_for_unrelated_errors(capsys):
+    """A generic non-403, non-auth error should not emit re-auth noise."""
+    err = SpotifyApiError("GET", "https://api.spotify.com/v1/me", 500, "server error")
+    _print_spotify_error_help(err)
+
+    out = capsys.readouterr().err
+    assert "refresh_token_helper" not in out
 
 
 class _FakeClient:
