@@ -22,6 +22,8 @@ The engine already ranks freshness off a song's *add date* and already loads lis
 
 This design replaces that inference with the **direct signal Race already gives**: the songs he puts into the public playlist. The front becomes one clear rule instead of four interacting ones.
 
+It also cleans up the **back half** (see its own section below). Today positions 51–100 run through the most elaborate scoring in the engine (`_score_track`'s five "score kinds," `_tail_strength`, zone interleaving) over songs it can only see as metadata — the engine *simulating taste it doesn't have*. We collapse that to one honest ordering. The guiding idea, which Race raised directly: principles need a judge to interpret them, and this engine has none — so the judge is Race (his hand-adds), and the code's job is simple, honest **mechanism**, not pretend-taste.
+
 ## Key insight: the write mechanism makes "Race's adds" trivially detectable
 
 `SpotifyClient.replace_playlist_tracks` writes the playlist with a single `PUT .../items` that **replaces all tracks at once**. Spotify stamps every engine-written track with the *same* `added_at` (the run time). Therefore:
@@ -69,7 +71,7 @@ Exclude any URI in the **cooldown set** from the in-playlist-hot-pick and rollin
 2. **freshness + listening score** — primarily add-recency (newest first), plus a listening boost (`top_played` > `recently_played`) that lifts a song a few spots within its freshness band.
 3. Stable tie-breakers (added_at, name, uri) — as today.
 
-**Apply the artist cap while taking the top `F`:** at most **2 songs per primary artist** in the top 15 (`MAJOR_FRESH_FRONT_MAX_PER_ARTIST = 2`). When Race adds 5–7 songs of one artist, only the best 2 enter the top 15; the remainder are **not discarded** — they flow into the lower zones (still protected this cycle).
+**Apply the artist cap while taking the top `F`:** at most **2 songs per primary artist** in the top 15 (`MAJOR_FRESH_FRONT_MAX_PER_ARTIST = 2`). When Race adds 5–7 songs of one artist, only the best 2 enter the top 15; the remainder are **not discarded** — they flow into the body (still protected this cycle).
 
 ## Protection and trimming (Friday / major)
 
@@ -99,13 +101,38 @@ Goal: a removed song is not re-added the following week. Override: a manual re-a
 **On each run:**
 
 1. **Load & prune** — drop entries older than `CANNABLISS_REMOVAL_COOLDOWN_DAYS` (default **7**), measured against injected `now`. The survivors form the active cooldown set.
-2. **Exclude** cooldown URIs from automatic candidate pools (rolling fill, discovery, stabilizers, library). Do **not** exclude `weekly_adds` (manual re-add override).
+2. **Exclude** cooldown URIs from automatic candidate pools (front rolling-fill and the body pool). Do **not** exclude `weekly_adds` (manual re-add override).
 3. **After building** the new order, record newly-removed URIs with `removed_at = now`:
    - `user_removed = prev_run_uris − current_uris` (Race deleted it during the week), and
    - `engine_removed = (current_uris ∪ prev_run_uris) − new_output_uris` (retired by the trim),
    - minus anything present in the new output. Append the union to `cooldown`.
 
 A song stays benched for `COOLDOWN_DAYS` and then becomes eligible again — matching "for the following week," not a permanent ban.
+
+## Back-half cleanup (positions `F+1` .. `target_size`)
+
+Everything below the front currently flows through `_score_track`'s five score kinds (`premium`, `new`, `discovery`, `stabilizer`, `library`), plus `_tail_strength`, `_prune_tail_candidates`, `_interleave_tracks`, and several per-zone `_fill_zone` calls. That is the engine's biggest stretch of pretend-taste. Collapse it.
+
+**One honest `_body_score`** replaces the five kinds. For every song below the front:
+
+```
+body_score = add_recency (primary)
+           + listening_boost (secondary: top_played > recently_played)
+           + popularity (weak tiebreaker)
+           - small Hall-of-Fame nudge   # brand memory shouldn't flood the body
+```
+
+**Stability over churn:** the full-replace write gives all incumbents the *same* `added_at`, so `body_score` can't reorder them by recency. We preserve their existing relative order with a **prior-position tiebreaker** (lower current position first). The body stays authored and stable instead of reshuffling every week for no reason. Mechanism, not taste.
+
+**Body construction (major):**
+
+1. `body_pool` = weekly-add overflow (not in front) ∪ incumbents (not in front) ∪ fill candidates (Master/feeder/hall not already in the playlist). Cooldown URIs excluded from everything except `weekly_adds`.
+2. Place **protected `weekly_adds` first** — all of them, exempt from the artist cap — then fill remaining slots up to `target_size` from the rest, sorted by `body_score` (+ stability tiebreaker), respecting the global **2-per-artist** cap.
+3. Whatever doesn't fit `target_size` is dropped (lowest-scoring non-protected) and recorded as `engine_removed` for the cooldown.
+
+This **deletes**: the five-kind branching in `_score_track` (→ one `_body_score`), `_tail_strength`, `_prune_tail_candidates`, `_interleave_tracks`, and the per-zone `_fill_zone` calls. The playlist ends up with **two real tiers** instead of five fictional ones — the curated **fresh front** and the freshness-ordered **body**.
+
+**Result/state change:** `CannablissBuildResult.zones` becomes `{ "fresh_front": [...], "body": [...] }` (was five keys). The dashboard zone map (`data/dashboard/liveSpotify.ts`) and `README.md` zone list update to the two tiers; the dashboard already degrades gracefully on missing keys, so this won't crash it.
 
 ## Configuration (new env vars)
 
@@ -119,11 +146,15 @@ Listening boosts reuse the existing `CANNABLISS_TOP_TRACKS_BOOST` / `CANNABLISS_
 
 ## Components touched
 
-- `src/cannabliss.py` — replace the major/micro front-building blocks in `build_cannabliss_playlist` with: weekly-adds detection, front ordering (hot-pick-first + freshness/listening + 2-per-artist cap), protection-from-trim, and cooldown filtering/recording. Add small helpers (`_weekly_adds`, `_is_hot_pick`, `_build_fresh_front`, cooldown load/prune/record). Remove now-dead front constants/logic (`MAJOR_TOP_10_FRESH_TARGET`, `MAJOR_TOP_10_CARRYOVER_LIMIT`, the `front_queue` machinery) where superseded.
+- `src/cannabliss.py` —
+  - **Front:** replace the major/micro front-building blocks in `build_cannabliss_playlist` with weekly-adds detection, front ordering (hot-pick-first + freshness/listening + 2-per-artist cap), protection-from-trim, and cooldown filtering/recording. Add helpers (`_weekly_adds`, `_is_hot_pick`, `_build_fresh_front`, cooldown load/prune/record). Remove dead front constants/logic (`MAJOR_TOP_10_FRESH_TARGET`, `MAJOR_TOP_10_CARRYOVER_LIMIT`, the `front_queue` machinery).
+  - **Back half:** collapse `_score_track`'s five score kinds into one `_body_score`; delete `_tail_strength`, `_prune_tail_candidates`, `_interleave_tracks`, and per-zone `_fill_zone` usage; build the body as one freshness-ordered, protected-first, artist-capped pass. Emit two-tier `zones`.
 - `src/config.py` — three new validated env vars.
 - `.github/workflows/weekly.yml`, `.github/workflows/cannabliss-micro.yml` — pass the new vars.
-- `data/cannabliss_state.json` — gains a `cooldown` key (backward-compatible: absent → empty).
-- `docs/cannabliss-philosophy.md` — update the "1-10 Premium Current Tier" section, which currently says the opposite ("the top 10 should not simply be the 10 newest songs").
+- `data/cannabliss_state.json` — gains a `cooldown` key (backward-compatible: absent → empty); `zones` shrinks to two keys (consumers tolerate missing keys).
+- `data/dashboard/liveSpotify.ts` — zone map → two tiers (`fresh_front`, `body`).
+- `docs/cannabliss-philosophy.md` — update the "1-10 Premium Current Tier" section (currently says the opposite: "the top 10 should not simply be the 10 newest songs") and collapse the five-zone "Playlist Structure" section to the two real tiers.
+- `README.md` — update the zone-range list to the two tiers.
 
 ## Edge cases
 
@@ -134,6 +165,8 @@ Listening boosts reuse the existing `CANNABLISS_TOP_TRACKS_BOOST` / `CANNABLISS_
 - **Race re-adds a benched song** — appears as a weekly add → honored, removed from cooldown.
 - **Song both retired and re-added same week** — presence in new output wins; not added to cooldown.
 - **`track_id` → URI reconstruction** — state stores bare ids; rebuild as `spotify:track:<id>`. Local tracks are already filtered upstream.
+- **Too few candidates to fill `target_size`** — playlist is simply shorter; no error, no padding with cooldown/junk.
+- **All-incumbent week, no listening signal** — body holds prior relative order via the stability tiebreaker (no gratuitous reshuffle).
 
 ## Testing (TDD; monkeypatch the `requests` layer — no live API)
 
@@ -149,12 +182,16 @@ New `tests/test_cannabliss.py` cases:
 8. Cooldown expiry: an entry older than `COOLDOWN_DAYS` no longer excludes (uses injected `now`).
 9. Micro run promotes weekly adds to the top and preserves the rest (no retirement).
 10. First-run path unaffected.
+11. **Body ordering:** sorted by recency → listening → popularity; incumbents (uniform `added_at`) hold their prior relative order via the stability tiebreaker.
+12. **Hall-of-Fame nudge:** an otherwise-equivalent Hall track sorts below a non-Hall track in the body.
+13. **Two-tier `zones`:** result emits exactly `fresh_front` + `body`, partitioning the ordered playlist with no overlap.
 
-Plus `tests/test_config.py`-style validation for the three new env vars.
+Plus `tests/test_config.py`-style validation for the three new env vars. Existing `test_cannabliss.py` cases that assert the old five-zone shape (`premium_current`/`high_conviction`/`discovery`/`stabilizers`/`library` lengths) are rewritten for the two-tier model.
 
 ## Out of scope
 
 - No token-rotation / persistence changes (per project policy).
-- No dashboard changes.
+- No dashboard work beyond remapping the zone list to the two tiers (the zone-health visualization redesign is a separate effort).
 - No new listening-data source beyond the existing top-tracks / recently-played APIs.
+- No audio-feature / LLM-judge curation. The judge stays Race; the engine stays deterministic mechanism.
 - Cooldown is time-boxed (default 7 days), not a permanent block-list.
