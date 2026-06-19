@@ -829,6 +829,52 @@ def _body_sort_key(
     )
 
 
+def _build_body(
+    *,
+    protected_overflow: list[CannablissTrack],
+    candidates: list[CannablissTrack],
+    slots: int,
+    max_per_artist: int,
+    front_tracks: list[CannablissTrack],
+    signals: ListeningSignals,
+    now: datetime,
+) -> list[CannablissTrack]:
+    """Body = protected overflow first, then freshness-ordered fill up to `slots`."""
+    body: list[CannablissTrack] = []
+    selected: set[str] = set()
+    artist_counts: dict[str, int] = {}
+
+    for track in front_tracks:
+        artist = _primary_artist(track.artists)
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+
+    for track in protected_overflow:
+        if track.uri in selected:
+            continue
+        selected.add(track.uri)
+        artist = _primary_artist(track.artists)
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+        body.append(track)
+
+    ordered = sorted(
+        _ordered_unique(candidates),
+        key=lambda track: _body_sort_key(track, signals, now),
+        reverse=True,
+    )
+    for track in ordered:
+        if len(body) >= max(0, slots):
+            break
+        if track.uri in selected:
+            continue
+        artist = _primary_artist(track.artists)
+        if artist_counts.get(artist, 0) >= max_per_artist:
+            continue
+        selected.add(track.uri)
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+        body.append(track)
+    return body
+
+
 def _build_fresh_front(
     candidates: list[CannablissTrack],
     *,
