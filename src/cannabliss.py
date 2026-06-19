@@ -174,17 +174,27 @@ def save_cannabliss_state(payload: dict, path: str = "data/cannabliss_state.json
         json.dump(payload, fh, indent=2)
 
 
+def previous_run_track_uris(state: dict) -> set[str]:
+    """URIs (`spotify:track:<id>`) of the most recent recorded run, or empty."""
+    runs = state.get("runs") or []
+    if not runs:
+        return set()
+    return {f"spotify:track:{tid}" for tid in runs[-1].get("track_ids", []) if tid}
+
+
 def append_cannabliss_run(
     result: CannablissBuildResult,
     *,
     path: str = "data/cannabliss_state.json",
     now: datetime | None = None,
+    cooldown_days: int = DEFAULT_REMOVAL_COOLDOWN_DAYS,
 ) -> None:
+    stamp = now or datetime.now(timezone.utc)
     payload = load_cannabliss_state(path)
     runs = payload.setdefault("runs", [])
     runs.append(
         {
-            "timestamp": (now or datetime.now(timezone.utc)).isoformat(),
+            "timestamp": stamp.isoformat(),
             "track_ids": [track_id(t.uri) for t in result.ordered_tracks],
             "new_track_count": result.new_track_count,
             "summary": result.summary,
@@ -193,6 +203,9 @@ def append_cannabliss_run(
                 for zone, tracks in result.zones.items()
             },
         }
+    )
+    payload["cooldown"] = merge_cooldown(
+        payload.get("cooldown", []), result.removed_uris, stamp, days=cooldown_days
     )
     save_cannabliss_state(payload, path)
 
