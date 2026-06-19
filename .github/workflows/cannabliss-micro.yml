@@ -53,6 +53,9 @@ jobs:
           CANNABLISS_RECENTLY_PLAYED_LIMIT: "50"
           CANNABLISS_TOP_TRACKS_BOOST: "0.35"
           CANNABLISS_RECENTLY_PLAYED_BOOST: "0.25"
+          CANNABLISS_FRESH_FRONT_SIZE: "15"
+          CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST: "2"
+          CANNABLISS_REMOVAL_COOLDOWN_DAYS: "7"
           PLAYLIST_CACHE_DIR: "data/cache/playlists"
           PLAYLIST_CACHE_TTL_HOURS: "12"
           FORCE_REFRESH: ${{ github.event_name == 'schedule' && '1' || '0' }}
