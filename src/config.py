@@ -23,6 +23,9 @@ class Config:
     cannabliss_weekly_insertions: int
     cannabliss_update_mode: str
     cannabliss_micro_refresh_count: int
+    cannabliss_fresh_front_size: int
+    cannabliss_fresh_front_max_per_artist: int
+    cannabliss_removal_cooldown_days: int
     cannabliss_state_path: str
     cannabliss_use_top_tracks: bool
     cannabliss_use_recently_played: bool
@@ -58,6 +61,9 @@ def load_config() -> Config:
         cannabliss_weekly_insertions=int(_env("CANNABLISS_WEEKLY_INSERTIONS", "25")),
         cannabliss_update_mode=_env("CANNABLISS_UPDATE_MODE", "major"),
         cannabliss_micro_refresh_count=int(_env("CANNABLISS_MICRO_REFRESH_COUNT", "5")),
+        cannabliss_fresh_front_size=int(_env("CANNABLISS_FRESH_FRONT_SIZE", "15")),
+        cannabliss_fresh_front_max_per_artist=int(_env("CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST", "2")),
+        cannabliss_removal_cooldown_days=int(_env("CANNABLISS_REMOVAL_COOLDOWN_DAYS", "7")),
         cannabliss_state_path=_env("CANNABLISS_STATE_PATH", "data/cannabliss_state.json"),
         cannabliss_use_top_tracks=_env("CANNABLISS_USE_TOP_TRACKS", "0") == "1",
         cannabliss_use_recently_played=_env("CANNABLISS_USE_RECENTLY_PLAYED", "0") == "1",
@@ -95,6 +101,20 @@ def validate_config(cfg: Config) -> None:
         errors.append(
             "CANNABLISS_MICRO_REFRESH_COUNT must be >= 0, "
             f"got {cfg.cannabliss_micro_refresh_count}"
+        )
+    if cfg.cannabliss_fresh_front_size < 1:
+        errors.append(
+            f"CANNABLISS_FRESH_FRONT_SIZE must be >= 1, got {cfg.cannabliss_fresh_front_size}"
+        )
+    if cfg.cannabliss_fresh_front_max_per_artist < 1:
+        errors.append(
+            "CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST must be >= 1, "
+            f"got {cfg.cannabliss_fresh_front_max_per_artist}"
+        )
+    if cfg.cannabliss_removal_cooldown_days < 0:
+        errors.append(
+            "CANNABLISS_REMOVAL_COOLDOWN_DAYS must be >= 0, "
+            f"got {cfg.cannabliss_removal_cooldown_days}"
         )
     if cfg.cannabliss_top_tracks_limit < 1:
         errors.append(
