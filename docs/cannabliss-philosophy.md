@@ -64,41 +64,24 @@ The feeder list should remain configurable.
 
 ## Playlist Structure
 
-Cannabliss should use an intentionally structured front half.
+Cannabliss has two tiers, driven by the curator's hand-adds rather than by the
+engine guessing taste.
 
-### 1-10: Premium Current Tier
+### 1–15: Fresh Front
 
-These are the strongest current Cannabliss songs. This is the most important part of the playlist.
+The songs Race added to the public playlist since the last run, newest first.
+This tier *is* the curator's current vote. A song that is also in heavy rotation
+is pulled into the top 5. At most two songs per artist, so an artist binge does
+not swallow the front. When fewer than 15 were added in a week, the remaining
+slots roll in the next-freshest songs.
 
-The first 10 should:
+### 16–100: Body
 
-- feel like the hottest version of Cannabliss right now
-- be highly replayable
-- usually be recent additions to the system
-- be allowed to include lower-key or older rediscoveries if they feel especially right
-- stay in place for multiple weeks when they are still the best face of the playlist
-
-The top 10 should not simply be the 10 newest songs.
-
-### 11-25: High-Conviction New Arrivals
-
-These are fresh songs that feel close to premium tier quality. This band should move more than the top 10, but it should still feel sharp and curated.
-
-These songs should often be strong promotion candidates for the following week.
-
-### 26-40: Discovery Tier
-
-This is the exploratory zone. Songs here can be slightly riskier, newer to the system, or less proven, as long as they still fit the Cannabliss mood.
-
-This section should still feel coherent, but it can take more chances than the top 25.
-
-### 41-50: Interleaved Stabilizers
-
-This band should contain proven glue songs and strong incumbents that stabilize the listening experience. They should not be grouped into one isolated comfort zone lower in the playlist. Instead, they should be used as pacing tools and anchors.
-
-### 51-180: Core and Deeper Library
-
-The rest of the playlist should continue the Cannabliss identity while allowing for slower rotation, deeper cuts, and long-tail favorites. This area still matters, but the front 50 carries the brand most visibly.
+Everything else, ordered by add-recency with a light listening and popularity
+nudge, and a small Hall-of-Fame penalty so brand-memory songs do not flood it.
+The body holds a stable relative order week to week instead of reshuffling.
+Hand-adds are protected from the weekly trim; the oldest tracks retire to keep
+the list at 100.
 
 ## How Songs Earn Placement
 
@@ -175,7 +158,7 @@ This matters because:
 - the playlist should feel stable and authored, not segmented into “all risky songs first, all safe songs later”
 - anchor songs make discovery feel easier to trust
 
-Glue songs should be used as stabilizers between fresher or riskier tracks, especially in the first `50-80` songs.
+Glue songs should be used as stabilizers between fresher or riskier tracks, especially through the body of the playlist.
 
 ## Anti-Patterns
 
@@ -183,7 +166,7 @@ These songs may be individually good but should usually be filtered out of top p
 
 - songs that break the Cannabliss spell even if they are objectively strong
 - songs that feel too mainstream-chart-driven for the playlist identity
-- songs that are too sleepy to support the front 50
+- songs that are too sleepy to support the fresh front
 - songs that are too noisy, abrasive, or chaotic for the vibe lane
 - songs that feel technically similar to the playlist but emotionally off-brand
 
@@ -215,7 +198,7 @@ Possible automation signals:
 Possible automation signals:
 
 - stronger promotion thresholds for positions `1-25`
-- higher fit requirements for premium current songs
+- higher fit requirements for fresh-front songs
 - persistence rules that allow strong incumbents to stay near the top
 
 ### Editorial Principle: Smooth flow

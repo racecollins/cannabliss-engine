@@ -3,14 +3,17 @@
 from __future__ import annotations
 
 import sys
+from datetime import datetime, timezone
 
 from src.cache import get_cached_playlist_items
 from src.cannabliss import (
     ListeningSignals,
+    active_cooldown_uris,
     append_cannabliss_run,
     build_cannabliss_playlist,
     load_cannabliss_state,
     parse_source_items,
+    previous_run_track_uris,
 )
 from src.config import load_config, validate_config
 from src.spotify_client import SpotifyApiError, SpotifyAuthError, SpotifyClient
@@ -126,8 +129,18 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
             print(f"⚠️  Could not load recently played tracks: {err}")
             print("   Continuing without recent-listening boosts.")
 
+    now = datetime.now(timezone.utc)
     state = load_cannabliss_state(cfg.cannabliss_state_path)
     print(f"🧾 Loaded Cannabliss state with {len(state.get('runs', []))} prior runs")
+
+    previous_uris = previous_run_track_uris(state)
+    cooldown_uris = active_cooldown_uris(
+        state.get("cooldown", []), now, days=cfg.cannabliss_removal_cooldown_days
+    )
+    print(
+        f"🧊 {len(previous_uris)} tracks in last run; "
+        f"{len(cooldown_uris)} benched by cooldown"
+    )
 
     result = build_cannabliss_playlist(
         master_tracks=parse_source_items(master_items, source_tag="master"),
@@ -145,6 +158,11 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
             top_tracks_boost=cfg.cannabliss_top_tracks_boost,
             recently_played_boost=cfg.cannabliss_recently_played_boost,
         ),
+        previous_track_uris=previous_uris,
+        cooldown_uris=cooldown_uris,
+        fresh_front_size=cfg.cannabliss_fresh_front_size,
+        fresh_front_max_per_artist=cfg.cannabliss_fresh_front_max_per_artist,
+        now=now,
     )
 
     print(
@@ -161,11 +179,7 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         "held",
         "shifted_down",
         "removed",
-        "top_10_added",
-        "top_10_removed",
-        "top_20_added",
-        "top_20_removed",
-        "front_queue",
+        "fresh_front_added",
     ):
         values = result.summary.get(label, [])
         preview = ", ".join(values[:10]) if values else "none"
@@ -176,7 +190,12 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
     if "micro_adjustments" in result.summary:
         print(f"  • micro_adjustments: {', '.join(result.summary['micro_adjustments'])}")
 
-    append_cannabliss_run(result, path=cfg.cannabliss_state_path)
+    append_cannabliss_run(
+        result,
+        path=cfg.cannabliss_state_path,
+        now=now,
+        cooldown_days=cfg.cannabliss_removal_cooldown_days,
+    )
     print(f"🧾 Recorded Cannabliss run in {cfg.cannabliss_state_path}")
 
     if cfg.dry_run:

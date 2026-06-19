@@ -63,6 +63,9 @@ def _cfg(**overrides):
         "playlist_cache_ttl_hours": 12,
         "force_refresh": False,
         "cannabliss_state_path": "data/cannabliss_state.json",
+        "cannabliss_fresh_front_size": 15,
+        "cannabliss_fresh_front_max_per_artist": 2,
+        "cannabliss_removal_cooldown_days": 7,
     }
     base.update(overrides)
     return SimpleNamespace(**base)
@@ -88,7 +91,7 @@ def test_run_cannabliss_always_refreshes_live_target_playlist(monkeypatch, tmp_p
             update_mode=kwargs["update_mode"],
         ),
     )
-    monkeypatch.setattr("src.main.append_cannabliss_run", lambda result, path: None)
+    monkeypatch.setattr("src.main.append_cannabliss_run", lambda result, path=None, now=None, cooldown_days=None: None)
 
     run_cannabliss(cfg, _FakeClient())
 

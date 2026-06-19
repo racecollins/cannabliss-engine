@@ -94,11 +94,8 @@ const latestRun = localRuns.at(-1);
 const previousRun = localRuns.at(-2);
 
 const zoneConfig = [
-  { key: "premium_current", zoneId: "premium", name: "Premium Current", range: "1-10" },
-  { key: "high_conviction", zoneId: "high", name: "High Conviction", range: "11-25" },
-  { key: "discovery", zoneId: "discovery", name: "Discovery", range: "26-40" },
-  { key: "stabilizers", zoneId: "stability", name: "Stability", range: "41-50" },
-  { key: "library", zoneId: "library", name: "Library", range: "51-160" },
+  { key: "fresh_front", zoneId: "fresh", name: "Fresh Front", range: "1-15" },
+  { key: "body", zoneId: "body", name: "Body", range: "16-100" },
 ] as const;
 
 function requireEnv(name: string) {
@@ -151,11 +148,8 @@ function countTrackOccurrences(runs: LocalCannablissRun[]) {
 }
 
 function inferZoneLabel(position: number) {
-  if (position <= 10) return "Premium Current";
-  if (position <= 25) return "High Conviction";
-  if (position <= 40) return "Discovery";
-  if (position <= 50) return "Stability";
-  return "Library";
+  if (position <= 15) return "Fresh Front";
+  return "Body";
 }
 
 function buildDerivedFollowerHistory(currentFollowers: number): FollowerHistoryPoint[] {
@@ -392,7 +386,7 @@ function buildFeederStats(
       candidates: feeder.trackIds.size,
       admits: admittedTrackIds.length,
       hitRate: feeder.trackIds.size > 0 ? admittedTrackIds.length / feeder.trackIds.size : 0,
-      avgEntryZone: inferZoneLabel(Math.round(averagePosition)).replace("Premium Current", "1-10").replace("High Conviction", "11-25").replace("Discovery", "26-40").replace("Stability", "41-50").replace("Library", "51-160"),
+      avgEntryZone: inferZoneLabel(Math.round(averagePosition)),
       avgSurvivalWeeks: Number((averageRunsPresent * 1.2).toFixed(1)),
       topTenPromotions,
     };
