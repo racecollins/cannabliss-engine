@@ -8,9 +8,10 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 
 
-MAJOR_FRONT_QUEUE_DAYS = 21
-MAJOR_TOP_10_FRESH_TARGET = 8
-MAJOR_TOP_10_CARRYOVER_LIMIT = 2
+DEFAULT_FRESH_FRONT_SIZE = 15
+DEFAULT_FRESH_FRONT_MAX_PER_ARTIST = 2
+DEFAULT_REMOVAL_COOLDOWN_DAYS = 7
+HALL_BODY_PENALTY = 0.05
 
 
 @dataclass
@@ -769,6 +770,63 @@ def _tail_strength(
         bottom_pressure = -0.05
 
     return score + source_confidence + incumbency + bottom_pressure
+
+
+def _is_hot_pick(track: CannablissTrack, signals: ListeningSignals) -> bool:
+    """A song in the playlist that's also in the user's heavy rotation."""
+    return track_id(track.uri) in signals.top_track_ids
+
+
+def _front_score(track: CannablissTrack, signals: ListeningSignals, now: datetime) -> float:
+    tid = track_id(track.uri)
+    score = _recency_score(track.added_at, now)
+    if tid in signals.top_track_ids:
+        score += signals.top_tracks_boost
+    if tid in signals.recently_played_ids:
+        score += signals.recently_played_boost
+    return score
+
+
+def _body_score(track: CannablissTrack, signals: ListeningSignals, now: datetime) -> float:
+    tid = track_id(track.uri)
+    score = _recency_score(track.added_at, now)
+    if tid in signals.top_track_ids:
+        score += signals.top_tracks_boost * 0.5
+    if tid in signals.recently_played_ids:
+        score += signals.recently_played_boost * 0.5
+    score += ((track.popularity or 0) / 100.0) * 0.04
+    if "hall" in track.source_tags:
+        score -= HALL_BODY_PENALTY
+    return score
+
+
+def _front_sort_key(
+    track: CannablissTrack,
+    signals: ListeningSignals,
+    now: datetime,
+    weekly_add_ids: set[str],
+) -> tuple:
+    """Sort key (use reverse=True): hot picks, then weekly adds, then freshness."""
+    return (
+        1 if _is_hot_pick(track, signals) else 0,
+        1 if track.uri in weekly_add_ids else 0,
+        _front_score(track, signals, now),
+        track.added_at,
+        track.name.lower(),
+        track.uri,
+    )
+
+
+def _body_sort_key(
+    track: CannablissTrack, signals: ListeningSignals, now: datetime
+) -> tuple:
+    """Sort key (use reverse=True): body score, then stability (lower position first)."""
+    return (
+        _body_score(track, signals, now),
+        -(track.current_position if track.current_position is not None else 10**9),
+        track.added_at,
+        track.uri,
+    )
 
 
 def _score_track(
