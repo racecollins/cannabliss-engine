@@ -180,19 +180,13 @@ From **Actions**, you can manually run either workflow and choose whether to do 
 
 ## Cannabliss Model
 
-Cannabliss uses a structured playlist shape:
-- `1–10`: premium current / identity tier
-- `11–25`: high-conviction new arrivals
-- `26–40`: discovery tier
-- `41–50`: stabilizers / glue
-- `51–100`: survivors / long-tail identity
+Cannabliss is built around the songs Race hand-adds to the public playlist:
+- `1–15`: **Fresh front** — the songs added since the last run, newest first.
+  Songs that are also in heavy rotation land in the top 5; at most 2 per artist.
+- `16–100`: **Body** — everything else, ordered by add-recency (with a light
+  listening + popularity nudge), holding a stable order week to week.
 
-Major refreshes are the main weekly update.
-Micro refreshes make small targeted adjustments while keeping the playlist recognizable.
-
-Friday major refreshes treat recently added Cannabliss Master tracks as the front-page queue.
-That means songs added to the Master playlist during the week get first chance at the top
-`10-25` positions, while a small number of listening-signal anchors can remain sprinkled into
-the front half for continuity. Micro refreshes do not use this front-page churn behavior.
-Micro refreshes also preserve the current live playlist size instead of trimming back to `100`,
-so manually added songs can stay in place until the next Friday major refresh resets the list.
+Major (Friday) refreshes rebuild the list and trim back to 100, retiring the
+oldest tracks; hand-adds are protected from that trim. Micro (Mon/Wed) refreshes
+promote the week's adds to the front and preserve everything else. A song that
+was removed (retired or deleted) is benched for a week before it can return.
