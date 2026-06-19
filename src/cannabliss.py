@@ -500,6 +500,10 @@ def _build_body(
         artist = _primary_artist(track.artists)
         artist_counts[artist] = artist_counts.get(artist, 0) + 1
 
+    # Protected overflow (Race's hand-adds beyond the front) is placed
+    # unconditionally and is never trimmed. In the pathological case of more
+    # than `target_size` hand-adds in one week this can push the body past
+    # `slots` — protection deliberately wins over the size ceiling.
     for track in protected_overflow:
         if track.uri in selected:
             continue
@@ -514,7 +518,7 @@ def _build_body(
         reverse=True,
     )
     for track in ordered:
-        if len(body) >= max(0, slots):
+        if len(body) >= slots:
             break
         if track.uri in selected:
             continue

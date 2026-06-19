@@ -1,6 +1,6 @@
 """Tests for the removal-cooldown helpers."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from src.cannabliss import active_cooldown_uris, merge_cooldown
 
@@ -9,7 +9,7 @@ NOW = datetime(2026, 6, 19, tzinfo=timezone.utc)
 
 
 def _entry(uri, days_ago):
-    removed = datetime(2026, 6, 19 - days_ago, tzinfo=timezone.utc)
+    removed = NOW - timedelta(days=days_ago)
     return {"uri": uri, "removed_at": removed.isoformat()}
 
 
@@ -36,4 +36,10 @@ def test_merge_cooldown_appends_new_and_prunes_expired():
 def test_merge_cooldown_does_not_duplicate_existing_uri():
     entries = [_entry("spotify:track:keep", 1)]
     merged = merge_cooldown(entries, ["spotify:track:keep"], NOW, days=7)
+    assert [e["uri"] for e in merged] == ["spotify:track:keep"]
+
+
+def test_merge_cooldown_skips_entries_without_uri():
+    entries = [{"removed_at": NOW.isoformat()}, _entry("spotify:track:keep", 1)]
+    merged = merge_cooldown(entries, [], NOW, days=7)
     assert [e["uri"] for e in merged] == ["spotify:track:keep"]

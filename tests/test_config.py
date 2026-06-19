@@ -56,3 +56,9 @@ def test_invalid_cooldown_days_exits(monkeypatch):
     _set_env(monkeypatch, CANNABLISS_REMOVAL_COOLDOWN_DAYS="-1")
     with pytest.raises(SystemExit):
         validate_config(load_config())
+
+
+def test_invalid_max_per_artist_exits(monkeypatch):
+    _set_env(monkeypatch, CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST="0")
+    with pytest.raises(SystemExit):
+        validate_config(load_config())

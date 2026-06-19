@@ -33,6 +33,10 @@ def test_previous_run_track_uris_empty_when_no_runs():
     assert previous_run_track_uris({"runs": []}) == set()
 
 
+def test_previous_run_track_uris_empty_when_no_runs_key():
+    assert previous_run_track_uris({}) == set()
+
+
 def test_append_run_records_cooldown(tmp_path):
     path = str(tmp_path / "state.json")
     result = CannablissBuildResult(
