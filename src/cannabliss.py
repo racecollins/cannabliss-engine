@@ -323,6 +323,7 @@ def build_cannabliss_playlist(
 
     ordered_ids = {track.uri for track in ordered}
     baseline = current_ids | prev
+    # removed_uris (current ∪ prev − output) drives the cooldown; summary["removed"] (current_order only) is the human-readable print — intentionally different membership.
     removed_uris = [uri for uri in baseline if uri not in ordered_ids]
 
     summary = _build_summary(
@@ -542,17 +543,13 @@ def _build_fresh_front(
         reverse=True,
     )
     front: list[CannablissTrack] = []
-    selected: set[str] = set()
     artist_counts: dict[str, int] = {}
     for track in ordered:
         if len(front) >= size:
             break
-        if track.uri in selected:
-            continue
         artist = _primary_artist(track.artists)
         if artist_counts.get(artist, 0) >= max_per_artist:
             continue
-        selected.add(track.uri)
         artist_counts[artist] = artist_counts.get(artist, 0) + 1
         front.append(track)
     return front
@@ -624,11 +621,6 @@ def track_id(uri: str) -> str:
     if ":" in uri:
         return uri.rsplit(":", 1)[-1]
     return uri
-
-
-def _has_listening_signal(track: CannablissTrack, signals: ListeningSignals) -> bool:
-    tid = track_id(track.uri)
-    return tid in signals.top_track_ids or tid in signals.recently_played_ids
 
 
 def _song_key(track: CannablissTrack) -> str:

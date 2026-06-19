@@ -158,7 +158,7 @@ This matters because:
 - the playlist should feel stable and authored, not segmented into “all risky songs first, all safe songs later”
 - anchor songs make discovery feel easier to trust
 
-Glue songs should be used as stabilizers between fresher or riskier tracks, especially in the first `50-80` songs.
+Glue songs should be used as stabilizers between fresher or riskier tracks, especially through the body of the playlist.
 
 ## Anti-Patterns
 
@@ -166,7 +166,7 @@ These songs may be individually good but should usually be filtered out of top p
 
 - songs that break the Cannabliss spell even if they are objectively strong
 - songs that feel too mainstream-chart-driven for the playlist identity
-- songs that are too sleepy to support the front 50
+- songs that are too sleepy to support the fresh front
 - songs that are too noisy, abrasive, or chaotic for the vibe lane
 - songs that feel technically similar to the playlist but emotionally off-brand
 
@@ -198,7 +198,7 @@ Possible automation signals:
 Possible automation signals:
 
 - stronger promotion thresholds for positions `1-25`
-- higher fit requirements for premium current songs
+- higher fit requirements for fresh-front songs
 - persistence rules that allow strong incumbents to stay near the top
 
 ### Editorial Principle: Smooth flow
