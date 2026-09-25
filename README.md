@@ -8,7 +8,7 @@ It builds a curated 100-song playlist from:
 - optional feeder playlists
 - optional personal listening signals from Spotify top tracks and recently played tracks
 
-The playlist is designed to feel alive, intentional, and taste-driven while preserving a stable identity tier at the top.
+Your public-playlist additions lead the rotation. Master-only additions remain discovery candidates; listening history cannot reserve the top spots.
 
 ## Project Docs
 
@@ -32,9 +32,10 @@ The playlist is designed to feel alive, intentional, and taste-driven while pres
 ### 2. Clone and Install
 
 ```bash
-git clone <your-repo-url> && cd Cannabliss
-python3 -m venv venv
-source venv/bin/activate
+git clone https://github.com/racecollins/cannabliss-engine.git
+cd cannabliss-engine
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -56,6 +57,9 @@ CANNABLISS_TARGET_SIZE=100
 CANNABLISS_WEEKLY_INSERTIONS=25
 CANNABLISS_UPDATE_MODE=major
 CANNABLISS_MICRO_REFRESH_COUNT=5
+CANNABLISS_PROTECTION_DAYS=14
+CANNABLISS_DISCOVERY_PER_REFRESH=5
+CANNABLISS_PREVIEW_PATH=data/preview/cannabliss.md
 CANNABLISS_STATE_PATH=data/cannabliss_state.json
 CANNABLISS_USE_TOP_TRACKS=1
 CANNABLISS_USE_RECENTLY_PLAYED=1
@@ -68,13 +72,13 @@ MAX_TRACKS_PER_ARTIST=2
 PLAYLIST_CACHE_DIR=data/cache/playlists
 PLAYLIST_CACHE_TTL_HOURS=12
 FORCE_REFRESH=0
-DRY_RUN=0
+DRY_RUN=1
 ```
 
 ### 4. Get Your Refresh Token
 
 ```bash
-venv/bin/python3 -m src.refresh_token_helper
+.venv/bin/python3 -m src.refresh_token_helper
 ```
 
 If you want listening boosts, regenerate your token with scopes that include:
@@ -87,28 +91,34 @@ If you want listening boosts, regenerate your token with scopes that include:
 
 ```bash
 # Major refresh dry run
-PROFILE=cannabliss CANNABLISS_UPDATE_MODE=major DRY_RUN=1 venv/bin/python3 -m src.main
+PROFILE=cannabliss CANNABLISS_UPDATE_MODE=major DRY_RUN=1 .venv/bin/python3 -m src.main
 
 # Micro refresh dry run
-PROFILE=cannabliss CANNABLISS_UPDATE_MODE=micro DRY_RUN=1 venv/bin/python3 -m src.main
+PROFILE=cannabliss CANNABLISS_UPDATE_MODE=micro DRY_RUN=1 .venv/bin/python3 -m src.main
 
 # Dry run with listening boosts
-PROFILE=cannabliss CANNABLISS_USE_TOP_TRACKS=1 CANNABLISS_USE_RECENTLY_PLAYED=1 DRY_RUN=1 venv/bin/python3 -m src.main
+PROFILE=cannabliss CANNABLISS_USE_TOP_TRACKS=1 CANNABLISS_USE_RECENTLY_PLAYED=1 DRY_RUN=1 .venv/bin/python3 -m src.main
 
 # Force-refresh playlist sources instead of using cache
-FORCE_REFRESH=1 PROFILE=cannabliss DRY_RUN=1 venv/bin/python3 -m src.main
+FORCE_REFRESH=1 PROFILE=cannabliss DRY_RUN=1 .venv/bin/python3 -m src.main
 
 # Live major refresh
-PROFILE=cannabliss CANNABLISS_UPDATE_MODE=major DRY_RUN=0 venv/bin/python3 -m src.main
+PROFILE=cannabliss CANNABLISS_UPDATE_MODE=major DRY_RUN=0 .venv/bin/python3 -m src.main
 ```
 
 ### Run Tests
 
 ```bash
-venv/bin/python3 -m pytest tests/ -q
+.venv/bin/python3 -m pytest tests/ -q
 ```
 
 ## GitHub Actions
+
+**Deployment pending:** the existing workflow files have not been changed. Live
+Actions runs of this version intentionally refuse to run until durable history
+is wired in. See [deployment and recovery](docs/curator-rotation-deployment.md).
+The current Spotify token was rejected as `invalid_grant` on September 25, 2026;
+reconnect Spotify before requesting a real preview.
 
 ### Required Secrets
 
@@ -155,6 +165,9 @@ From **Actions**, you can manually run either workflow and choose whether to do 
 | `CANNABLISS_WEEKLY_INSERTIONS` |  | `25` | Major refresh insertion target |
 | `CANNABLISS_UPDATE_MODE` |  | `major` | `major` or `micro` |
 | `CANNABLISS_MICRO_REFRESH_COUNT` |  | `5` | Change budget for micro refresh |
+| `CANNABLISS_PROTECTION_DAYS` | | `14` | Minimum stay for observed public-playlist picks |
+| `CANNABLISS_DISCOVERY_PER_REFRESH` | | `5` | Maximum automatic admissions per weekly refresh |
+| `CANNABLISS_PREVIEW_PATH` | | empty | Write full Markdown and JSON before/after reports |
 | `CANNABLISS_STATE_PATH` |  | `data/cannabliss_state.json` | Cannabliss ordered-state log |
 | `CANNABLISS_USE_TOP_TRACKS` |  | `0` | `1` enables `/me/top/tracks` boosts |
 | `CANNABLISS_USE_RECENTLY_PLAYED` |  | `0` | `1` enables recently-played boosts |
@@ -164,7 +177,7 @@ From **Actions**, you can manually run either workflow and choose whether to do 
 | `CANNABLISS_TOP_TRACKS_BOOST` |  | `0.35` | Premium/current listening boost |
 | `CANNABLISS_RECENTLY_PLAYED_BOOST` |  | `0.25` | Recent listening boost |
 | `MAX_TRACKS_PER_ARTIST` |  | `2` | Artist cap used during Cannabliss build |
-| `DRY_RUN` |  | `0` | `1` previews without Spotify writes |
+| `DRY_RUN` |  | `1` | `1` previews without Spotify writes |
 | `PLAYLIST_CACHE_DIR` |  | `data/cache/playlists` | Local cache directory for playlist reads |
 | `PLAYLIST_CACHE_TTL_HOURS` |  | `12` | Cache freshness window in hours |
 | `FORCE_REFRESH` |  | `0` | `1` bypasses cache and refetches |
@@ -180,13 +193,43 @@ From **Actions**, you can manually run either workflow and choose whether to do 
 
 ## Cannabliss Model
 
-Cannabliss is built around the songs Race hand-adds to the public playlist:
-- `1–15`: **Fresh front** — the songs added since the last run, newest first.
-  Songs that are also in heavy rotation land in the top 5; at most 2 per artist.
-- `16–100`: **Body** — everything else, ordered by add-recency (with a light
-  listening + popularity nudge), holding a stable order week to week.
+- **Master:** the read-only collection. Membership alone never protects or
+  guarantees a place in public rotation.
+- **Public additions:** explicit picks, featured newest-first ahead of favorites,
+  with 14 days of guaranteed membership from the first successful observation.
+  The front has at most two tracks per primary artist; other protected picks
+  remain near the top of the body.
+- **Weekly refresh:** admit up to 5 automatic candidates, within a shared 25-song
+  ISO-calendar-week budget that also counts manual additions. Explicit picks
+  override this budget when you add more than 25 yourself. An empty initial
+  playlist may be filled to 100 in one run.
+- **Midweek refresh:** promote protected picks and fill vacancies within the
+  remaining budget. No automatic replacements when the playlist is full.
+- **Retirement:** oldest unprotected incumbents leave first. Listening can delay
+  retirement by at most three days; it cannot grant permanent top placement.
+  Existing body tracks keep their relative order. The front gives less-recently
+  featured incumbents a turn on each new weekly refresh.
+- **Manual removals:** stay excluded until you explicitly re-add the song.
+  Automatic retirements use the configurable 7-day cooldown.
+- **Size:** at most 100 unique tracks. If more than 100 picks are protected,
+  stop and request an explicit choice instead of silently deleting your picks.
+  Limited candidates/artist diversity/budget can leave the playlist below 100.
+- **History:** rotation dates survive Spotify rewrites. Previews never advance
+  history. Only a verified successful Spotify update does.
 
-Major (Friday) refreshes rebuild the list and trim back to 100, retiring the
-oldest tracks; hand-adds are protected from that trim. Micro (Mon/Wed) refreshes
-promote the week's adds to the front and preserve everything else. A song that
-was removed (retired or deleted) is benched for a week before it can return.
+### First run of the repaired engine
+
+The old committed history is stale and may include previews. It is retained as
+an archive, but is not used to guess which songs you added recently. Establish a
+new baseline from the live playlist, protecting its existing membership for 14
+days. Initial ordering uses the Spotify addition dates available; earlier
+rewrites may have reset those dates, so review the first preview carefully.
+If the existing playlist exceeds 100 distinct protected songs, the engine stops
+for a selection decision. It does not trim that baseline without your input.
+
+```bash
+DRY_RUN=1 FORCE_REFRESH=1 CANNABLISS_PREVIEW_PATH=data/preview/cannabliss.md .venv/bin/python -m src.main
+```
+
+This creates a readable complete before/after report and a JSON companion.
+No live preview has been produced until Spotify is reconnected.

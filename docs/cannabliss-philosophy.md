@@ -1,3 +1,8 @@
+> Implementation update (September 25, 2026): the current rules are in the
+> README's Cannabliss Model. This older editorial document retains historical
+> ideas, including obsolete playlist sizes and listening-based top placement.
+> Direct curator picks now take priority, with 14-day membership protection.
+
 # Cannabliss Scoring Philosophy
 
 ## Summary

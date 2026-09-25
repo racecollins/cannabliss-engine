@@ -16,6 +16,9 @@ REQUIRED_ENV = {
 
 def _set_env(monkeypatch, **overrides):
     for key in list(REQUIRED_ENV) + [
+        "DRY_RUN",
+        "CANNABLISS_PROTECTION_DAYS",
+        "CANNABLISS_DISCOVERY_PER_REFRESH",
         "CANNABLISS_FRESH_FRONT_SIZE",
         "CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST",
         "CANNABLISS_REMOVAL_COOLDOWN_DAYS",
@@ -28,6 +31,9 @@ def _set_env(monkeypatch, **overrides):
 def test_fresh_front_defaults(monkeypatch):
     _set_env(monkeypatch)
     cfg = load_config()
+    assert cfg.dry_run is True
+    assert cfg.cannabliss_protection_days == 14
+    assert cfg.cannabliss_discovery_per_refresh == 5
     assert cfg.cannabliss_fresh_front_size == 15
     assert cfg.cannabliss_fresh_front_max_per_artist == 2
     assert cfg.cannabliss_removal_cooldown_days == 7

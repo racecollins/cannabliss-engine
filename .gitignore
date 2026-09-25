@@ -12,3 +12,7 @@ build/
 node_modules/
 .next/
 data/cache/
+
+# Generated previews and transaction journals
+data/preview/
+data/*.pending.json

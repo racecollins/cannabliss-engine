@@ -33,7 +33,7 @@ def test_weekly_adds_ordered_newest_first():
     assert [t.uri for t in front] == ["spotify:track:2", "spotify:track:1", "spotify:track:3"]
 
 
-def test_hot_pick_incumbent_lands_in_top_5_over_fresher_adds():
+def test_curator_adds_outrank_hot_incumbent():
     adds = [_t(10 + i, added_at=f"2026-06-1{i}T00:00:00Z") for i in range(8)]
     hot_incumbent = _t(999, added_at="2026-01-01T00:00:00Z", current_position=40)
     signals = ListeningSignals(top_track_ids=frozenset({"999"}), top_tracks_boost=0.4)
@@ -41,7 +41,8 @@ def test_hot_pick_incumbent_lands_in_top_5_over_fresher_adds():
         adds + [hot_incumbent], weekly_add_ids={t.uri for t in adds},
         size=15, max_per_artist=2, signals=signals, now=NOW,
     )
-    assert hot_incumbent.uri in {t.uri for t in front[:5]}
+    assert {t.uri for t in adds} == {t.uri for t in front[:8]}
+    assert front[8].uri == hot_incumbent.uri
 
 
 def test_artist_cap_limits_front_to_two_per_artist():

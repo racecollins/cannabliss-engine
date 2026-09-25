@@ -37,6 +37,9 @@ class Config:
     playlist_cache_dir: str
     playlist_cache_ttl_hours: int
     force_refresh: bool
+    cannabliss_protection_days: int = 14
+    cannabliss_discovery_per_refresh: int = 5
+    cannabliss_preview_path: str = ""
 
 
 def load_config() -> Config:
@@ -52,7 +55,7 @@ def load_config() -> Config:
         spotify_refresh_token=_require("SPOTIFY_REFRESH_TOKEN"),
         profile=_env("PROFILE", "cannabliss"),
         master_playlist_id=_env("MASTER_PLAYLIST_ID", ""),
-        dry_run=_env("DRY_RUN", "0") == "1",
+        dry_run=_env("DRY_RUN", "1") == "1",
         max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
         cannabliss_target_playlist_id=_env("CANNABLISS_TARGET_PLAYLIST_ID", ""),
         cannabliss_hall_of_fame_playlist_id=_env("CANNABLISS_HALL_OF_FAME_PLAYLIST_ID", ""),
@@ -75,12 +78,19 @@ def load_config() -> Config:
         playlist_cache_dir=_env("PLAYLIST_CACHE_DIR", "data/cache/playlists"),
         playlist_cache_ttl_hours=int(_env("PLAYLIST_CACHE_TTL_HOURS", "12")),
         force_refresh=_env("FORCE_REFRESH", "0") == "1",
+        cannabliss_protection_days=int(_env("CANNABLISS_PROTECTION_DAYS", "14")),
+        cannabliss_discovery_per_refresh=int(_env("CANNABLISS_DISCOVERY_PER_REFRESH", "5")),
+        cannabliss_preview_path=_env("CANNABLISS_PREVIEW_PATH", ""),
     )
 
 
 def validate_config(cfg: Config) -> None:
     errors: list[str] = []
 
+    if cfg.cannabliss_protection_days < 1:
+        errors.append("CANNABLISS_PROTECTION_DAYS must be >= 1")
+    if cfg.cannabliss_discovery_per_refresh < 0:
+        errors.append("CANNABLISS_DISCOVERY_PER_REFRESH must be >= 0")
     if cfg.profile != "cannabliss":
         errors.append(f"PROFILE must be 'cannabliss', got '{cfg.profile}'")
     if cfg.max_tracks_per_artist < 1:
