@@ -15,6 +15,8 @@ REQUIRED_ENV = {
 
 
 def _set_env(monkeypatch, **overrides):
+    # Machine credentials and local overrides must not affect default tests.
+    monkeypatch.setattr("dotenv.load_dotenv", lambda *args, **kwargs: None)
     for key in list(REQUIRED_ENV) + [
         "DRY_RUN",
         "CANNABLISS_PROTECTION_DAYS",
@@ -22,6 +24,11 @@ def _set_env(monkeypatch, **overrides):
         "CANNABLISS_FRESH_FRONT_SIZE",
         "CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST",
         "CANNABLISS_REMOVAL_COOLDOWN_DAYS",
+        "CANNABLISS_WEEKLY_INSERTIONS",
+        "CANNABLISS_USE_TOP_TRACKS",
+        "CANNABLISS_LEARN_TOP_TEN",
+        "CANNABLISS_QUEUE_CURATOR_ADDITIONS",
+        "CANNABLISS_CURATOR_QUEUE_PER_REFRESH",
     ]:
         monkeypatch.delenv(key, raising=False)
     for key, value in {**REQUIRED_ENV, **overrides}.items():
@@ -33,10 +40,15 @@ def test_fresh_front_defaults(monkeypatch):
     cfg = load_config()
     assert cfg.dry_run is True
     assert cfg.cannabliss_protection_days == 14
-    assert cfg.cannabliss_discovery_per_refresh == 5
+    assert cfg.cannabliss_discovery_per_refresh == 15
+    assert cfg.cannabliss_weekly_insertions == 20
+    assert cfg.cannabliss_learn_top_ten is True
+    assert cfg.cannabliss_use_top_tracks is True
+    assert cfg.cannabliss_queue_curator_additions is True
+    assert cfg.cannabliss_curator_queue_per_refresh == 10
     assert cfg.cannabliss_fresh_front_size == 15
     assert cfg.cannabliss_fresh_front_max_per_artist == 2
-    assert cfg.cannabliss_removal_cooldown_days == 7
+    assert cfg.cannabliss_removal_cooldown_days == 42
 
 
 def test_fresh_front_overrides(monkeypatch):

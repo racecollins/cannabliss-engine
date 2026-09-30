@@ -48,6 +48,7 @@ class ListeningSignals:
     recently_played_ids: frozenset[str] = frozenset()
     top_tracks_boost: float = 0.35
     recently_played_boost: float = 0.25
+    top_track_ranks: dict[str, int] = field(default_factory=dict)
 
 
 def parse_source_items(
@@ -236,6 +237,9 @@ def build_cannabliss_playlist(
     removal_cooldown_days: int = DEFAULT_REMOVAL_COOLDOWN_DAYS,
     fresh_front_size: int = DEFAULT_FRESH_FRONT_SIZE,
     fresh_front_max_per_artist: int = DEFAULT_FRESH_FRONT_MAX_PER_ARTIST,
+    learn_top_ten: bool = False,
+    queue_curator_additions: bool = False,
+    curator_queue_per_refresh: int = 10,
     now: datetime | None = None,
 ) -> CannablissBuildResult:
     """Honor explicit curator picks, then admit bounded discovery and rotate features.
@@ -243,6 +247,12 @@ def build_cannabliss_playlist(
     State is a proposal only: callers persist it after a verified Spotify write.
     A missing baseline conservatively protects the live membership for 14 days.
     """
+    if queue_curator_additions:
+        from src.curator_queue import build_with_queue
+        options = dict(locals())
+        options.pop('build_with_queue', None)
+        options['now'] = now or datetime.now(timezone.utc)
+        return build_with_queue(options)
     current = now or datetime.now(timezone.utc)
     stamp = current.isoformat()
     signals = listening_signals or ListeningSignals()
@@ -257,6 +267,8 @@ def build_cannabliss_playlist(
     live = _ordered_unique(sorted(current_tracks, key=lambda t: t.current_position or 10**9))
     live = [t for t in live if t.uri in merged]
     current_order = [t.uri for t in live]
+    from src.preferences import observe_order, feature_top_ten
+    preference_events = observe_order(state, current_order, current) if learn_top_ten else []
     current_ids = set(current_order)
     manual_adds = current_ids - prev if known_baseline else set()
     manual_removed = prev - current_ids
@@ -319,7 +331,13 @@ def build_cannabliss_playlist(
                       (removed := _parse_datetime(history.get(uri, {}).get("retired_at", "")))
                       and current - removed < timedelta(days=removal_cooldown_days)
                   )]
-    candidates.sort(key=lambda t: (_body_score(t, signals, current), t.added_at, t.uri), reverse=True)
+    candidates.sort(key=lambda t: (
+        # Prefer candidates not previously featured or in observed listening.
+        # This is recorded novelty, never proof that the user has not heard it.
+        not history.get(t.uri, {}).get("last_featured_at") if learn_top_ten else False,
+        track_id(t.uri) not in (signals.top_track_ids | signals.recently_played_ids)
+        if learn_top_ten else False,
+        _body_score(t, signals, current), t.added_at, t.uri), reverse=True)
     counts: dict[str, int] = {}
     for track in live:
         artist = _primary_artist(track.artists)
@@ -370,6 +388,12 @@ def build_cannabliss_playlist(
     front_ids = {t.uri for t in front}
     body = [t for t in protected + retained + admitted if t.uri not in front_ids]
     ordered = front + body
+    if learn_top_ten:
+        ordered = feature_top_ten(ordered, current_order, state, signals, current,
+                                 rotate=rotate or initial_empty)
+        front, body = ordered[:10], ordered[10:]
+        front_ids = {t.uri for t in front}
+    state["verified_order"] = [t.uri for t in ordered]
     ordered_ids = {t.uri for t in ordered}
     removed_uris = sorted((current_ids | prev) - ordered_ids)
     for uri in current_ids - ordered_ids:
@@ -397,6 +421,10 @@ def build_cannabliss_playlist(
             reasons[track.uri] = "Featured rotation: giving another incumbent time near the top"
         else:
             reasons[track.uri] = "Retained; preserving body order"
+        if learn_top_ten and track.uri in front_ids:
+            reasons[track.uri] += "; top 10 considers listening, release freshness and bounded reorder preferences"
+    if preference_events:
+        summary["preference_edits"] = [f"{len(preference_events)} relative ordering preferences observed"]
     return CannablissBuildResult(
         ordered_tracks=ordered, zones={"fresh_front": front, "body": body}, summary=summary,
         new_track_count=len(admitted), update_mode=update_mode, removed_uris=removed_uris,

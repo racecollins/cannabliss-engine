@@ -109,16 +109,20 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         feeder_tracks.extend(parse_source_items(feeder_items, source_tag=f"feeder:{playlist_id}"))
 
     top_track_ids: set[str] = set()
+    top_track_ranks: dict[str, int] = {}
     if cfg.cannabliss_use_top_tracks:
         print(
             f"\n🎧 Reading your top tracks "
             f"(term={cfg.cannabliss_top_tracks_term}, limit={cfg.cannabliss_top_tracks_limit}) …"
         )
         try:
-            top_track_ids = client.get_top_track_ids(
-                time_range=cfg.cannabliss_top_tracks_term,
-                limit=cfg.cannabliss_top_tracks_limit,
-            )
+            if hasattr(client, "get_top_track_ranks"):
+                top_track_ranks = client.get_top_track_ranks(
+                    time_range=cfg.cannabliss_top_tracks_term, limit=cfg.cannabliss_top_tracks_limit)
+                top_track_ids = set(top_track_ranks)
+            else:
+                top_track_ids = client.get_top_track_ids(
+                    time_range=cfg.cannabliss_top_tracks_term, limit=cfg.cannabliss_top_tracks_limit)
             print(f"✅ Loaded {len(top_track_ids)} top-track IDs")
         except SpotifyApiError as err:
             print(f"⚠️  Could not load top tracks: {err}")
@@ -177,6 +181,7 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
             recently_played_ids=frozenset(recently_played_ids),
             top_tracks_boost=cfg.cannabliss_top_tracks_boost,
             recently_played_boost=cfg.cannabliss_recently_played_boost,
+            top_track_ranks=top_track_ranks,
         ),
         previous_track_uris=previous_uris,
         rotation_state=rotation,
@@ -186,6 +191,9 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         cooldown_uris=cooldown_uris,
         fresh_front_size=cfg.cannabliss_fresh_front_size,
         fresh_front_max_per_artist=cfg.cannabliss_fresh_front_max_per_artist,
+        learn_top_ten=getattr(cfg, "cannabliss_learn_top_ten", False),
+        queue_curator_additions=getattr(cfg, "cannabliss_queue_curator_additions", False),
+        curator_queue_per_refresh=getattr(cfg, "cannabliss_curator_queue_per_refresh", 10),
         now=now,
     )
 
@@ -204,6 +212,9 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
         "shifted_down",
         "removed",
         "fresh_front_added",
+        "queue_captured",
+        "queue_promoted",
+        "queued_for_future",
     ):
         values = result.summary.get(label, [])
         preview = ", ".join(values[:10]) if values else "none"
@@ -233,7 +244,8 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
             raise RuntimeError("Live playlist changed during planning; rerun the preview")
         git_state = os.environ.get("CANNABLISS_GIT_STATE") == "1"
         pending = {"timestamp": now.isoformat(), "target_playlist_id": cfg.cannabliss_target_playlist_id,
-                   "before": [t.uri for t in target_tracks], "after": uris}
+                   "before": [t.uri for t in target_tracks], "after": uris,
+                   "proposed_rotation": result.rotation_state}
         if git_state:
             from src.state_store import checkpoint
             checkpoint(cfg.cannabliss_state_path, pending=pending)

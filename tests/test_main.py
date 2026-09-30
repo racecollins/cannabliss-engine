@@ -142,6 +142,9 @@ def test_failed_spotify_write_does_not_record_success(monkeypatch, tmp_path):
     with pytest.raises(SystemExit):
         run_cannabliss(_cfg(dry_run=False, cannabliss_state_path=str(path)), Client())
     assert path.read_text() == '{"runs": []}'
+    import json
+    pending = json.loads((tmp_path / 'state.json.pending.json').read_text())
+    assert 'proposed_rotation' in pending  # Includes queue metadata before any Spotify write.
 
 
 def test_success_saved_only_after_readback_matches(monkeypatch, tmp_path):

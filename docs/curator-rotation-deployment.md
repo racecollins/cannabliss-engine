@@ -25,7 +25,9 @@ Both workflows need the following changes together:
   transaction before Spotify changes and commit verified history afterward.
 - Repository `contents: write` permission for that isolated state branch.
 - Keep the state file path `data/cannabliss_state.json`, use protection 14 days,
-  and discovery-per-refresh 5 songs.
+  discovery-per-refresh 15, weekly insertions 20, removal cooldown 42 days,
+  ranked top tracks enabled and `CANNABLISS_LEARN_TOP_TEN=1`. Reconcile existing
+  environment overrides; changing defaults alone does not change deployed settings.
 - Generate a complete preview with
   `CANNABLISS_PREVIEW_PATH=data/preview/cannabliss.md`.
 - Keep dispatch defaults at `DRY_RUN=1`; scheduled live writes should remain
@@ -60,3 +62,24 @@ non-fast-forward state push also stops the run instead of overwriting another
 writer's history. The small race between the final preflight read and Spotify's
 replace request cannot be eliminated by this API usage; avoid editing the
 playlist during a live run. A post-write mismatch stops history advancement.
+
+## September 30 preference-learning update
+
+Local code now learns relative top-ten reorder preferences only against the last
+verified output. No live order has been imported as a fabricated successful run.
+The reviewed first edition is still an editorial proposal, not an applied
+baseline. Enable the settings above only with the reviewed migration and durable
+history wiring. The first successful readback establishes `rotation.verified_order`;
+subsequent user edits are observed at the next refresh. A dry preview computes but
+does not persist learning. Do not interpret other collaborators' edits as proof
+of this user's intent; the API order comparison does not identify an editor.
+
+## Queued nominations
+
+Enable `CANNABLISS_QUEUE_CURATOR_ADDITIONS=1` and set
+`CANNABLISS_CURATOR_QUEUE_PER_REFRESH=10`. Pending transaction checkpoints now
+include `proposed_rotation`, containing the complete queued track metadata
+before overflow can leave Spotify. Verified success publishes the proposed queue
+with rotation history; failures leave the previous state and recovery checkpoint
+intact. Recovery must reconcile both playlist order and that queue, not discard
+pending data. Queue entries are shown in preview JSON and Markdown.

@@ -16,3 +16,6 @@ data/cache/
 # Generated previews and transaction journals
 data/preview/
 data/*.pending.json
+
+# Runtime history is published only on the isolated state branch
+data/runtime/
