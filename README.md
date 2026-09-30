@@ -118,10 +118,12 @@ PROFILE=cannabliss CANNABLISS_UPDATE_MODE=major DRY_RUN=0 .venv/bin/python3 -m s
 
 ## GitHub Actions
 
-**Deployment pending:** the existing workflow files have not been changed. Live
-Actions runs of this version intentionally refuse to run until durable history
-is wired in. See [deployment and recovery](docs/curator-rotation-deployment.md).
-Spotify was reconnected on September 30, 2026 and a 100-song editorial preview was reviewed. Live migration and scheduled activation remain pending.
+**Activated September 30, 2026:** the approved 100-song edition is live and its
+exact order was verified. A subsequent guarded live no-op passed. The weekly and
+midweek workflows use durable public history on `cannabliss-state`, one shared
+concurrency lock, tests before runs, and readback verification. Check the Actions
+page for current run status. Manual dispatch defaults to preview-only.
+
 
 ### Required Secrets
 
@@ -252,7 +254,7 @@ DRY_RUN=1 FORCE_REFRESH=1 CANNABLISS_PREVIEW_PATH=data/preview/cannabliss.md .ve
 ```
 
 This creates a readable complete before/after report and a JSON companion.
-A separate editorial 100-song preview has been reviewed. It must be applied and read back successfully before it can become the first verified learning baseline. Existing local environment values override the defaults above; activation must reconcile them.
+The reviewed edition was applied and verified on September 30, 2026. Scheduled state is restored to `data/runtime/cannabliss_state.json` from the public `cannabliss-state` branch. The committed legacy state file is not the live database.
 
 ### Discovery source access
 
