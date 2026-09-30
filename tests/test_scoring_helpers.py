@@ -63,8 +63,8 @@ def test_body_sort_key_orders_lower_position_first_on_ties():
     assert key_a > key_b  # reverse=True sort puts a (pos 5) ahead of b (pos 80)
 
 
-def test_front_sort_key_tiers_hot_above_weekly_above_fresh():
-    # The tier flags dominate the key: a hot pick outranks a weekly add, which
+def test_front_sort_key_tiers_weekly_above_hot_above_fresh():
+    # The tier flags dominate the key: a weekly add outranks a hot pick, which
     # outranks a merely-fresh track — even when the fresh track is the newest.
     signals = ListeningSignals(top_track_ids=frozenset({"1"}), top_tracks_boost=0.4)
     hot = _t(1, added_at="2026-06-01T00:00:00Z")     # hot pick, oldest
@@ -74,5 +74,5 @@ def test_front_sort_key_tiers_hot_above_weekly_above_fresh():
     k_hot = _front_sort_key(hot, signals, NOW, weekly_add_ids)
     k_weekly = _front_sort_key(weekly, signals, NOW, weekly_add_ids)
     k_fresh = _front_sort_key(fresh, signals, NOW, weekly_add_ids)
-    # reverse=True sort ranks larger keys first: hot > weekly > fresh.
-    assert k_hot > k_weekly > k_fresh
+    # reverse=True sort ranks larger keys first: weekly > hot > fresh.
+    assert k_weekly > k_hot > k_fresh

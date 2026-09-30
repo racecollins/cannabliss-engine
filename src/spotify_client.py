@@ -191,16 +191,16 @@ class SpotifyClient:
         limit: int = 50,
     ) -> set[str]:
         """Fetch the current user's top track IDs."""
+        return set(self.get_top_track_ranks(time_range=time_range, limit=limit))
+
+    def get_top_track_ranks(self, *, time_range="short_term", limit=50) -> dict[str, int]:
+        """Retain Spotify's ordering; these are affinity ranks, not play counts."""
         data = self._get(
             f"{API_BASE}/me/top/tracks",
             params={"time_range": time_range, "limit": min(limit, 50)},
         )
-        ids: set[str] = set()
-        for item in data.get("items", []):
-            tid = item.get("id")
-            if tid:
-                ids.add(tid)
-        return ids
+        return {item["id"]: rank for rank, item in enumerate(data.get("items", []), 1)
+                if item.get("id")}
 
     def get_recently_played_track_ids(self, *, limit: int = 50) -> set[str]:
         """Fetch the current user's recently played track IDs."""

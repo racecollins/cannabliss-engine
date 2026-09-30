@@ -37,6 +37,12 @@ class Config:
     playlist_cache_dir: str
     playlist_cache_ttl_hours: int
     force_refresh: bool
+    cannabliss_protection_days: int = 14
+    cannabliss_discovery_per_refresh: int = 15
+    cannabliss_preview_path: str = ""
+    cannabliss_learn_top_ten: bool = True
+    cannabliss_queue_curator_additions: bool = True
+    cannabliss_curator_queue_per_refresh: int = 10
 
 
 def load_config() -> Config:
@@ -52,20 +58,20 @@ def load_config() -> Config:
         spotify_refresh_token=_require("SPOTIFY_REFRESH_TOKEN"),
         profile=_env("PROFILE", "cannabliss"),
         master_playlist_id=_env("MASTER_PLAYLIST_ID", ""),
-        dry_run=_env("DRY_RUN", "0") == "1",
+        dry_run=_env("DRY_RUN", "1") == "1",
         max_tracks_per_artist=int(_env("MAX_TRACKS_PER_ARTIST", "2")),
         cannabliss_target_playlist_id=_env("CANNABLISS_TARGET_PLAYLIST_ID", ""),
         cannabliss_hall_of_fame_playlist_id=_env("CANNABLISS_HALL_OF_FAME_PLAYLIST_ID", ""),
         cannabliss_feeder_playlist_ids=tuple(_split_csv(_env("CANNABLISS_FEEDER_PLAYLIST_IDS", ""))),
         cannabliss_target_size=int(_env("CANNABLISS_TARGET_SIZE", "100")),
-        cannabliss_weekly_insertions=int(_env("CANNABLISS_WEEKLY_INSERTIONS", "25")),
+        cannabliss_weekly_insertions=int(_env("CANNABLISS_WEEKLY_INSERTIONS", "20")),
         cannabliss_update_mode=_env("CANNABLISS_UPDATE_MODE", "major"),
         cannabliss_micro_refresh_count=int(_env("CANNABLISS_MICRO_REFRESH_COUNT", "5")),
         cannabliss_fresh_front_size=int(_env("CANNABLISS_FRESH_FRONT_SIZE", "15")),
         cannabliss_fresh_front_max_per_artist=int(_env("CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST", "2")),
-        cannabliss_removal_cooldown_days=int(_env("CANNABLISS_REMOVAL_COOLDOWN_DAYS", "7")),
+        cannabliss_removal_cooldown_days=int(_env("CANNABLISS_REMOVAL_COOLDOWN_DAYS", "42")),
         cannabliss_state_path=_env("CANNABLISS_STATE_PATH", "data/cannabliss_state.json"),
-        cannabliss_use_top_tracks=_env("CANNABLISS_USE_TOP_TRACKS", "0") == "1",
+        cannabliss_use_top_tracks=_env("CANNABLISS_USE_TOP_TRACKS", "1") == "1",
         cannabliss_use_recently_played=_env("CANNABLISS_USE_RECENTLY_PLAYED", "0") == "1",
         cannabliss_top_tracks_term=_env("CANNABLISS_TOP_TRACKS_TERM", "short_term"),
         cannabliss_top_tracks_limit=int(_env("CANNABLISS_TOP_TRACKS_LIMIT", "50")),
@@ -75,12 +81,24 @@ def load_config() -> Config:
         playlist_cache_dir=_env("PLAYLIST_CACHE_DIR", "data/cache/playlists"),
         playlist_cache_ttl_hours=int(_env("PLAYLIST_CACHE_TTL_HOURS", "12")),
         force_refresh=_env("FORCE_REFRESH", "0") == "1",
+        cannabliss_protection_days=int(_env("CANNABLISS_PROTECTION_DAYS", "14")),
+        cannabliss_discovery_per_refresh=int(_env("CANNABLISS_DISCOVERY_PER_REFRESH", "15")),
+        cannabliss_preview_path=_env("CANNABLISS_PREVIEW_PATH", ""),
+        cannabliss_learn_top_ten=_env("CANNABLISS_LEARN_TOP_TEN", "1") == "1",
+        cannabliss_queue_curator_additions=_env("CANNABLISS_QUEUE_CURATOR_ADDITIONS", "1") == "1",
+        cannabliss_curator_queue_per_refresh=int(_env("CANNABLISS_CURATOR_QUEUE_PER_REFRESH", "10")),
     )
 
 
 def validate_config(cfg: Config) -> None:
     errors: list[str] = []
+    if cfg.cannabliss_curator_queue_per_refresh < 1:
+        errors.append("CANNABLISS_CURATOR_QUEUE_PER_REFRESH must be >= 1")
 
+    if cfg.cannabliss_protection_days < 1:
+        errors.append("CANNABLISS_PROTECTION_DAYS must be >= 1")
+    if cfg.cannabliss_discovery_per_refresh < 0:
+        errors.append("CANNABLISS_DISCOVERY_PER_REFRESH must be >= 0")
     if cfg.profile != "cannabliss":
         errors.append(f"PROFILE must be 'cannabliss', got '{cfg.profile}'")
     if cfg.max_tracks_per_artist < 1:

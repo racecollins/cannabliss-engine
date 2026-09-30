@@ -53,7 +53,7 @@ def test_weekly_adds_become_the_front_newest_first():
     assert len(result.ordered_tracks) == 100
 
 
-def test_hot_pick_add_lands_in_top_5():
+def test_newer_curator_picks_outrank_older_hot_add():
     current = _existing_playlist(100)
     plain_adds = [
         _track(900 + k, source_tags={"current"}, current_position=100 + k,
@@ -73,7 +73,8 @@ def test_hot_pick_add_lands_in_top_5():
         now=NOW,
     )
     top_5 = {t.uri for t in result.ordered_tracks[:5]}
-    assert hot_add.uri in top_5
+    assert hot_add.uri not in top_5
+    assert hot_add.uri in {t.uri for t in result.ordered_tracks[:15]}
 
 
 def test_rolling_fill_when_fewer_than_fifteen_adds():
@@ -211,7 +212,7 @@ def test_zones_are_two_tiers_partitioning_the_playlist():
     assert combined == [t.uri for t in result.ordered_tracks]
 
 
-def test_micro_promotes_adds_and_preserves_everything():
+def test_micro_promotes_adds_and_trims_to_target():
     current = _existing_playlist(100, added_at="2026-06-12T00:00:00Z")
     adds = [
         _track(900 + k, source_tags={"current"}, current_position=100 + k,
@@ -232,9 +233,9 @@ def test_micro_promotes_adds_and_preserves_everything():
         update_mode="micro", micro_refresh_count=5,
         previous_track_uris=prev, now=NOW,
     )
-    # All current tracks preserved (no retirement in micro).
-    assert {t.uri for t in current + adds} <= {t.uri for t in result.ordered_tracks}
-    assert result.removed_uris == []
+    assert len(result.ordered_tracks) == 100
+    assert len(result.removed_uris) == 3
+    assert {t.uri for t in adds} <= {t.uri for t in result.ordered_tracks}
     # Weekly adds promoted to the front.
     assert {t.uri for t in adds} <= {t.uri for t in result.zones["fresh_front"]}
 

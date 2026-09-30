@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import copy
 import json
+import tempfile
 import os
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
@@ -34,6 +36,10 @@ class CannablissBuildResult:
     new_track_count: int
     update_mode: str
     removed_uris: list[str] = field(default_factory=list)
+    rotation_state: dict = field(default_factory=dict)
+    protected_uris: list[str] = field(default_factory=list)
+    reasons: dict[str, str] = field(default_factory=dict)
+    bootstrap: bool = False
 
 
 @dataclass(frozen=True)
@@ -42,6 +48,7 @@ class ListeningSignals:
     recently_played_ids: frozenset[str] = frozenset()
     top_tracks_boost: float = 0.35
     recently_played_boost: float = 0.25
+    top_track_ranks: dict[str, int] = field(default_factory=dict)
 
 
 def parse_source_items(
@@ -142,36 +149,31 @@ def _dedupe_song_variants(tracks_by_uri: dict[str, CannablissTrack]) -> dict[str
 
 
 def load_cannabliss_state(path: str = "data/cannabliss_state.json") -> dict:
-    """Load Cannabliss state from disk, creating an empty payload if missing."""
-    parent = os.path.dirname(path)
-    if parent:
-        os.makedirs(parent, exist_ok=True)
-
+    """Read history without changing it. Corrupt history must never reset silently."""
     if not os.path.exists(path):
-        payload = {"runs": []}
-        save_cannabliss_state(payload, path)
-        return payload
-
-    try:
-        with open(path, "r", encoding="utf-8") as fh:
-            data = json.load(fh)
-    except (json.JSONDecodeError, OSError):
         return {"runs": []}
-
-    if not isinstance(data, dict):
-        return {"runs": []}
-    runs = data.get("runs")
-    if not isinstance(runs, list):
-        data["runs"] = []
+    with open(path, "r", encoding="utf-8") as fh:
+        data = json.load(fh)
+    if not isinstance(data, dict) or not isinstance(data.get("runs"), list):
+        raise ValueError("Invalid Cannabliss state; restore history before updating Spotify")
     return data
 
 
 def save_cannabliss_state(payload: dict, path: str = "data/cannabliss_state.json") -> None:
-    parent = os.path.dirname(path)
-    if parent:
-        os.makedirs(parent, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, indent=2)
+    """Atomically publish a complete state file."""
+    parent = os.path.dirname(os.path.abspath(path))
+    os.makedirs(parent, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix=".cannabliss-", dir=parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh, indent=2)
+            fh.write("\n")
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def previous_run_track_uris(state: dict) -> set[str]:
@@ -188,6 +190,7 @@ def append_cannabliss_run(
     path: str = "data/cannabliss_state.json",
     now: datetime | None = None,
     cooldown_days: int = DEFAULT_REMOVAL_COOLDOWN_DAYS,
+    target_playlist_id: str | None = None,
 ) -> None:
     stamp = now or datetime.now(timezone.utc)
     payload = load_cannabliss_state(path)
@@ -207,6 +210,10 @@ def append_cannabliss_run(
     payload["cooldown"] = merge_cooldown(
         payload.get("cooldown", []), result.removed_uris, stamp, days=cooldown_days
     )
+    payload["rotation"] = result.rotation_state
+    payload["schema_version"] = 2
+    if target_playlist_id is not None:
+        payload["target_playlist_id"] = target_playlist_id
     save_cannabliss_state(payload, path)
 
 
@@ -224,125 +231,204 @@ def build_cannabliss_playlist(
     listening_signals: ListeningSignals | None = None,
     previous_track_uris: frozenset[str] | set[str] = frozenset(),
     cooldown_uris: frozenset[str] | set[str] = frozenset(),
+    rotation_state: dict | None = None,
+    protection_days: int = 14,
+    discovery_per_refresh: int = 5,
+    removal_cooldown_days: int = DEFAULT_REMOVAL_COOLDOWN_DAYS,
     fresh_front_size: int = DEFAULT_FRESH_FRONT_SIZE,
     fresh_front_max_per_artist: int = DEFAULT_FRESH_FRONT_MAX_PER_ARTIST,
+    learn_top_ten: bool = False,
+    queue_curator_additions: bool = False,
+    curator_queue_per_refresh: int = 10,
     now: datetime | None = None,
 ) -> CannablissBuildResult:
-    """Build the ordered Cannabliss playlist around the user's recent hand-adds."""
-    current = now or datetime.now(timezone.utc)
-    signals = listening_signals or ListeningSignals()
-    cooldown = set(cooldown_uris)
-    prev = set(previous_track_uris)
+    """Honor explicit curator picks, then admit bounded discovery and rotate features.
 
+    State is a proposal only: callers persist it after a verified Spotify write.
+    A missing baseline conservatively protects the live membership for 14 days.
+    """
+    if queue_curator_additions:
+        from src.curator_queue import build_with_queue
+        options = dict(locals())
+        options.pop('build_with_queue', None)
+        options['now'] = now or datetime.now(timezone.utc)
+        return build_with_queue(options)
+    current = now or datetime.now(timezone.utc)
+    stamp = current.isoformat()
+    signals = listening_signals or ListeningSignals()
+    state = copy.deepcopy(rotation_state or {})
+    history = state.setdefault("tracks", {})
+    prev = set(previous_track_uris)
+    known_baseline = rotation_state is not None or bool(prev)
+    bootstrap = not known_baseline and bool(current_tracks)
     merged = _dedupe_song_variants(
         merge_track_sets([master_tracks, current_tracks, feeder_tracks, hall_tracks])
     )
-    current_order = [
-        track.uri for track in sorted(current_tracks, key=lambda t: t.current_position or 10**9)
-    ]
+    live = _ordered_unique(sorted(current_tracks, key=lambda t: t.current_position or 10**9))
+    live = [t for t in live if t.uri in merged]
+    current_order = [t.uri for t in live]
+    from src.preferences import observe_order, feature_top_ten
+    preference_events = observe_order(state, current_order, current) if learn_top_ten else []
     current_ids = set(current_order)
+    manual_adds = current_ids - prev if known_baseline else set()
+    manual_removed = prev - current_ids
+    dismissed = set(state.get("dismissed_uris", [])) | manual_removed
+    dismissed_keys = set(state.get("dismissed_song_keys", []))
+    for uri in manual_removed:
+        key = history.get(uri, {}).get("song_key")
+        if not key and uri in merged:
+            key = _song_key(merged[uri])
+        if key:
+            dismissed_keys.add(key)
+    # Explicit re-adds override a previous rejection, including another release.
+    for track in live:
+        if track.uri in manual_adds:
+            dismissed.discard(track.uri)
+            dismissed_keys.discard(_song_key(track))
+        meta = history.setdefault(track.uri, {})
+        if track.uri in manual_adds or bootstrap:
+            meta.update(
+                entered_at=stamp,
+                curator_added_at=min(_parse_datetime(track.added_at) or current, current).isoformat(),
+                protected_until=(current + timedelta(days=protection_days)).isoformat(),
+            )
+        meta.setdefault("entered_at", min(_parse_datetime(track.added_at) or current, current).isoformat())
+        meta.update(song_key=_song_key(track), name=track.name, artists=track.artists)
+        # Spotify and feeder timestamps never renew tenure after the first observation.
+        merged[track.uri].added_at = meta["entered_at"]
 
-    # Weekly adds: songs now in the playlist that weren't in the previous run.
-    # With no baseline (true first run), treat all current as incumbents.
-    weekly_add_ids = {uri for uri in current_order if uri not in prev} if prev else set()
-    weekly_adds = [merged[uri] for uri in current_order if uri in weekly_add_ids and uri in merged]
-    incumbents = [
-        merged[uri]
-        for uri in current_order
-        if uri in merged and uri not in weekly_add_ids
-    ]
-    # Fill candidates: not already in the playlist, not benched (manual re-adds override cooldown).
-    fill_candidates = [
-        track
-        for uri, track in merged.items()
-        if uri not in current_ids and uri not in cooldown
-    ]
-
-    hot_incumbents = [track for track in incumbents if _is_hot_pick(track, signals)]
-
-    if update_mode == "micro" and current_order:
-        # Micro: the front is drawn ONLY from songs already in the playlist
-        # (promote weekly adds + hot picks, fill from incumbents). New tracks
-        # enter solely via the capped new_fill below, so micro stays gentle.
-        front = _build_fresh_front(
-            _ordered_unique(weekly_adds + hot_incumbents + incumbents),
-            weekly_add_ids=weekly_add_ids,
-            size=fresh_front_size,
-            max_per_artist=fresh_front_max_per_artist,
-            signals=signals,
-            now=current,
+    protected = [merged[uri] for uri in current_order
+                 if (_parse_datetime(history[uri].get("protected_until", "")) or current) > current]
+    protected.sort(key=lambda t: (
+        history[t.uri].get("curator_added_at", ""), -(t.current_position or 10**9)
+    ), reverse=True)
+    protected_ids = {t.uri for t in protected}
+    if len(protected) > target_size:
+        raise ValueError(
+            f"{len(protected)} protected curator picks exceed the {target_size}-song target. "
+            "No songs were discarded; reduce the live selection or increase the target explicitly."
         )
-        front_ids = {track.uri for track in front}
-        remaining = [
-            merged[uri]
-            for uri in current_order
-            if uri in merged and uri not in front_ids
-        ]
-        seen = front_ids | {track.uri for track in remaining}
-        new_fill = _select_simple(
-            sorted(
-                fill_candidates,
-                key=lambda t: _front_sort_key(t, signals, current, weekly_add_ids),
-                reverse=True,
-            ),
-            limit=micro_refresh_count,
-            seen=seen,
-            max_per_artist=max_tracks_per_artist,
-        )
-        body = remaining + new_fill
-        ordered = front + body
+
+    week = current.strftime("%G-W%V")
+    budget = state.get("weekly_budget", {})
+    used = int(budget.get("used", 0)) if budget.get("week") == week else 0
+    used += len(manual_adds)
+    rotate = update_mode == "major" and state.get("last_major_week") != week and not bootstrap
+    initial_empty = not known_baseline and not current_ids
+    vacancies = max(0, target_size - len(live))
+    allowance = max(0, weekly_insertions - used)
+    intake = min(allowance, discovery_per_refresh) if rotate else min(allowance, micro_refresh_count, vacancies)
+    if bootstrap:
+        intake = 0
+    if initial_empty:
+        intake = target_size
+    intake = min(intake, max(0, target_size - len(protected)))
+
+    candidates = [t for uri, t in merged.items()
+                  if uri not in current_ids and uri not in dismissed
+                  and _song_key(t) not in dismissed_keys and uri not in set(cooldown_uris)
+                  and not (
+                      (removed := _parse_datetime(history.get(uri, {}).get("retired_at", "")))
+                      and current - removed < timedelta(days=removal_cooldown_days)
+                  )]
+    candidates.sort(key=lambda t: (
+        # Prefer candidates not previously featured or in observed listening.
+        # This is recorded novelty, never proof that the user has not heard it.
+        not history.get(t.uri, {}).get("last_featured_at") if learn_top_ten else False,
+        track_id(t.uri) not in (signals.top_track_ids | signals.recently_played_ids)
+        if learn_top_ten else False,
+        _body_score(t, signals, current), t.added_at, t.uri), reverse=True)
+    counts: dict[str, int] = {}
+    for track in live:
+        artist = _primary_artist(track.artists)
+        counts[artist] = counts.get(artist, 0) + 1
+    admitted: list[CannablissTrack] = []
+    for track in candidates:
+        if len(admitted) >= intake:
+            break
+        artist = _primary_artist(track.artists)
+        if counts.get(artist, 0) >= max_tracks_per_artist:
+            continue
+        admitted.append(track)
+        counts[artist] = counts.get(artist, 0) + 1
+        meta = history.setdefault(track.uri, {})
+        meta.update(entered_at=stamp, song_key=_song_key(track), name=track.name, artists=track.artists)
+        # An automated return is not a new curator endorsement.
+        meta.pop("protected_until", None)
+        meta.pop("curator_added_at", None)
+
+    incumbents = [merged[uri] for uri in current_order if uri not in protected_ids]
+
+    def retention(track):
+        entered = _parse_datetime(history[track.uri]["entered_at"]) or current
+        # Listening can delay retirement by at most three days, never indefinitely.
+        bonus = min(3.0, (signals.top_tracks_boost if _is_hot_pick(track, signals) else 0.0)
+                    + (signals.recently_played_boost if track_id(track.uri) in signals.recently_played_ids else 0.0))
+        return (entered + timedelta(days=bonus), -(track.current_position or 10**9))
+
+    keep_slots = max(0, target_size - len(protected) - len(admitted))
+    retained = sorted(incumbents, key=retention, reverse=True)[:keep_slots]
+    retained.sort(key=lambda t: t.current_position or 10**9)
+    if rotate or initial_empty:
+        front_fill = admitted + sorted(retained, key=lambda t: (
+            history[t.uri].get("last_featured_at", ""), t.current_position or 10**9
+        ))
     else:
-        # Major / initial: rolling fill may pull fresh Master/feeder into the front.
-        front = _build_fresh_front(
-            _ordered_unique(weekly_adds + hot_incumbents + incumbents + fill_candidates),
-            weekly_add_ids=weekly_add_ids,
-            size=fresh_front_size,
-            max_per_artist=fresh_front_max_per_artist,
-            signals=signals,
-            now=current,
-        )
-        front_ids = {track.uri for track in front}
-        protected_overflow = [track for track in weekly_adds if track.uri not in front_ids]
-        protected_ids = front_ids | {track.uri for track in protected_overflow}
-        body_candidates = [
-            track
-            for track in (incumbents + fill_candidates)
-            if track.uri not in protected_ids
-        ]
-        slots = target_size - len(front)
-        body = _build_body(
-            protected_overflow=protected_overflow,
-            candidates=body_candidates,
-            slots=slots,
-            max_per_artist=max_tracks_per_artist,
-            front_tracks=front,
-            signals=signals,
-            now=current,
-        )
-        ordered = front + body
-
-    ordered_ids = {track.uri for track in ordered}
-    baseline = current_ids | prev
-    # removed_uris (current ∪ prev − output) drives the cooldown; summary["removed"] (current_order only) is the human-readable print — intentionally different membership.
-    removed_uris = [uri for uri in baseline if uri not in ordered_ids]
-
+        front_fill = retained + admitted
+    front: list[CannablissTrack] = []
+    front_counts: dict[str, int] = {}
+    for track in protected + front_fill:
+        if len(front) >= min(fresh_front_size, target_size):
+            break
+        artist = _primary_artist(track.artists)
+        if front_counts.get(artist, 0) >= fresh_front_max_per_artist:
+            continue
+        front.append(track)
+        front_counts[artist] = front_counts.get(artist, 0) + 1
+    front_ids = {t.uri for t in front}
+    body = [t for t in protected + retained + admitted if t.uri not in front_ids]
+    ordered = front + body
+    if learn_top_ten:
+        ordered = feature_top_ten(ordered, current_order, state, signals, current,
+                                 rotate=rotate or initial_empty)
+        front, body = ordered[:10], ordered[10:]
+        front_ids = {t.uri for t in front}
+    state["verified_order"] = [t.uri for t in ordered]
+    ordered_ids = {t.uri for t in ordered}
+    removed_uris = sorted((current_ids | prev) - ordered_ids)
+    for uri in current_ids - ordered_ids:
+        history[uri]["retired_at"] = stamp
+    for track in front:
+        history[track.uri]["last_featured_at"] = stamp
+    state.update(
+        version=2, dismissed_uris=sorted(dismissed), dismissed_song_keys=sorted(dismissed_keys),
+        weekly_budget={"week": week, "used": used + len(admitted)},
+    )
+    if rotate or bootstrap or initial_empty:
+        state["last_major_week"] = week
     summary = _build_summary(
-        ordered=ordered,
-        current_order=current_order,
-        current_ids=current_ids,
-        front=front,
-        update_mode=update_mode,
-        weekly_insertions=weekly_insertions,
+        ordered=ordered, current_order=current_order, current_ids=current_ids,
+        front=front, update_mode=update_mode, weekly_insertions=weekly_insertions,
         micro_refresh_count=micro_refresh_count,
     )
-
+    reasons = {}
+    for track in ordered:
+        if track.uri in protected_ids:
+            reasons[track.uri] = "Curator pick: protected until " + history[track.uri]["protected_until"][:10]
+        elif track.uri not in current_ids:
+            reasons[track.uri] = "Discovery from Master/feeder pool within the insertion budget"
+        elif track.uri in front_ids and rotate:
+            reasons[track.uri] = "Featured rotation: giving another incumbent time near the top"
+        else:
+            reasons[track.uri] = "Retained; preserving body order"
+        if learn_top_ten and track.uri in front_ids:
+            reasons[track.uri] += "; top 10 considers listening, release freshness and bounded reorder preferences"
+    if preference_events:
+        summary["preference_edits"] = [f"{len(preference_events)} relative ordering preferences observed"]
     return CannablissBuildResult(
-        ordered_tracks=ordered,
-        zones={"fresh_front": front, "body": body},
-        summary=summary,
-        new_track_count=sum(1 for track in ordered if track.uri not in current_ids),
-        update_mode=update_mode,
-        removed_uris=removed_uris,
+        ordered_tracks=ordered, zones={"fresh_front": front, "body": body}, summary=summary,
+        new_track_count=len(admitted), update_mode=update_mode, removed_uris=removed_uris,
+        rotation_state=state, protected_uris=sorted(protected_ids), reasons=reasons, bootstrap=bootstrap,
     )
 
 
@@ -406,10 +492,10 @@ def _build_summary(
         ],
         "retained": [track_id(uri) for uri in current_order if uri in positions_after],
     }
-    total_changed = len(set(summary["added"] + summary["removed"] + summary["promoted"]))
+    total_changed = len(set(summary["added"] + summary["removed"] + summary["promoted"] + summary["shifted_down"]))
     summary["total_changed"] = [str(total_changed)]
     if update_mode == "micro":
-        summary["micro_adjustments"] = [str(min(total_changed, micro_refresh_count))]
+        summary["micro_adjustments"] = [str(total_changed)]
     return summary
 
 
@@ -458,10 +544,10 @@ def _front_sort_key(
     now: datetime,
     weekly_add_ids: set[str],
 ) -> tuple:
-    """Sort key (use reverse=True): hot picks, then weekly adds, then freshness."""
+    """Sort key (use reverse=True): curator picks always outrank listening."""
     return (
-        1 if _is_hot_pick(track, signals) else 0,
         1 if track.uri in weekly_add_ids else 0,
+        1 if _is_hot_pick(track, signals) else 0,
         _front_score(track, signals, now),
         track.added_at,
         track.name.lower(),
@@ -661,5 +747,3 @@ def _parse_datetime(value: str) -> datetime | None:
         return datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
         return None
-
-

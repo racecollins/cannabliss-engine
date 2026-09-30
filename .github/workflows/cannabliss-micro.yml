@@ -9,15 +9,23 @@ on:
       dry_run:
         description: "Dry run (1 = no Spotify writes)"
         required: false
-        default: "0"
+        default: "1"
         type: choice
         options:
           - "0"
           - "1"
 
+permissions:
+  contents: write
+
+concurrency:
+  group: cannabliss-playlist
+  cancel-in-progress: false
+
 jobs:
   micro-refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -31,6 +39,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Run tests
+        run: python -m pytest tests/ -q
+
+      - name: Restore verified rotation history
+        run: python -m src.state_store restore --path data/runtime/cannabliss_state.json
+
       - name: Run Cannabliss Micro Refresh
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
@@ -42,10 +56,17 @@ jobs:
           CANNABLISS_HALL_OF_FAME_PLAYLIST_ID: "6rdvXMnttC3muaQICqpNmc"
           CANNABLISS_FEEDER_PLAYLIST_IDS: "6rdvXMnttC3muaQICqpNmc"
           CANNABLISS_TARGET_SIZE: "100"
-          CANNABLISS_WEEKLY_INSERTIONS: "25"
+          CANNABLISS_WEEKLY_INSERTIONS: "20"
           CANNABLISS_UPDATE_MODE: "micro"
           CANNABLISS_MICRO_REFRESH_COUNT: "5"
-          CANNABLISS_STATE_PATH: "data/cannabliss_state.json"
+          CANNABLISS_STATE_PATH: "data/runtime/cannabliss_state.json"
+          CANNABLISS_GIT_STATE: "1"
+          CANNABLISS_PROTECTION_DAYS: "14"
+          CANNABLISS_DISCOVERY_PER_REFRESH: "15"
+          CANNABLISS_LEARN_TOP_TEN: "1"
+          CANNABLISS_QUEUE_CURATOR_ADDITIONS: "1"
+          CANNABLISS_CURATOR_QUEUE_PER_REFRESH: "10"
+          CANNABLISS_PREVIEW_PATH: "data/preview/cannabliss.md"
           CANNABLISS_USE_TOP_TRACKS: "1"
           CANNABLISS_USE_RECENTLY_PLAYED: "1"
           CANNABLISS_TOP_TRACKS_TERM: "short_term"
@@ -55,9 +76,20 @@ jobs:
           CANNABLISS_RECENTLY_PLAYED_BOOST: "0.25"
           CANNABLISS_FRESH_FRONT_SIZE: "15"
           CANNABLISS_FRESH_FRONT_MAX_PER_ARTIST: "2"
-          CANNABLISS_REMOVAL_COOLDOWN_DAYS: "7"
+          CANNABLISS_REMOVAL_COOLDOWN_DAYS: "42"
           PLAYLIST_CACHE_DIR: "data/cache/playlists"
           PLAYLIST_CACHE_TTL_HOURS: "12"
           FORCE_REFRESH: ${{ github.event_name == 'schedule' && '1' || '0' }}
-          DRY_RUN: ${{ inputs.dry_run || '0' }}
+          DRY_RUN: ${{ github.event_name == 'schedule' && '0' || inputs.dry_run || '1' }}
         run: python -m src.main
+
+      - name: Save preview and recovery files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cannabliss-${{ github.run_id }}
+          path: |
+            data/preview/
+            data/runtime/
+          retention-days: 30
+          if-no-files-found: ignore
