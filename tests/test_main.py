@@ -120,6 +120,19 @@ def test_dry_run_does_not_create_history(monkeypatch, tmp_path):
     assert not path.exists()
 
 
+def test_activation_noop_guard_refuses_membership_change(monkeypatch, tmp_path):
+    import json
+    monkeypatch.setenv('CANNABLISS_EXPECT_NOOP', '1')
+    path=tmp_path/'state.json'
+    path.write_text(json.dumps({'schema_version':2,'runs':[{'track_ids':['1']}],
+        'rotation':{'tracks':{'spotify:track:1':{'entered_at':'2020-01-01T00:00:00Z'}}}}))
+    monkeypatch.setattr('src.main.get_cached_playlist_items',
+        lambda client, playlist_id, **k: [_item(2 if playlist_id=='master123' else 1)])
+    with pytest.raises(RuntimeError,match='unchanged playlist'):
+        run_cannabliss(_cfg(dry_run=False,cannabliss_state_path=str(path),cannabliss_target_size=1),_FakeClient())
+    assert not (tmp_path/'state.json.pending.json').exists()
+
+
 def test_dry_run_leaves_existing_history_byte_identical(monkeypatch, tmp_path):
     path = tmp_path / "state.json"
     original = '{"runs": [], "schema_version": 2, "rotation": {"version": 2, "tracks": {}}}'
