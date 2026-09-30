@@ -1,0 +1,2387 @@
+{
+  "timestamp": "2026-09-30T21:41:06.004757+00:00",
+  "target_playlist_id": "3P9XkucRpg9Naz8cGyZOpW",
+  "before": [
+    "spotify:track:4cxMGhkinTocPSVVKWIw0d",
+    "spotify:track:4HaPj8UiWpelGIn1lhqUXp",
+    "spotify:track:5qvl2kV7sn1Y2wRJlJWjSO",
+    "spotify:track:3pndPhlQWjuSoXhcIIdBjv",
+    "spotify:track:3xKsf9qdS1CyvXSMEid6g8",
+    "spotify:track:0jYhHo2DhmdkLfonFbPixV",
+    "spotify:track:7DfFc7a6Rwfi3YQMRbDMau",
+    "spotify:track:6rktW7ir6seXSqBoMaoJih",
+    "spotify:track:4nva9EpKntUTs6CRSGBCn9",
+    "spotify:track:0vovnhziMYImdMsEDPncA8",
+    "spotify:track:6DYLWAdxEJvwWmT7EkeDkX",
+    "spotify:track:5BKKy9fIJL5uM9fz1SnqyP",
+    "spotify:track:2MVdg4oqmSKuZDd8vtEyog",
+    "spotify:track:4wLJNd3zIfm68rMi36JtY4",
+    "spotify:track:1IHWl5LamUGEuP4ozKQSXZ",
+    "spotify:track:6qcuRcbz8DCLG6nG4or8Uo",
+    "spotify:track:3GZD6HmiNUhxXYf8Gch723",
+    "spotify:track:3kKPZFQse4LtbnMRhnAlEO",
+    "spotify:track:0QBe8XoJz2m71iaSrua6MH",
+    "spotify:track:0vjeOZ3Ft5jvAi9SBFJm1j",
+    "spotify:track:21fyLmQranpgyoYHMMCIuq",
+    "spotify:track:2rBesRD5DkpI0dyjmXV7lf",
+    "spotify:track:5VPFATm85G3P04Q5g8yxqr",
+    "spotify:track:0OwqNxhVtO6lSw2XAxdhgX",
+    "spotify:track:393OFJFZKIIv66JmJcNm9D",
+    "spotify:track:6eLY5NX9HkvAtrvRrPOW0F",
+    "spotify:track:3ML3rwzNMRHzB3Bdit4xLG",
+    "spotify:track:01z2fBGB8Hl3Jd3zXe4IXR",
+    "spotify:track:7lv4SU2ATVjQJp6Jia0x7N",
+    "spotify:track:7aKPbNFx51OwUZBbZ7pqlj",
+    "spotify:track:7KGHenqXZofXNm5MKDbT3J",
+    "spotify:track:0VzDv4wiuZsLsNOmfaUy2W",
+    "spotify:track:0JeAKH2DCIgCCrZ9qBGthg",
+    "spotify:track:2AEWlaVGx9IopuYlK9hbzF",
+    "spotify:track:1fewSx2d5KIZ04wsooEBOz",
+    "spotify:track:0rdWkO7ncrh1lrJGDmLq9L",
+    "spotify:track:61JE1BYGp6Jn0CskwZIFvx",
+    "spotify:track:6vjpQIdABqntoe3zPazPec",
+    "spotify:track:5EFHBKB7yHygYxgPN56dTo",
+    "spotify:track:0eoG4FoLgEd7F7WP92LUe6",
+    "spotify:track:4dKIQf4OnTMiAgWt8Si3Bv",
+    "spotify:track:6eUAUZDHEETrGPsa3SGH3Y",
+    "spotify:track:32ybgVFtIhcY3Kue8c3bbd",
+    "spotify:track:514joG57v4yKTsfQmz7stz",
+    "spotify:track:7cL3jnYfTXs7zoLbyo61jQ",
+    "spotify:track:6MFBH6AXh5A9kcddLrqI4e",
+    "spotify:track:1TJ0PvWV2i7IamBAhuihds",
+    "spotify:track:3cCxoOgfi6hgt8MNteuiiD",
+    "spotify:track:43wxf8KdrzSkzAJMGzqAIl",
+    "spotify:track:6G1V75QrSDs96Vh9SirOSi",
+    "spotify:track:51B1RzOwX8ybRMb66Rhsmu",
+    "spotify:track:63iwhg49U6FgWtTDzkEVnL",
+    "spotify:track:1C7KSXR2GVxknex6I4ANco",
+    "spotify:track:6iIpGsEuUIuapBssJ8sFC2",
+    "spotify:track:3H4WSrkOEFARRaEgQWOWC7",
+    "spotify:track:2bmN1B9HIZTGdaFqMYrgOR",
+    "spotify:track:5uqOuPMYxxLfBZyLBDipNh",
+    "spotify:track:526fD9LiAEi3KKvhhYfWmm",
+    "spotify:track:7y6c07pgjZvtHI9kuMVqk1",
+    "spotify:track:33XUHrCbrAW6me9ewdCZip",
+    "spotify:track:0U1uQvYa0FTXSadLoBe4tE",
+    "spotify:track:0UeYCHOETPfai02uskjJ3x",
+    "spotify:track:51RDaTRAEHSitpeucJiHyU",
+    "spotify:track:7BUnCxc0dae9HwelFz719W",
+    "spotify:track:2IGMVunIBsBLtEQyoI1Mu7",
+    "spotify:track:0WtM2NBVQNNJLh6scP13H8",
+    "spotify:track:66dQdXAbtuPdSasezCQVZE",
+    "spotify:track:3a5CxpjEjjOoesSxmzPG4I",
+    "spotify:track:3zmbXXA6yK6xlYqhEI4oS8",
+    "spotify:track:5JQFGPCkrD5kJB7vwuKpah",
+    "spotify:track:5AcD3lD2V63qZLZaKNThp3",
+    "spotify:track:7uEFboafVLvROPYTqdMi0n",
+    "spotify:track:3WPdIdjJP77kguVy3tFeiy",
+    "spotify:track:3LfJhQEvqHUSVyohbuUmh2",
+    "spotify:track:1pYKzfOlpHWtVUiEIu4Vn7",
+    "spotify:track:1h4sGFwDqHjpoyGsqREVFl",
+    "spotify:track:2Y1v28jeF3a1VdqleWtgyb",
+    "spotify:track:10VuwBAxEi3goN8n3AvrGS",
+    "spotify:track:1eQtN2Guq0O3gDz21yADMK",
+    "spotify:track:3lB0GMiI5KxDbTOG8V3bOx",
+    "spotify:track:3fzURoMXi6FUwixXOmhJBn",
+    "spotify:track:2xsTsnA5QOFCnFXdEHGkli",
+    "spotify:track:2nvgmIyONM6yzB4MhdC5G3",
+    "spotify:track:4rnKCDfM7ztrRRSjnkwmkh",
+    "spotify:track:2hx8cZug1bgRMXgW5RCTUV",
+    "spotify:track:5x3yh46amE0qXYT9k929Vq",
+    "spotify:track:4KLTN9pAXs7V9LPB3S6OEq",
+    "spotify:track:244A4fzwbMXTuHn5mL06Sj",
+    "spotify:track:15PJRwSIxYCtG72eS0lP0i",
+    "spotify:track:4VwFMekbfiPV16vyqinkTx",
+    "spotify:track:2cGxRwrMyEAp8dEbuZaVv6",
+    "spotify:track:3kzeFYqVivXmkhD63NLHrb",
+    "spotify:track:6oNZ0WxqptE7V0qpjtyJ4a",
+    "spotify:track:1KCMF9fdF7sNE74R2V46af",
+    "spotify:track:4DJQAOC8iGot5RcyPFCaNz",
+    "spotify:track:7fV3C2vMtNxqpoB8UP8bvq",
+    "spotify:track:15uR6InJEo9zyl9DgVQTz0",
+    "spotify:track:1fZeK4F1yZkVrEOb9ILaax",
+    "spotify:track:0nSOYYfSZsnmJuo9XBPyMH",
+    "spotify:track:7mx3o5H3YzWolHZe0Wtbam",
+    "spotify:track:2CuM7FRomNSgZVF6QV5uLo",
+    "spotify:track:7diH1qnFziArYzynk3vkr6",
+    "spotify:track:6OWWZtNQORY1McaZmOrwhc",
+    "spotify:track:1ymIM4nUVE2IDbmMjgBWoT",
+    "spotify:track:1bwREv5bIq3QxGz9cfFZ5b",
+    "spotify:track:4tcLxWZs2YYmggQRWGsYTZ",
+    "spotify:track:7njU3mZAmLyjdvoEl7XFtv",
+    "spotify:track:3LkGfiqjUbg7gzYlDeLmEG",
+    "spotify:track:4e0FYxSROat25pH16zMTZI",
+    "spotify:track:3wx6QmdXzoWBH9KHsQCE5y",
+    "spotify:track:1BpKJw4RZxaFB88NE5uxXf",
+    "spotify:track:6sLbiIlmRhL3alS0P9vJuI",
+    "spotify:track:4VXuwKDYsbWLwIWbUThQlh",
+    "spotify:track:32TTewBmtmhUmYxS1ajqaJ",
+    "spotify:track:6Ln44Up5lBxNgCsaLoXY6W",
+    "spotify:track:00NUowM70GCryxvjHPd26C",
+    "spotify:track:1xqLOYIMiNoCduM983ibjk",
+    "spotify:track:4jyyma8YdFC4S4llusSFRu",
+    "spotify:track:4EYBB3M9JDNGKqgplSS8PU",
+    "spotify:track:3FxrOAlvKSGGloyWOOgRDA",
+    "spotify:track:2hHuCTQCKMAMmNGT6nnlee",
+    "spotify:track:21z8SSZUf7OQ9h4Is0yAZS",
+    "spotify:track:5oady7OSE7dH7LHiqmb3Cr",
+    "spotify:track:1olXA1jnOZ7kIZqLQxeJkW",
+    "spotify:track:3de2b8uTodAM7Fb45QooT2",
+    "spotify:track:0rIziF7CpfJbzJKKTznuEU",
+    "spotify:track:4IV8WI0FLQLYKzrEAGKp05",
+    "spotify:track:0u9IH9TN04IJ71T79zasnk",
+    "spotify:track:2qcFl2nn5JT8Kt9xpw8bUb",
+    "spotify:track:5VaWhN6kbhBZo4uG96i3Cn",
+    "spotify:track:02OwhwebATDY9i4xfeo3FV",
+    "spotify:track:5xIWdSqQaW9YcG2gcHJRVk",
+    "spotify:track:2bU3gg0M8GGBs7ItBKsJX9",
+    "spotify:track:7tc04xLTn7fG4IUujpuC9r",
+    "spotify:track:31nmYWiPPyVHnYFoCH2kZs",
+    "spotify:track:4YsNDEzzDg8bC81pbR1y8o",
+    "spotify:track:3s9jPtOqkK1py1haxECjJv",
+    "spotify:track:5gmqIUiSsnADV8bpOKFX0H",
+    "spotify:track:7pudclCl5P99Me3P5F9hPC",
+    "spotify:track:6xTnJJHLUmvlNzERiRSoEP",
+    "spotify:track:7kgKHe6ZxLEg83y4LiQvB5",
+    "spotify:track:4YhL5abCi0PDKtOCvF48ss",
+    "spotify:track:4be0qtgnB5kRzlox6T6btY",
+    "spotify:track:4c3owU9UoRSbMr6obEAtsh",
+    "spotify:track:3vZO25GdYuqFrR1kzZADnp",
+    "spotify:track:0B8QzDH7YWih85V5SEMnyJ",
+    "spotify:track:3auSQjs9kylJwN0aU7S5Qc",
+    "spotify:track:4gh0ZnHzaTMT1sDga7Ek0N",
+    "spotify:track:3cIKQocOQMDL5U6i5pN4UI",
+    "spotify:track:0Mp0s7GXwLHFlZWwUVftL5",
+    "spotify:track:52T8TTMESX21406wvTdQDY",
+    "spotify:track:0FD3FZWKO5Koyav5Lr6OkJ",
+    "spotify:track:45KJWFiEW13MwID3uwlc3y",
+    "spotify:track:4JnX8tY9me7jHqDwgifhwU",
+    "spotify:track:25HgUJf69zb3K7TJw7LGCQ",
+    "spotify:track:7EQjPEL70tzjlTgCgU0QrV",
+    "spotify:track:7qkNf6D661jZI9yNqw27LA",
+    "spotify:track:7ENAU5RHg2yeQ0FOSvlF3C",
+    "spotify:track:27NJecalilpkaN8FuSjlH8",
+    "spotify:track:3E7ZwUMJFqpsDOJzEkBrQ7",
+    "spotify:track:0Ph1Ptj4r31cQsUQ4oICNB",
+    "spotify:track:19DVTr6Ybq7vbwuqp3Vrl7",
+    "spotify:track:6cblRiEGDRNZgowcm951R3",
+    "spotify:track:7EdJ8z6IBotTjO50DfzzuV",
+    "spotify:track:4igAMQGQ9HTDiR2bhf0ANo",
+    "spotify:track:4gqiqFLRPO1tgOApWCAP7s",
+    "spotify:track:1q5jjWV7C0VenMBQyHPeco",
+    "spotify:track:34nBpQIuxmC8oC78wRuQ0Q",
+    "spotify:track:7nTKNNAHXp7z2i7WGVV23T",
+    "spotify:track:4Lg23Ss7mEgczXF7wT9gBK",
+    "spotify:track:0zprBQpAaNFdV82NqjyiNx",
+    "spotify:track:45NotkYm48UyvThjtFAm7Z",
+    "spotify:track:1qYzwcLFbsPcA5YGDdLKd4",
+    "spotify:track:32VOsoPR0N9dEZNbogPIeZ",
+    "spotify:track:0h9Rp5K2436xgTmZIJzQyE",
+    "spotify:track:2nAEYxNIEC5vh1HrLUbH7L",
+    "spotify:track:7vGuf3Y35N4wmASOKLUVVU",
+    "spotify:track:2SAqBLGA283SUiwJ3xOUVI",
+    "spotify:track:6sqTitqGGAMGHlweQeAqKC",
+    "spotify:track:5fCQKQuWszdtqD2Sbf5CCV",
+    "spotify:track:1Xls3QHvOQ7YLB54R6BvgG",
+    "spotify:track:592A3x9nMXoL3Ay5rKgSwW",
+    "spotify:track:3f6ZivZZIdDLlWvLHXQiRs",
+    "spotify:track:0ykDCKXBs5onPLJ5gaHqly",
+    "spotify:track:051zam2WDIKOLdu4XYpCaA",
+    "spotify:track:5FG7Tl93LdH117jEKYl3Cm",
+    "spotify:track:1lfO0bqThTLimzHsvk3LrN",
+    "spotify:track:4tGbZjNFJLPTtw5CAwRjUP",
+    "spotify:track:58a6J0DhgpUYr8SUeUV5hP",
+    "spotify:track:6fYr27d1dxrs2tiYW3nOdN",
+    "spotify:track:2tPNj9sUt3FbjEUqBzZazv",
+    "spotify:track:7pEbUrQNQ5cEpFltjha5TA",
+    "spotify:track:1CvVAN0IHDtmIaOQwLRnIp",
+    "spotify:track:3LgrGM6s798iVLEqH4vx0X",
+    "spotify:track:5IUtvfNvOyVYZUa6AJFrnP",
+    "spotify:track:6M0IsaUX4GNyto4niSegfI",
+    "spotify:track:1SYLzRw4M2NkbnQUDVNajn",
+    "spotify:track:6y6vQOD1k3fBySGpjPmIkJ",
+    "spotify:track:4bnq2OQUwACkp2vCEbY52g",
+    "spotify:track:59aWxauGOAbQycO8GNK7LE",
+    "spotify:track:3lcC9CnN7Rpo1ugATzmYjY",
+    "spotify:track:0PD6WTOfk9kBi6THqAaBKV",
+    "spotify:track:2yWlGEgEfPot0lv3OAjuG3",
+    "spotify:track:5d3QY0Kq63rwQqPDe5usTs",
+    "spotify:track:3uHawOMwckCryhmGf87Wp1",
+    "spotify:track:4CZgQq8KJYWGh1bM3sqGmd",
+    "spotify:track:0wzK2m89t22oOayHYfV75U",
+    "spotify:track:4O9t8Qq941SAzdGlex4noA",
+    "spotify:track:1cgADXNiWqaHqhLDYJ69NR",
+    "spotify:track:6kckNpuM5oXZrObLExRg6d",
+    "spotify:track:6LlGEdJFAsfQGFRqa6cWPg",
+    "spotify:track:49jKM8U8MXj6G1KNJrfvKB",
+    "spotify:track:6nXiaXqSZAJuOG6q66mZV1",
+    "spotify:track:0IeBxP5BlIH2BDhQYVsRq3",
+    "spotify:track:5ak10jIkmBWlHLznT7qn0R",
+    "spotify:track:5mHdCZtVyb4DcJw8799hZp",
+    "spotify:track:2TC0f4wRihjpKZOSCKABuD",
+    "spotify:track:44hxcfEzWXQTeeCxBJ95DE",
+    "spotify:track:7iboYwZFdr22Li27LxjLUa",
+    "spotify:track:3g3RCV5ImXwzHpKwM2iunc",
+    "spotify:track:7opiuimo5OpFUXpk7bIkp2",
+    "spotify:track:0R2yQJOFsKqS0SsgPdWqtP",
+    "spotify:track:5tW2NPmiGM0930x6ivTqUV",
+    "spotify:track:5v501hmUMvbHPKa7qm0MGD",
+    "spotify:track:7ckNnMlGNSyjQKcEBihZrp",
+    "spotify:track:559SdaPI7mqy9IQiscuaMj",
+    "spotify:track:3iy2QuCtCzpWnR6tia39AB",
+    "spotify:track:2cbsXChWQNeFMnDTrwuQJ9",
+    "spotify:track:1qkkE488CPJ0MIEkwOWLD3",
+    "spotify:track:20bJBbPapGQ4bqs0YcA9xY",
+    "spotify:track:2ZXxRC6V6AXzMdbLQZMHSB",
+    "spotify:track:4lH6nENd1y81jp7Yt9lTBX",
+    "spotify:track:0dxruuhJVbsSyLNkqW1Fsc",
+    "spotify:track:2Ii2eSeBxGfC57INEdlEBn",
+    "spotify:track:2pg2TiYo9Rb8KeB5JjP7jS",
+    "spotify:track:4aYjGe4W7RbTcgTuLlfx9d",
+    "spotify:track:5FxVTEpoBress37MmlMhbZ",
+    "spotify:track:44KWbTVZev3SWdv1t5UoYE",
+    "spotify:track:2F8eiUxSGMbRYr62P27XI9",
+    "spotify:track:70LcF31zb1H0PyJoS1Sx1r",
+    "spotify:track:59KIWpQKWUwRBBvfXmsmAA",
+    "spotify:track:2QbkV07GpqyRwUZ1ue0ml0",
+    "spotify:track:1ahG0zPg1QbTdoEX1H5ZEk",
+    "spotify:track:1ACA277B6f46DYCgZW8di3",
+    "spotify:track:6jbYpRPTEFl1HFKHk1IC0m",
+    "spotify:track:4jc5rsFpWTMRE8VvcxwL9a",
+    "spotify:track:3KlCwaKB1IQhglDLFmNpj9",
+    "spotify:track:6pkDOjEq2cJJPSZB2nY9oH",
+    "spotify:track:3lF4ZPLhWIfbiR2G74PGdn",
+    "spotify:track:2lpygKqzPFtItQ4ss3cgfb",
+    "spotify:track:28rnDC5WfQ67deKXU43LHr",
+    "spotify:track:7M62jxrvr7UJdo6DchAFf3",
+    "spotify:track:5CMjjywI0eZMixPeqNd75R"
+  ],
+  "after": [
+    "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ",
+    "spotify:track:28rnDC5WfQ67deKXU43LHr",
+    "spotify:track:3lF4ZPLhWIfbiR2G74PGdn",
+    "spotify:track:5tW2NPmiGM0930x6ivTqUV",
+    "spotify:track:7aKPbNFx51OwUZBbZ7pqlj",
+    "spotify:track:393OFJFZKIIv66JmJcNm9D",
+    "spotify:track:1cgADXNiWqaHqhLDYJ69NR",
+    "spotify:track:0R2yQJOFsKqS0SsgPdWqtP",
+    "spotify:track:3xKsf9qdS1CyvXSMEid6g8",
+    "spotify:track:4whkhyXTrTgHKZzkUvdwoq",
+    "spotify:track:7M62jxrvr7UJdo6DchAFf3",
+    "spotify:track:6jbYpRPTEFl1HFKHk1IC0m",
+    "spotify:track:1ahG0zPg1QbTdoEX1H5ZEk",
+    "spotify:track:4jc5rsFpWTMRE8VvcxwL9a",
+    "spotify:track:2QbkV07GpqyRwUZ1ue0ml0",
+    "spotify:track:3KlCwaKB1IQhglDLFmNpj9",
+    "spotify:track:1ACA277B6f46DYCgZW8di3",
+    "spotify:track:59KIWpQKWUwRBBvfXmsmAA",
+    "spotify:track:2lpygKqzPFtItQ4ss3cgfb",
+    "spotify:track:6pkDOjEq2cJJPSZB2nY9oH",
+    "spotify:track:2F8eiUxSGMbRYr62P27XI9",
+    "spotify:track:70LcF31zb1H0PyJoS1Sx1r",
+    "spotify:track:37Bkd2OPVmuvxrj7q7l0ne",
+    "spotify:track:44KWbTVZev3SWdv1t5UoYE",
+    "spotify:track:5FxVTEpoBress37MmlMhbZ",
+    "spotify:track:2pg2TiYo9Rb8KeB5JjP7jS",
+    "spotify:track:09CqF6VVL6G7NwkCj3M2lU",
+    "spotify:track:0dxruuhJVbsSyLNkqW1Fsc",
+    "spotify:track:4lH6nENd1y81jp7Yt9lTBX",
+    "spotify:track:2Ii2eSeBxGfC57INEdlEBn",
+    "spotify:track:0Eq2AzJQNwxf5FsLYBjitC",
+    "spotify:track:2ZXxRC6V6AXzMdbLQZMHSB",
+    "spotify:track:1qkkE488CPJ0MIEkwOWLD3",
+    "spotify:track:2cbsXChWQNeFMnDTrwuQJ9",
+    "spotify:track:7cLnbmx7ZUWAwyocrKz3wL",
+    "spotify:track:20bJBbPapGQ4bqs0YcA9xY",
+    "spotify:track:5v501hmUMvbHPKa7qm0MGD",
+    "spotify:track:3g3RCV5ImXwzHpKwM2iunc",
+    "spotify:track:3XsrEA7lVrxOeRgZahaJTF",
+    "spotify:track:44hxcfEzWXQTeeCxBJ95DE",
+    "spotify:track:5mHdCZtVyb4DcJw8799hZp",
+    "spotify:track:0IeBxP5BlIH2BDhQYVsRq3",
+    "spotify:track:41SwdQIX8Hy2u6fuEDgvWr",
+    "spotify:track:6nXiaXqSZAJuOG6q66mZV1",
+    "spotify:track:49jKM8U8MXj6G1KNJrfvKB",
+    "spotify:track:6kckNpuM5oXZrObLExRg6d",
+    "spotify:track:5sdkS8DXx8rXNLxbSos8GS",
+    "spotify:track:4O9t8Qq941SAzdGlex4noA",
+    "spotify:track:0wzK2m89t22oOayHYfV75U",
+    "spotify:track:4CZgQq8KJYWGh1bM3sqGmd",
+    "spotify:track:2jrXrZdn5PoPsMw9W0T5sn",
+    "spotify:track:3uHawOMwckCryhmGf87Wp1",
+    "spotify:track:3GZD6HmiNUhxXYf8Gch723",
+    "spotify:track:051zam2WDIKOLdu4XYpCaA",
+    "spotify:track:64I9byMYBlS1ARsC3vtpgW",
+    "spotify:track:2xsTsnA5QOFCnFXdEHGkli",
+    "spotify:track:7mx3o5H3YzWolHZe0Wtbam",
+    "spotify:track:0Ph1Ptj4r31cQsUQ4oICNB",
+    "spotify:track:553cXGLHlFjP83AuE1SSlC",
+    "spotify:track:0zprBQpAaNFdV82NqjyiNx",
+    "spotify:track:0h9Rp5K2436xgTmZIJzQyE",
+    "spotify:track:10VuwBAxEi3goN8n3AvrGS",
+    "spotify:track:4zhQpcdgO2OFUMRzcgSJu1",
+    "spotify:track:2nAEYxNIEC5vh1HrLUbH7L",
+    "spotify:track:3kKPZFQse4LtbnMRhnAlEO",
+    "spotify:track:2qcFl2nn5JT8Kt9xpw8bUb",
+    "spotify:track:7tzeZLMnqlke2raEMeDZ9S",
+    "spotify:track:4DJQAOC8iGot5RcyPFCaNz",
+    "spotify:track:1fZeK4F1yZkVrEOb9ILaax",
+    "spotify:track:3lB0GMiI5KxDbTOG8V3bOx",
+    "spotify:track:1fmfarh0JM08oF5FVRRGir",
+    "spotify:track:1fewSx2d5KIZ04wsooEBOz",
+    "spotify:track:3s9jPtOqkK1py1haxECjJv",
+    "spotify:track:1q5jjWV7C0VenMBQyHPeco",
+    "spotify:track:44ZKnfWEkp7wPs035j4Tua",
+    "spotify:track:3LgrGM6s798iVLEqH4vx0X",
+    "spotify:track:58a6J0DhgpUYr8SUeUV5hP",
+    "spotify:track:592A3x9nMXoL3Ay5rKgSwW",
+    "spotify:track:5KXNgbRYbqwEFIFM0AMakg",
+    "spotify:track:5x3yh46amE0qXYT9k929Vq",
+    "spotify:track:51RDaTRAEHSitpeucJiHyU",
+    "spotify:track:66dQdXAbtuPdSasezCQVZE",
+    "spotify:track:03yib980AUBlXsJ8JJz54l",
+    "spotify:track:526fD9LiAEi3KKvhhYfWmm",
+    "spotify:track:2bmN1B9HIZTGdaFqMYrgOR",
+    "spotify:track:0rdWkO7ncrh1lrJGDmLq9L",
+    "spotify:track:6AAYNz8jXvVlgG9IpYi42Z",
+    "spotify:track:00NUowM70GCryxvjHPd26C",
+    "spotify:track:4jyyma8YdFC4S4llusSFRu",
+    "spotify:track:32VOsoPR0N9dEZNbogPIeZ",
+    "spotify:track:7tc04xLTn7fG4IUujpuC9r",
+    "spotify:track:3auSQjs9kylJwN0aU7S5Qc",
+    "spotify:track:7y6c07pgjZvtHI9kuMVqk1",
+    "spotify:track:6qcuRcbz8DCLG6nG4or8Uo",
+    "spotify:track:4wLJNd3zIfm68rMi36JtY4",
+    "spotify:track:6Ln44Up5lBxNgCsaLoXY6W",
+    "spotify:track:2cGxRwrMyEAp8dEbuZaVv6",
+    "spotify:track:1ymIM4nUVE2IDbmMjgBWoT",
+    "spotify:track:5d3QY0Kq63rwQqPDe5usTs",
+    "spotify:track:6oNZ0WxqptE7V0qpjtyJ4a"
+  ],
+  "proposed_rotation": {
+    "version": 2,
+    "tracks": {
+      "spotify:track:4cxMGhkinTocPSVVKWIw0d": {
+        "name": "Losin Control",
+        "artists": "Russ",
+        "song_key": "russ::losin control",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4HaPj8UiWpelGIn1lhqUXp": {
+        "name": "Valentina",
+        "artists": "BrxkenBxy",
+        "song_key": "brxkenbxy::valentina",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5qvl2kV7sn1Y2wRJlJWjSO": {
+        "name": "Radio",
+        "artists": "Future",
+        "song_key": "future::radio",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3pndPhlQWjuSoXhcIIdBjv": {
+        "name": "What They Want",
+        "artists": "Russ",
+        "song_key": "russ::what they want",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3xKsf9qdS1CyvXSMEid6g8": {
+        "name": "Pink + White",
+        "artists": "Frank Ocean",
+        "song_key": "frank ocean::pink white",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0jYhHo2DhmdkLfonFbPixV": {
+        "name": "Dots & Lines",
+        "artists": "Lupe Fiasco",
+        "song_key": "lupe fiasco::dots lines",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7DfFc7a6Rwfi3YQMRbDMau": {
+        "name": "Thinkin Bout You",
+        "artists": "Frank Ocean",
+        "song_key": "frank ocean::thinkin bout you",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6rktW7ir6seXSqBoMaoJih": {
+        "name": "Family (Blended Babies Remix) [feat. Chance the Rapper & Vic Mensa]",
+        "artists": "Blended Babies, Chance the Rapper, VIC MENSA",
+        "song_key": "blended babies::family",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4nva9EpKntUTs6CRSGBCn9": {
+        "name": "Just A Lil Bit",
+        "artists": "50 Cent",
+        "song_key": "50 cent::just a lil bit",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0vovnhziMYImdMsEDPncA8": {
+        "name": "Drink Water (feat. Jon Bellion and Fireboy DML)",
+        "artists": "Jon Batiste, Jon Bellion, Fireboy DML",
+        "song_key": "jon batiste::drink water",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6DYLWAdxEJvwWmT7EkeDkX": {
+        "name": "Charmed",
+        "artists": "\u03a3tella, Redinho",
+        "song_key": "\u03c3tella::charmed",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5BKKy9fIJL5uM9fz1SnqyP": {
+        "name": "Chicago",
+        "artists": "Michael Jackson",
+        "song_key": "michael jackson::chicago",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2MVdg4oqmSKuZDd8vtEyog": {
+        "name": "Dat New New - Remix",
+        "artists": "DCG",
+        "song_key": "dcg::dat new new",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4wLJNd3zIfm68rMi36JtY4": {
+        "name": "Kokamoe Freestyle",
+        "artists": "GoldLink",
+        "song_key": "goldlink::kokamoe freestyle",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1IHWl5LamUGEuP4ozKQSXZ": {
+        "name": "Tit\u00ed Me Pregunt\u00f3",
+        "artists": "Bad Bunny",
+        "song_key": "bad bunny::tit\u00ed me pregunt\u00f3",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6qcuRcbz8DCLG6nG4or8Uo": {
+        "name": "Cherry Hill",
+        "artists": "Russ",
+        "song_key": "russ::cherry hill",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3GZD6HmiNUhxXYf8Gch723": {
+        "name": "Lost",
+        "artists": "Frank Ocean",
+        "song_key": "frank ocean::lost",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3kKPZFQse4LtbnMRhnAlEO": {
+        "name": "doom",
+        "artists": "Steve Lacy",
+        "song_key": "steve lacy::doom",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0QBe8XoJz2m71iaSrua6MH": {
+        "name": "LAST BREATH",
+        "artists": "Ye, Kanye West",
+        "song_key": "ye::last breath",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0vjeOZ3Ft5jvAi9SBFJm1j": {
+        "name": "Superhero (Heroes & Villains) [with Future & Chris Brown]",
+        "artists": "Metro Boomin, Future, Chris Brown",
+        "song_key": "metro boomin::superhero",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:21fyLmQranpgyoYHMMCIuq": {
+        "name": "Barbie Doll (feat. Chance the Rapper)",
+        "artists": "Hurricane Wisdom, Chance the Rapper",
+        "song_key": "hurricane wisdom::barbie doll",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2rBesRD5DkpI0dyjmXV7lf": {
+        "name": "Cotton",
+        "artists": "Vince Staples",
+        "song_key": "vince staples::cotton",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5VPFATm85G3P04Q5g8yxqr": {
+        "name": "Nelly",
+        "artists": "Isaiah Rashad",
+        "song_key": "isaiah rashad::nelly",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0OwqNxhVtO6lSw2XAxdhgX": {
+        "name": "Willy Wonka (feat. Paulina & Jaf\u00e9)",
+        "artists": "Russ, Paulina, Jaf\u00e9",
+        "song_key": "russ::willy wonka",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:393OFJFZKIIv66JmJcNm9D": {
+        "name": "National Treasures",
+        "artists": "Drake",
+        "song_key": "drake::national treasures",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6eLY5NX9HkvAtrvRrPOW0F": {
+        "name": "Poppin",
+        "artists": "Rich Amiri, Lil Tecca",
+        "song_key": "rich amiri::poppin",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3ML3rwzNMRHzB3Bdit4xLG": {
+        "name": "Cabo",
+        "artists": "Bankrol Hayden",
+        "song_key": "bankrol hayden::cabo",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:01z2fBGB8Hl3Jd3zXe4IXR": {
+        "name": "Come Back to Earth",
+        "artists": "Mac Miller",
+        "song_key": "mac miller::come back to earth",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7lv4SU2ATVjQJp6Jia0x7N": {
+        "name": "Dark Thoughts",
+        "artists": "Lil Tecca",
+        "song_key": "lil tecca::dark thoughts",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7aKPbNFx51OwUZBbZ7pqlj": {
+        "name": "CAMERAS",
+        "artists": "Isaiah Rashad, Dominic Fike",
+        "song_key": "isaiah rashad::cameras",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7KGHenqXZofXNm5MKDbT3J": {
+        "name": "Whisper My Name",
+        "artists": "Drake",
+        "song_key": "drake::whisper my name",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0VzDv4wiuZsLsNOmfaUy2W": {
+        "name": "We Just Havent Met Yet",
+        "artists": "Russ",
+        "song_key": "russ::we just havent met yet",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0JeAKH2DCIgCCrZ9qBGthg": {
+        "name": "Malcolm In The Middle",
+        "artists": "Malcolm Todd",
+        "song_key": "malcolm todd::malcolm in the middle",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2AEWlaVGx9IopuYlK9hbzF": {
+        "name": "No Drama",
+        "artists": "Bankrol Hayden",
+        "song_key": "bankrol hayden::no drama",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1fewSx2d5KIZ04wsooEBOz": {
+        "name": "Space Cadet (feat. Gunna)",
+        "artists": "Metro Boomin, Gunna",
+        "song_key": "metro boomin::space cadet",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0rdWkO7ncrh1lrJGDmLq9L": {
+        "name": "Gamesofluck",
+        "artists": "Parcels",
+        "song_key": "parcels::gamesofluck",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:61JE1BYGp6Jn0CskwZIFvx": {
+        "name": "BIG STEPPAS",
+        "artists": "ACCULBED, DJ T-MANE",
+        "song_key": "acculbed::big steppas",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6vjpQIdABqntoe3zPazPec": {
+        "name": "Shabang",
+        "artists": "Drake",
+        "song_key": "drake::shabang",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5EFHBKB7yHygYxgPN56dTo": {
+        "name": "sstars",
+        "artists": "whiterosemoxie, Kato On The Track",
+        "song_key": "whiterosemoxie::sstars",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0eoG4FoLgEd7F7WP92LUe6": {
+        "name": "Forgot to Breathe",
+        "artists": "GRAHAM",
+        "song_key": "graham::forgot to breathe",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4dKIQf4OnTMiAgWt8Si3Bv": {
+        "name": "World Is Mine",
+        "artists": "Lane 8, Kasbo, BJOERN",
+        "song_key": "lane 8::world is mine",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6eUAUZDHEETrGPsa3SGH3Y": {
+        "name": "UM",
+        "artists": "LORD$OFDOGTOWN",
+        "song_key": "lord$ofdogtown::um",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:32ybgVFtIhcY3Kue8c3bbd": {
+        "name": "Fuck Love",
+        "artists": "Bankrol Hayden",
+        "song_key": "bankrol hayden::fuck love",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:514joG57v4yKTsfQmz7stz": {
+        "name": "Janice STFU",
+        "artists": "Drake",
+        "song_key": "drake::janice stfu",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7cL3jnYfTXs7zoLbyo61jQ": {
+        "name": "ROLL IT UP",
+        "artists": "Pertinence",
+        "song_key": "pertinence::roll it up",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6MFBH6AXh5A9kcddLrqI4e": {
+        "name": "GOOFY!",
+        "artists": "Hadji Gaviota",
+        "song_key": "hadji gaviota::goofy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1TJ0PvWV2i7IamBAhuihds": {
+        "name": "time alone w u",
+        "artists": "Artemas",
+        "song_key": "artemas::time alone w u",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3cCxoOgfi6hgt8MNteuiiD": {
+        "name": "Fade",
+        "artists": "Kanye West",
+        "song_key": "kanye west::fade",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:43wxf8KdrzSkzAJMGzqAIl": {
+        "name": "The Flash",
+        "artists": "Ice Cream Social, Abhi The Nomad, JZAC, Harrison Sands, Chase Moore",
+        "song_key": "ice cream social::the flash",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6G1V75QrSDs96Vh9SirOSi": {
+        "name": "I'M SOLO",
+        "artists": "SOLOCELO",
+        "song_key": "solocelo::im solo",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:51B1RzOwX8ybRMb66Rhsmu": {
+        "name": "Still Got It",
+        "artists": "Tyga, Drake",
+        "song_key": "tyga::still got it",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:63iwhg49U6FgWtTDzkEVnL": {
+        "name": "Pacific Coast Highway (with Trevor Hall) - Reggae Remix",
+        "artists": "The Hip Abduction, Trevor Hall, Johnny Cosmic",
+        "song_key": "the hip abduction::pacific coast highway",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1C7KSXR2GVxknex6I4ANco": {
+        "name": "9",
+        "artists": "Drake",
+        "song_key": "drake::9",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6iIpGsEuUIuapBssJ8sFC2": {
+        "name": "M.O.M.",
+        "artists": "Isaiah Rashad",
+        "song_key": "isaiah rashad::mom",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3H4WSrkOEFARRaEgQWOWC7": {
+        "name": "Bop Slide (feat. Blueface, OHGEESY & Maxo Kream)",
+        "artists": "Bankrol Hayden, Blueface, OHGEESY, Maxo Kream",
+        "song_key": "bankrol hayden::bop slide",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2bmN1B9HIZTGdaFqMYrgOR": {
+        "name": "CHERIE",
+        "artists": "Darius, Darianna Everett",
+        "song_key": "darius::cherie",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5uqOuPMYxxLfBZyLBDipNh": {
+        "name": "j's on my feet",
+        "artists": "Earl Hondo",
+        "song_key": "earl hondo::js on my feet",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:526fD9LiAEi3KKvhhYfWmm": {
+        "name": "What You Wanna Try",
+        "artists": "Masego",
+        "song_key": "masego::what you wanna try",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7y6c07pgjZvtHI9kuMVqk1": {
+        "name": "Get It Together",
+        "artists": "Drake, Black Coffee, Jorja Smith",
+        "song_key": "drake::get it together",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:33XUHrCbrAW6me9ewdCZip": {
+        "name": "WAGWAN",
+        "artists": "Central Cee",
+        "song_key": "central cee::wagwan",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0U1uQvYa0FTXSadLoBe4tE": {
+        "name": "Pop this Heat",
+        "artists": "JPEGMAFIA",
+        "song_key": "jpegmafia::pop this heat",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0UeYCHOETPfai02uskjJ3x": {
+        "name": "Shooting Stars",
+        "artists": "Bag Raiders",
+        "song_key": "bag raiders::shooting stars",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:51RDaTRAEHSitpeucJiHyU": {
+        "name": "FIND GOD (feat. Dominic Fike)",
+        "artists": "Kenny Mason, Dominic Fike",
+        "song_key": "kenny mason::find god",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7BUnCxc0dae9HwelFz719W": {
+        "name": "5 to 10",
+        "artists": "Ozer, YGTUT",
+        "song_key": "ozer::5 to 10",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2IGMVunIBsBLtEQyoI1Mu7": {
+        "name": "Paint The Town Red",
+        "artists": "Doja Cat",
+        "song_key": "doja cat::paint the town red",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0WtM2NBVQNNJLh6scP13H8": {
+        "name": "Calm Down (with Selena Gomez)",
+        "artists": "Rema, Selena Gomez",
+        "song_key": "rema::calm down",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:66dQdXAbtuPdSasezCQVZE": {
+        "name": "SUMMER",
+        "artists": "BROCKHAMPTON",
+        "song_key": "brockhampton::summer",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3a5CxpjEjjOoesSxmzPG4I": {
+        "name": "No Fear",
+        "artists": "Lil Skies",
+        "song_key": "lil skies::no fear",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3zmbXXA6yK6xlYqhEI4oS8": {
+        "name": "Lose My Way",
+        "artists": "Kid Travis",
+        "song_key": "kid travis::lose my way",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5JQFGPCkrD5kJB7vwuKpah": {
+        "name": "Can't Change For You (feat. charlieonnafriday & Arden Jones)",
+        "artists": "Bankrol Hayden, charlieonnafriday, Arden Jones",
+        "song_key": "bankrol hayden::cant change for you",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5AcD3lD2V63qZLZaKNThp3": {
+        "name": "IDONTLISTEN",
+        "artists": "Thekidszn",
+        "song_key": "thekidszn::idontlisten",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7uEFboafVLvROPYTqdMi0n": {
+        "name": "4Me 4Me",
+        "artists": "Malcolm Todd",
+        "song_key": "malcolm todd::4me 4me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3WPdIdjJP77kguVy3tFeiy": {
+        "name": "Awake",
+        "artists": "Derek Pope",
+        "song_key": "derek pope::awake",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3LfJhQEvqHUSVyohbuUmh2": {
+        "name": "Autopilot",
+        "artists": "Ozer",
+        "song_key": "ozer::autopilot",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1pYKzfOlpHWtVUiEIu4Vn7": {
+        "name": "What's My Name?",
+        "artists": "Rihanna, Drake",
+        "song_key": "rihanna::whats my name",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1h4sGFwDqHjpoyGsqREVFl": {
+        "name": "Boy",
+        "artists": "Jack Pavlina",
+        "song_key": "jack pavlina::boy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2Y1v28jeF3a1VdqleWtgyb": {
+        "name": "Star Child",
+        "artists": "Jack Pavlina",
+        "song_key": "jack pavlina::star child",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:10VuwBAxEi3goN8n3AvrGS": {
+        "name": "Highest",
+        "artists": "Samara Cyn",
+        "song_key": "samara cyn::highest",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1eQtN2Guq0O3gDz21yADMK": {
+        "name": "Northface",
+        "artists": "ODIE",
+        "song_key": "odie::northface",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3lB0GMiI5KxDbTOG8V3bOx": {
+        "name": "waves - Tame Impala Remix",
+        "artists": "Miguel, Tame Impala",
+        "song_key": "miguel::waves",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3fzURoMXi6FUwixXOmhJBn": {
+        "name": "Siddhartha",
+        "artists": "Bloody Immigrants",
+        "song_key": "bloody immigrants::siddhartha",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2xsTsnA5QOFCnFXdEHGkli": {
+        "name": "STAY HERE 4 LIFE (feat. Brent Faiyaz)",
+        "artists": "A$AP Rocky, Brent Faiyaz",
+        "song_key": "a$ap rocky::stay here 4 life",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2nvgmIyONM6yzB4MhdC5G3": {
+        "name": "GRAMS",
+        "artists": "Thekidszn",
+        "song_key": "thekidszn::grams",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4rnKCDfM7ztrRRSjnkwmkh": {
+        "name": "Fill It Up",
+        "artists": "AJ Gravity",
+        "song_key": "aj gravity::fill it up",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2hx8cZug1bgRMXgW5RCTUV": {
+        "name": "3, 2, 1",
+        "artists": "24kGoldn",
+        "song_key": "24kgoldn::3 2 1",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5x3yh46amE0qXYT9k929Vq": {
+        "name": "Dramatic Girl (feat. Che Ecru)",
+        "artists": "Baby Keem, Che Ecru",
+        "song_key": "baby keem::dramatic girl",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4KLTN9pAXs7V9LPB3S6OEq": {
+        "name": "Nightshift",
+        "artists": "mitsu, Remi Vernon",
+        "song_key": "mitsu::nightshift",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:244A4fzwbMXTuHn5mL06Sj": {
+        "name": "IMPULSIVE",
+        "artists": "Thekidszn",
+        "song_key": "thekidszn::impulsive",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:15PJRwSIxYCtG72eS0lP0i": {
+        "name": "Facetime",
+        "artists": "KiLLOWEN",
+        "song_key": "killowen::facetime",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4VwFMekbfiPV16vyqinkTx": {
+        "name": ">one (greater than one)",
+        "artists": "VALORANT, ericdoa",
+        "song_key": "valorant::one",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2cGxRwrMyEAp8dEbuZaVv6": {
+        "name": "Instant Crush (feat. Julian Casablancas)",
+        "artists": "Daft Punk, Julian Casablancas",
+        "song_key": "daft punk::instant crush",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3kzeFYqVivXmkhD63NLHrb": {
+        "name": "School Girl",
+        "artists": "Bankrol Hayden",
+        "song_key": "bankrol hayden::school girl",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6oNZ0WxqptE7V0qpjtyJ4a": {
+        "name": "Falls",
+        "artists": "ODESZA, Sasha Alex Sloan",
+        "song_key": "odesza::falls",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1KCMF9fdF7sNE74R2V46af": {
+        "name": "You",
+        "artists": "Lane 8, Kasablanca",
+        "song_key": "lane 8::you",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4DJQAOC8iGot5RcyPFCaNz": {
+        "name": "Givin' Up On Lovin'",
+        "artists": "Magic City Hippies, NoMBe",
+        "song_key": "magic city hippies::givin up on lovin",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7fV3C2vMtNxqpoB8UP8bvq": {
+        "name": "life of the party",
+        "artists": "Gloom East",
+        "song_key": "gloom east::life of the party",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:15uR6InJEo9zyl9DgVQTz0": {
+        "name": "1234",
+        "artists": "Forrest., Forrest Frank",
+        "song_key": "forrest.::1234",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1fZeK4F1yZkVrEOb9ILaax": {
+        "name": "Today (feat. Teo Halm)",
+        "artists": "Omar Apollo, Teo Halm",
+        "song_key": "omar apollo::today",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0nSOYYfSZsnmJuo9XBPyMH": {
+        "name": "The Perils",
+        "artists": "Old Man Saxon",
+        "song_key": "old man saxon::the perils",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7mx3o5H3YzWolHZe0Wtbam": {
+        "name": "pop n olive",
+        "artists": "Samara Cyn, Sherwyn",
+        "song_key": "samara cyn::pop n olive",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2CuM7FRomNSgZVF6QV5uLo": {
+        "name": "White Flag",
+        "artists": "Vince Staples",
+        "song_key": "vince staples::white flag",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7diH1qnFziArYzynk3vkr6": {
+        "name": "TNT",
+        "artists": "CORTIS",
+        "song_key": "cortis::tnt",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6OWWZtNQORY1McaZmOrwhc": {
+        "name": "GO!",
+        "artists": "CORTIS",
+        "song_key": "cortis::go",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1ymIM4nUVE2IDbmMjgBWoT": {
+        "name": "Forever",
+        "artists": "Peking Duk, Phantogram",
+        "song_key": "peking duk::forever",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1bwREv5bIq3QxGz9cfFZ5b": {
+        "name": "Drive Slow",
+        "artists": "Ozer",
+        "song_key": "ozer::drive slow",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4tcLxWZs2YYmggQRWGsYTZ": {
+        "name": "Feel It All Again",
+        "artists": "adore",
+        "song_key": "adore::feel it all again",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7njU3mZAmLyjdvoEl7XFtv": {
+        "name": "Cartagena",
+        "artists": "Reyna Tropical",
+        "song_key": "reyna tropical::cartagena",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3LkGfiqjUbg7gzYlDeLmEG": {
+        "name": "Buenas",
+        "artists": "Eddie Zuko",
+        "song_key": "eddie zuko::buenas",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4e0FYxSROat25pH16zMTZI": {
+        "name": "Love Me",
+        "artists": "Lil Tecca",
+        "song_key": "lil tecca::love me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3wx6QmdXzoWBH9KHsQCE5y": {
+        "name": "DINOSAUR",
+        "artists": "SOLOCELO",
+        "song_key": "solocelo::dinosaur",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1BpKJw4RZxaFB88NE5uxXf": {
+        "name": "ILoveUIHateU",
+        "artists": "Playboi Carti",
+        "song_key": "playboi carti::iloveuihateu",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6sLbiIlmRhL3alS0P9vJuI": {
+        "name": "Top Bitch!",
+        "artists": "Hudi",
+        "song_key": "hudi::top bitch",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4VXuwKDYsbWLwIWbUThQlh": {
+        "name": "there he go",
+        "artists": "sosocamo",
+        "song_key": "sosocamo::there he go",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:32TTewBmtmhUmYxS1ajqaJ": {
+        "name": "hakuna matata",
+        "artists": "Gunna",
+        "song_key": "gunna::hakuna matata",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6Ln44Up5lBxNgCsaLoXY6W": {
+        "name": "The Wave",
+        "artists": "Jungle",
+        "song_key": "jungle::the wave",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:00NUowM70GCryxvjHPd26C": {
+        "name": "Messages from the Stars",
+        "artists": "Dabeull, Rude Jude, HolyBrune",
+        "song_key": "dabeull::messages from the stars",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1xqLOYIMiNoCduM983ibjk": {
+        "name": "whitegold",
+        "artists": "whiterosemoxie",
+        "song_key": "whiterosemoxie::whitegold",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4jyyma8YdFC4S4llusSFRu": {
+        "name": "butterflies.",
+        "artists": "Brent Faiyaz",
+        "song_key": "brent faiyaz::butterflies",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4EYBB3M9JDNGKqgplSS8PU": {
+        "name": "SWEET",
+        "artists": "Pertinence",
+        "song_key": "pertinence::sweet",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3FxrOAlvKSGGloyWOOgRDA": {
+        "name": "Blackberry Marmalade",
+        "artists": "Vince Staples",
+        "song_key": "vince staples::blackberry marmalade",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2hHuCTQCKMAMmNGT6nnlee": {
+        "name": "WOMAN, MY LADY",
+        "artists": "Carver Jones",
+        "song_key": "carver jones::woman my lady",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:21z8SSZUf7OQ9h4Is0yAZS": {
+        "name": "hey there [i have a compulsive complex]",
+        "artists": "Q Marsden",
+        "song_key": "q marsden::hey there",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5oady7OSE7dH7LHiqmb3Cr": {
+        "name": "Dreams, Fairytales, Fantasies (feat. Brent Faiyaz & Salaam Remi)",
+        "artists": "A$AP Ferg, Brent Faiyaz, Salaam Remi",
+        "song_key": "a$ap ferg::dreams fairytales fantasies",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1olXA1jnOZ7kIZqLQxeJkW": {
+        "name": "Let Me Go",
+        "artists": "Lou Val",
+        "song_key": "lou val::let me go",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3de2b8uTodAM7Fb45QooT2": {
+        "name": "Sideways",
+        "artists": "Shy High",
+        "song_key": "shy high::sideways",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0rIziF7CpfJbzJKKTznuEU": {
+        "name": "independent films",
+        "artists": "Shy High",
+        "song_key": "shy high::independent films",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4IV8WI0FLQLYKzrEAGKp05": {
+        "name": "black cherry mojito",
+        "artists": "Jden Ray",
+        "song_key": "jden ray::black cherry mojito",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0u9IH9TN04IJ71T79zasnk": {
+        "name": "Notorious",
+        "artists": "Collect 200",
+        "song_key": "collect 200::notorious",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2qcFl2nn5JT8Kt9xpw8bUb": {
+        "name": "Stay Lost - Cabu Remix",
+        "artists": "Joe Hertz, Amber-Simone, Cabu",
+        "song_key": "joe hertz::stay lost",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5VaWhN6kbhBZo4uG96i3Cn": {
+        "name": "Interlude",
+        "artists": "Cabu, Pastel",
+        "song_key": "cabu::interlude",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:02OwhwebATDY9i4xfeo3FV": {
+        "name": "Shards",
+        "artists": "Small Town Kid",
+        "song_key": "small town kid::shards",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5xIWdSqQaW9YcG2gcHJRVk": {
+        "name": "Company",
+        "artists": "Kevin Powers, BIGBABYGUCCI",
+        "song_key": "kevin powers::company",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2bU3gg0M8GGBs7ItBKsJX9": {
+        "name": "Emmylou",
+        "artists": "First Aid Kit",
+        "song_key": "first aid kit::emmylou",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7tc04xLTn7fG4IUujpuC9r": {
+        "name": "Angels",
+        "artists": "Jelani Aryeh",
+        "song_key": "jelani aryeh::angels",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:31nmYWiPPyVHnYFoCH2kZs": {
+        "name": "ten toes",
+        "artists": "KTmelodies",
+        "song_key": "ktmelodies::ten toes",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4YsNDEzzDg8bC81pbR1y8o": {
+        "name": "Do Your Best",
+        "artists": "Peking Duk, Kah-Lo",
+        "song_key": "peking duk::do your best",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3s9jPtOqkK1py1haxECjJv": {
+        "name": "Charles De Gaulle To JFK",
+        "artists": "Bas",
+        "song_key": "bas::charles de gaulle to jfk",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5gmqIUiSsnADV8bpOKFX0H": {
+        "name": "Polo Fendi",
+        "artists": "Ozer, Scion Rae",
+        "song_key": "ozer::polo fendi",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7pudclCl5P99Me3P5F9hPC": {
+        "name": "Paradise",
+        "artists": "Lil Uzi Vert",
+        "song_key": "lil uzi vert::paradise",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6xTnJJHLUmvlNzERiRSoEP": {
+        "name": "Hot",
+        "artists": "E the profit",
+        "song_key": "e the profit::hot",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7kgKHe6ZxLEg83y4LiQvB5": {
+        "name": "OneFourThree (feat. Buddy & BJ The Chicago Kid)",
+        "artists": "Hermitude, BJ The Chicago Kid, Buddy",
+        "song_key": "hermitude::onefourthree",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4YhL5abCi0PDKtOCvF48ss": {
+        "name": "Weightless",
+        "artists": "Vaski, Beak Nasty",
+        "song_key": "vaski::weightless",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4be0qtgnB5kRzlox6T6btY": {
+        "name": "Flowers for All Occasions",
+        "artists": "Blood Cultures",
+        "song_key": "blood cultures::flowers for all occasions",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4c3owU9UoRSbMr6obEAtsh": {
+        "name": "Concrete Walls",
+        "artists": "Pace",
+        "song_key": "pace::concrete walls",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3vZO25GdYuqFrR1kzZADnp": {
+        "name": "Ready or Not",
+        "artists": "Fugees, Ms. Lauryn Hill, Wyclef Jean, Pras",
+        "song_key": "fugees::ready or not",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0B8QzDH7YWih85V5SEMnyJ": {
+        "name": "Money Longer",
+        "artists": "Lil Uzi Vert",
+        "song_key": "lil uzi vert::money longer",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3auSQjs9kylJwN0aU7S5Qc": {
+        "name": "Blue Magic (Waikiki)",
+        "artists": "Son Little",
+        "song_key": "son little::blue magic",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4gh0ZnHzaTMT1sDga7Ek0N": {
+        "name": "sdp interlude",
+        "artists": "Travis Scott",
+        "song_key": "travis scott::sdp interlude",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3cIKQocOQMDL5U6i5pN4UI": {
+        "name": "Rhapsodize",
+        "artists": "Empire Of The Sun",
+        "song_key": "empire of the sun::rhapsodize",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0Mp0s7GXwLHFlZWwUVftL5": {
+        "name": "Yours & Mine",
+        "artists": "Zimmer90",
+        "song_key": "zimmer90::yours mine",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:52T8TTMESX21406wvTdQDY": {
+        "name": "Trying Times",
+        "artists": "James Blake",
+        "song_key": "james blake::trying times",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0FD3FZWKO5Koyav5Lr6OkJ": {
+        "name": "Golden Goose Freestyle",
+        "artists": "J. Cole",
+        "song_key": "j. cole::golden goose freestyle",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:45KJWFiEW13MwID3uwlc3y": {
+        "name": "SICK",
+        "artists": "THEKIDTRIPPZ",
+        "song_key": "thekidtrippz::sick",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4JnX8tY9me7jHqDwgifhwU": {
+        "name": "RIDING",
+        "artists": "Aries",
+        "song_key": "aries::riding",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:25HgUJf69zb3K7TJw7LGCQ": {
+        "name": "Sofa King",
+        "artists": "Royel Otis",
+        "song_key": "royel otis::sofa king",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7EQjPEL70tzjlTgCgU0QrV": {
+        "name": "Too Easy",
+        "artists": "Connor Price, Nic D",
+        "song_key": "connor price::too easy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7qkNf6D661jZI9yNqw27LA": {
+        "name": "girlfriend",
+        "artists": "hemlocke springs",
+        "song_key": "hemlocke springs::girlfriend",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7ENAU5RHg2yeQ0FOSvlF3C": {
+        "name": "w-w-w-w-w",
+        "artists": "hemlocke springs",
+        "song_key": "hemlocke springs::wwwww",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:27NJecalilpkaN8FuSjlH8": {
+        "name": "West Coast",
+        "artists": "Mags, Amon",
+        "song_key": "mags::west coast",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3E7ZwUMJFqpsDOJzEkBrQ7": {
+        "name": "Can't Get You out of My Head",
+        "artists": "Kylie Minogue",
+        "song_key": "kylie minogue::cant get you out of my head",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0Ph1Ptj4r31cQsUQ4oICNB": {
+        "name": "Bliss City",
+        "artists": "ODIE",
+        "song_key": "odie::bliss city",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:19DVTr6Ybq7vbwuqp3Vrl7": {
+        "name": "Gold Chain",
+        "artists": "Coucheron, Pasha, G.O.L.",
+        "song_key": "coucheron::gold chain",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6cblRiEGDRNZgowcm951R3": {
+        "name": "Sandra\u2019s Rose",
+        "artists": "Drake",
+        "song_key": "drake::sandras rose",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7EdJ8z6IBotTjO50DfzzuV": {
+        "name": "Furthest Thing",
+        "artists": "Drake",
+        "song_key": "drake::furthest thing",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4igAMQGQ9HTDiR2bhf0ANo": {
+        "name": "CUBAN LINKS",
+        "artists": "Ys Dmack",
+        "song_key": "ys dmack::cuban links",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4gqiqFLRPO1tgOApWCAP7s": {
+        "name": "Jealous",
+        "artists": "NewestError, Kai Banks",
+        "song_key": "newesterror::jealous",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1q5jjWV7C0VenMBQyHPeco": {
+        "name": "Connect Four",
+        "artists": "The Cool Kids",
+        "song_key": "the cool kids::connect four",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:34nBpQIuxmC8oC78wRuQ0Q": {
+        "name": "Summer Jam (feat. Maxine Ashley)",
+        "artists": "The Cool Kids, Maxine Ashley",
+        "song_key": "the cool kids::summer jam",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7nTKNNAHXp7z2i7WGVV23T": {
+        "name": "Over The Rainbow",
+        "artists": "Lorenzo Di Meglio-Cid",
+        "song_key": "lorenzo di meglio-cid::over the rainbow",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4Lg23Ss7mEgczXF7wT9gBK": {
+        "name": "Get Yours",
+        "artists": "Nyck Caution",
+        "song_key": "nyck caution::get yours",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0zprBQpAaNFdV82NqjyiNx": {
+        "name": "is it cool? (feat. SZA)",
+        "artists": "Steve Lacy, SZA",
+        "song_key": "steve lacy::is it cool",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:45NotkYm48UyvThjtFAm7Z": {
+        "name": "cold foam.",
+        "artists": "VNDRE",
+        "song_key": "vndre::cold foam",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1qYzwcLFbsPcA5YGDdLKd4": {
+        "name": "RIDE TO THE SIDE",
+        "artists": "O2worldwide",
+        "song_key": "o2worldwide::ride to the side",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:32VOsoPR0N9dEZNbogPIeZ": {
+        "name": "Changes",
+        "artists": "Tommy Richman",
+        "song_key": "tommy richman::changes",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0h9Rp5K2436xgTmZIJzQyE": {
+        "name": "LUNCHIN",
+        "artists": "Erick the Architect",
+        "song_key": "erick the architect::lunchin",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2nAEYxNIEC5vh1HrLUbH7L": {
+        "name": "Black Tame",
+        "artists": "Topaz Jones",
+        "song_key": "topaz jones::black tame",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7vGuf3Y35N4wmASOKLUVVU": {
+        "name": "Silence",
+        "artists": "Marshmello, Khalid",
+        "song_key": "marshmello::silence",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2SAqBLGA283SUiwJ3xOUVI": {
+        "name": "Laugh Now Cry Later (feat. Lil Durk)",
+        "artists": "Drake, Lil Durk",
+        "song_key": "drake::laugh now cry later",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6sqTitqGGAMGHlweQeAqKC": {
+        "name": "What About Us",
+        "artists": "YoungKing, ketchum",
+        "song_key": "youngking::what about us",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5fCQKQuWszdtqD2Sbf5CCV": {
+        "name": "Mona Lisa",
+        "artists": "lucasp007",
+        "song_key": "lucasp007::mona lisa",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1Xls3QHvOQ7YLB54R6BvgG": {
+        "name": "Hurt",
+        "artists": "Oliver Tree",
+        "song_key": "oliver tree::hurt",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:592A3x9nMXoL3Ay5rKgSwW": {
+        "name": "\u00c9touff\u00e9e",
+        "artists": "Vince Staples",
+        "song_key": "vince staples::\u00e9touff\u00e9e",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3f6ZivZZIdDLlWvLHXQiRs": {
+        "name": "Smoke It If You Got One",
+        "artists": "Blended Babies",
+        "song_key": "blended babies::smoke it if you got one",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0ykDCKXBs5onPLJ5gaHqly": {
+        "name": "Family (Blended Babies Remix) [feat. Vic Mensa]",
+        "artists": "Chance the Rapper",
+        "song_key": "chance the rapper::family",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:051zam2WDIKOLdu4XYpCaA": {
+        "name": "Claymore (feat. Smino)",
+        "artists": "Isaiah Rashad, Smino",
+        "song_key": "isaiah rashad::claymore",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5FG7Tl93LdH117jEKYl3Cm": {
+        "name": "Essence (feat. Tems)",
+        "artists": "Wizkid, Tems",
+        "song_key": "wizkid::essence",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1lfO0bqThTLimzHsvk3LrN": {
+        "name": "OWA OWA",
+        "artists": "Lil Tecca",
+        "song_key": "lil tecca::owa owa",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4tGbZjNFJLPTtw5CAwRjUP": {
+        "name": "soulless",
+        "artists": "sosocamo",
+        "song_key": "sosocamo::soulless",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:58a6J0DhgpUYr8SUeUV5hP": {
+        "name": "Make It Work (feat. Anderson .Paak, Asher Roth & Donnie Trumpet)",
+        "artists": "Blended Babies, Anderson .Paak, Asher Roth, Donnie Trumpet",
+        "song_key": "blended babies::make it work",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6fYr27d1dxrs2tiYW3nOdN": {
+        "name": "So Slow (feat. Anderson .Paak, King Chip)",
+        "artists": "Blended Babies, King Chip, Anderson .Paak",
+        "song_key": "blended babies::so slow",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2tPNj9sUt3FbjEUqBzZazv": {
+        "name": "530",
+        "artists": "\u00a5$, Kanye West, Ty Dolla $ign",
+        "song_key": "\u00a5$::530",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7pEbUrQNQ5cEpFltjha5TA": {
+        "name": "YK Where It's Goin (feat. Gunna)",
+        "artists": "Hurricane Wisdom, Gunna",
+        "song_key": "hurricane wisdom::yk where its goin",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1CvVAN0IHDtmIaOQwLRnIp": {
+        "name": "ST CHARLES (feat. RITTYBO & Mikey Mu)",
+        "artists": "AG Club, Baby Boy, RITTYBO, Mikey Mu",
+        "song_key": "ag club::st charles",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3LgrGM6s798iVLEqH4vx0X": {
+        "name": "Bag Season",
+        "artists": "Felly, Trip Carter",
+        "song_key": "felly::bag season",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5IUtvfNvOyVYZUa6AJFrnP": {
+        "name": "Spicy (feat. Post Malone)",
+        "artists": "Ty Dolla $ign, Post Malone",
+        "song_key": "ty dolla $ign::spicy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6M0IsaUX4GNyto4niSegfI": {
+        "name": "No Option",
+        "artists": "Post Malone",
+        "song_key": "post malone::no option",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1SYLzRw4M2NkbnQUDVNajn": {
+        "name": "Money Made Me Do It",
+        "artists": "Post Malone, 2 Chainz",
+        "song_key": "post malone::money made me do it",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6y6vQOD1k3fBySGpjPmIkJ": {
+        "name": "The Last Goodbye (Live)",
+        "artists": "ODESZA",
+        "song_key": "odesza::the last goodbye",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4bnq2OQUwACkp2vCEbY52g": {
+        "name": "Forever Ever (feat. Young Thug & Reese LAFLARE)",
+        "artists": "Trippie Redd, Reese LAFLARE, Young Thug",
+        "song_key": "trippie redd::forever ever",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:59aWxauGOAbQycO8GNK7LE": {
+        "name": "Better Now (Live)",
+        "artists": "ODESZA, MARO",
+        "song_key": "odesza::better now",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3lcC9CnN7Rpo1ugATzmYjY": {
+        "name": "Area Codes",
+        "artists": "Ludacris, Nate Dogg",
+        "song_key": "ludacris::area codes",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0PD6WTOfk9kBi6THqAaBKV": {
+        "name": "Forgive Me (Live) (ODESZA VIP Remix)",
+        "artists": "ODESZA, Izzy Bizu",
+        "song_key": "odesza::forgive me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2yWlGEgEfPot0lv3OAjuG3": {
+        "name": "Just Keep Watching (From F1\u00ae The Movie)",
+        "artists": "Tate McRae, F1 The Album",
+        "song_key": "tate mcrae::just keep watching",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5d3QY0Kq63rwQqPDe5usTs": {
+        "name": "BedHead",
+        "artists": "Balu Brigada",
+        "song_key": "balu brigada::bedhead",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3uHawOMwckCryhmGf87Wp1": {
+        "name": "Noise",
+        "artists": "ODIE",
+        "song_key": "odie::noise",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4CZgQq8KJYWGh1bM3sqGmd": {
+        "name": "Skin and Bones",
+        "artists": "070 Shake",
+        "song_key": "070 shake::skin and bones",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0wzK2m89t22oOayHYfV75U": {
+        "name": "Part of Me",
+        "artists": "\u00bfT\u00e9o?",
+        "song_key": "\u00bft\u00e9o?::part of me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4O9t8Qq941SAzdGlex4noA": {
+        "name": "What You Need (feat. Charlotte Day Wilson)",
+        "artists": "KAYTRANADA, Charlotte Day Wilson",
+        "song_key": "kaytranada::what you need",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1cgADXNiWqaHqhLDYJ69NR": {
+        "name": "AVOIDANCE",
+        "artists": "AG Club, Baby Boy",
+        "song_key": "ag club::avoidance",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6kckNpuM5oXZrObLExRg6d": {
+        "name": "Road",
+        "artists": "Lane 8, Arctic Lake",
+        "song_key": "lane 8::road",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6LlGEdJFAsfQGFRqa6cWPg": {
+        "name": "Throws It",
+        "artists": "Baltazar Lora, Wacomo",
+        "song_key": "baltazar lora::throws it",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:49jKM8U8MXj6G1KNJrfvKB": {
+        "name": "Reason",
+        "artists": "Chris Miles",
+        "song_key": "chris miles::reason",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:6nXiaXqSZAJuOG6q66mZV1": {
+        "name": "Lil Baby Crush",
+        "artists": "Jordan Ward",
+        "song_key": "jordan ward::lil baby crush",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0IeBxP5BlIH2BDhQYVsRq3": {
+        "name": "Wallflower",
+        "artists": "Dominic Fike",
+        "song_key": "dominic fike::wallflower",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5ak10jIkmBWlHLznT7qn0R": {
+        "name": "01NTR0/CHLOE",
+        "artists": "AG Club, Baby Boy",
+        "song_key": "ag club::01ntr0chloe",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5mHdCZtVyb4DcJw8799hZp": {
+        "name": "Escapism.",
+        "artists": "RAYE, 070 Shake",
+        "song_key": "raye::escapism",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2TC0f4wRihjpKZOSCKABuD": {
+        "name": "SUM1ELSE.mp3",
+        "artists": "AG Club, Baby Boy",
+        "song_key": "ag club::sum1elsemp3",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:44hxcfEzWXQTeeCxBJ95DE": {
+        "name": "Precious",
+        "artists": "AG Club, Jody Fontaine",
+        "song_key": "ag club::precious",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7iboYwZFdr22Li27LxjLUa": {
+        "name": "Toy",
+        "artists": "AG Club, Jody Fontaine",
+        "song_key": "ag club::toy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3g3RCV5ImXwzHpKwM2iunc": {
+        "name": "2 AM",
+        "artists": "SWAVAY",
+        "song_key": "swavay::2 am",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7opiuimo5OpFUXpk7bIkp2": {
+        "name": "By The Dozen",
+        "artists": "Ga\u00ebl",
+        "song_key": "ga\u00ebl::by the dozen",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0R2yQJOFsKqS0SsgPdWqtP": {
+        "name": "G.R.I.N.D. (Get Ready It's A New Day)",
+        "artists": "Asher Roth",
+        "song_key": "asher roth::grind",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5tW2NPmiGM0930x6ivTqUV": {
+        "name": "Dreamland - Mindchatter Remix",
+        "artists": "Glass Animals, Mindchatter",
+        "song_key": "glass animals::dreamland",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5v501hmUMvbHPKa7qm0MGD": {
+        "name": "F*ck Your Ethnicity",
+        "artists": "Kendrick Lamar",
+        "song_key": "kendrick lamar::fck your ethnicity",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7ckNnMlGNSyjQKcEBihZrp": {
+        "name": "Nightcrawler - Instrumental",
+        "artists": "fam0uz",
+        "song_key": "fam0uz::nightcrawler",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:559SdaPI7mqy9IQiscuaMj": {
+        "name": "Sure Thing - Sped Up",
+        "artists": "Miguel",
+        "song_key": "miguel::sure thing",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:3iy2QuCtCzpWnR6tia39AB": {
+        "name": "hate that i made you love me",
+        "artists": "Ariana Grande",
+        "song_key": "ariana grande::hate that i made you love me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2cbsXChWQNeFMnDTrwuQJ9": {
+        "name": "Vendetta",
+        "artists": "See You Next Year, Oliver Malcolm, Graham Bright, Seago",
+        "song_key": "see you next year::vendetta",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:1qkkE488CPJ0MIEkwOWLD3": {
+        "name": "Talk It Over",
+        "artists": "Leon Bridges",
+        "song_key": "leon bridges::talk it over",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:20bJBbPapGQ4bqs0YcA9xY": {
+        "name": "Just What I Am",
+        "artists": "Kid Cudi, King Chip",
+        "song_key": "kid cudi::just what i am",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2ZXxRC6V6AXzMdbLQZMHSB": {
+        "name": "LOT OF ME",
+        "artists": "Lil Tecca",
+        "song_key": "lil tecca::lot of me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4lH6nENd1y81jp7Yt9lTBX": {
+        "name": "Solo",
+        "artists": "Future",
+        "song_key": "future::solo",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0dxruuhJVbsSyLNkqW1Fsc": {
+        "name": "HD (feat. Mac Miller)",
+        "artists": "Choo Jackson, Mac Miller",
+        "song_key": "choo jackson::hd",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2Ii2eSeBxGfC57INEdlEBn": {
+        "name": "OLD SCHOOL CADDY",
+        "artists": "Hit-Boy, Kid Cudi",
+        "song_key": "hit-boy::old school caddy",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2pg2TiYo9Rb8KeB5JjP7jS": {
+        "name": "Sativa",
+        "artists": "Jhen\u00e9 Aiko, Swae Lee",
+        "song_key": "jhen\u00e9 aiko::sativa",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4aYjGe4W7RbTcgTuLlfx9d": {
+        "name": "lost on you",
+        "artists": "Koastle, Port London",
+        "song_key": "koastle::lost on you",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "retired_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:5FxVTEpoBress37MmlMhbZ": {
+        "name": "By Design",
+        "artists": "Kid Cudi, Andr\u00e9 Benjamin",
+        "song_key": "kid cudi::by design",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:44KWbTVZev3SWdv1t5UoYE": {
+        "name": "How Much Is Weed?",
+        "artists": "Dominic Fike",
+        "song_key": "dominic fike::how much is weed",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2F8eiUxSGMbRYr62P27XI9": {
+        "name": "More Than You Know - Mont Rouge Remix",
+        "artists": "Axwell /\\ Ingrosso, Axwell, Sebastian Ingrosso, Mont Rouge",
+        "song_key": "axwell /\\ ingrosso::more than you know",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:70LcF31zb1H0PyJoS1Sx1r": {
+        "name": "Creep",
+        "artists": "Radiohead",
+        "song_key": "radiohead::creep",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:59KIWpQKWUwRBBvfXmsmAA": {
+        "name": "Crystal Ball Room",
+        "artists": "Nico Segal",
+        "song_key": "nico segal::crystal ball room",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:2QbkV07GpqyRwUZ1ue0ml0": {
+        "name": "Dangerous",
+        "artists": "Alec King",
+        "song_key": "alec king::dangerous",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:1ahG0zPg1QbTdoEX1H5ZEk": {
+        "name": "Chop Suey & Childlike Wonder",
+        "artists": "Don Bloom",
+        "song_key": "don bloom::chop suey childlike wonder",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:1ACA277B6f46DYCgZW8di3": {
+        "name": "if u think i'm pretty",
+        "artists": "Artemas",
+        "song_key": "artemas::if u think im pretty",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:6jbYpRPTEFl1HFKHk1IC0m": {
+        "name": "Like Him (feat. Lola Young)",
+        "artists": "Tyler, The Creator, Lola Young",
+        "song_key": "tyler::like him",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:4jc5rsFpWTMRE8VvcxwL9a": {
+        "name": "Cosmogonie",
+        "artists": "L'Imp\u00e9ratrice",
+        "song_key": "l'imp\u00e9ratrice::cosmogonie",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:3KlCwaKB1IQhglDLFmNpj9": {
+        "name": "Hideaway",
+        "artists": "INZO, Lhasa Petik",
+        "song_key": "inzo::hideaway",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:6pkDOjEq2cJJPSZB2nY9oH": {
+        "name": "Being Pulled - Polar Inc. Remix",
+        "artists": "Blonde Maze, Polar Inc.",
+        "song_key": "blonde maze::being pulled",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:3lF4ZPLhWIfbiR2G74PGdn": {
+        "name": "Butterflies",
+        "artists": "Mac Miller",
+        "song_key": "mac miller::butterflies",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:2lpygKqzPFtItQ4ss3cgfb": {
+        "name": "Cinderella (feat. Ty Dolla $ign)",
+        "artists": "Mac Miller, Ty Dolla $ign",
+        "song_key": "mac miller::cinderella",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:28rnDC5WfQ67deKXU43LHr": {
+        "name": "Tolerance",
+        "artists": "VNDRE",
+        "song_key": "vndre::tolerance",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:7M62jxrvr7UJdo6DchAFf3": {
+        "name": "Inspire Me",
+        "artists": "Big Sean",
+        "song_key": "big sean::inspire me",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:5CMjjywI0eZMixPeqNd75R": {
+        "name": "Lose Yourself to Dance (feat. Pharrell Williams)",
+        "artists": "Daft Punk, Pharrell Williams",
+        "song_key": "daft punk::lose yourself to dance",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ": {
+        "name": "A Good Day",
+        "artists": "Anderson .Paak, Cordae",
+        "song_key": "anderson .paak::a good day",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:4whkhyXTrTgHKZzkUvdwoq": {
+        "name": "My Old Ways",
+        "artists": "Tame Impala",
+        "song_key": "tame impala::my old ways",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00",
+        "last_featured_at": "2026-09-30T21:41:06.004757+00:00"
+      },
+      "spotify:track:37Bkd2OPVmuvxrj7q7l0ne": {
+        "name": "Photosynthesis",
+        "artists": "Saba, Jean Deaux",
+        "song_key": "saba::photosynthesis",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:09CqF6VVL6G7NwkCj3M2lU": {
+        "name": "Anita",
+        "artists": "Smino",
+        "song_key": "smino::anita",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:0Eq2AzJQNwxf5FsLYBjitC": {
+        "name": "Carefree",
+        "artists": "Mick Jenkins",
+        "song_key": "mick jenkins::carefree",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:7cLnbmx7ZUWAwyocrKz3wL": {
+        "name": "Let Go",
+        "artists": "Aaron May",
+        "song_key": "aaron may::let go",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:3XsrEA7lVrxOeRgZahaJTF": {
+        "name": "Sense",
+        "artists": "MAVI",
+        "song_key": "mavi::sense",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:41SwdQIX8Hy2u6fuEDgvWr": {
+        "name": "10% (feat. Kali Uchis)",
+        "artists": "KAYTRANADA, Kali Uchis",
+        "song_key": "kaytranada::10",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:5sdkS8DXx8rXNLxbSos8GS": {
+        "name": "Weight",
+        "artists": "redveil",
+        "song_key": "redveil::weight",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:2jrXrZdn5PoPsMw9W0T5sn": {
+        "name": "Hair Down",
+        "artists": "SiR, Kendrick Lamar",
+        "song_key": "sir::hair down",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:64I9byMYBlS1ARsC3vtpgW": {
+        "name": "Ottolenghi",
+        "artists": "Loyle Carner, Jordan Rakei",
+        "song_key": "loyle carner::ottolenghi",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:553cXGLHlFjP83AuE1SSlC": {
+        "name": "Nightride",
+        "artists": "Felly",
+        "song_key": "felly::nightride",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:4zhQpcdgO2OFUMRzcgSJu1": {
+        "name": "Rose Quartz",
+        "artists": "Toro y Moi",
+        "song_key": "toro y moi::rose quartz",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:7tzeZLMnqlke2raEMeDZ9S": {
+        "name": "These Four Walls",
+        "artists": "Khamari",
+        "song_key": "khamari::these four walls",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:1fmfarh0JM08oF5FVRRGir": {
+        "name": "Skin Tight (feat. Steve Lacy)",
+        "artists": "Ravyn Lenae, Steve Lacy",
+        "song_key": "ravyn lenae::skin tight",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:44ZKnfWEkp7wPs035j4Tua": {
+        "name": "Casio",
+        "artists": "Jungle",
+        "song_key": "jungle::casio",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:5KXNgbRYbqwEFIFM0AMakg": {
+        "name": "Groceries",
+        "artists": "CARRTOONS, Nigel Hall",
+        "song_key": "carrtoons::groceries",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:03yib980AUBlXsJ8JJz54l": {
+        "name": "Sorceress",
+        "artists": "Jordan Rakei",
+        "song_key": "jordan rakei::sorceress",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      },
+      "spotify:track:6AAYNz8jXvVlgG9IpYi42Z": {
+        "name": "Hunnybee",
+        "artists": "Unknown Mortal Orchestra",
+        "song_key": "unknown mortal orchestra::hunnybee",
+        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "protected_until": "2026-10-14T21:41:06.004757+00:00"
+      }
+    },
+    "verified_order": [
+      "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ",
+      "spotify:track:28rnDC5WfQ67deKXU43LHr",
+      "spotify:track:3lF4ZPLhWIfbiR2G74PGdn",
+      "spotify:track:5tW2NPmiGM0930x6ivTqUV",
+      "spotify:track:7aKPbNFx51OwUZBbZ7pqlj",
+      "spotify:track:393OFJFZKIIv66JmJcNm9D",
+      "spotify:track:1cgADXNiWqaHqhLDYJ69NR",
+      "spotify:track:0R2yQJOFsKqS0SsgPdWqtP",
+      "spotify:track:3xKsf9qdS1CyvXSMEid6g8",
+      "spotify:track:4whkhyXTrTgHKZzkUvdwoq",
+      "spotify:track:7M62jxrvr7UJdo6DchAFf3",
+      "spotify:track:6jbYpRPTEFl1HFKHk1IC0m",
+      "spotify:track:1ahG0zPg1QbTdoEX1H5ZEk",
+      "spotify:track:4jc5rsFpWTMRE8VvcxwL9a",
+      "spotify:track:2QbkV07GpqyRwUZ1ue0ml0",
+      "spotify:track:3KlCwaKB1IQhglDLFmNpj9",
+      "spotify:track:1ACA277B6f46DYCgZW8di3",
+      "spotify:track:59KIWpQKWUwRBBvfXmsmAA",
+      "spotify:track:2lpygKqzPFtItQ4ss3cgfb",
+      "spotify:track:6pkDOjEq2cJJPSZB2nY9oH",
+      "spotify:track:2F8eiUxSGMbRYr62P27XI9",
+      "spotify:track:70LcF31zb1H0PyJoS1Sx1r",
+      "spotify:track:37Bkd2OPVmuvxrj7q7l0ne",
+      "spotify:track:44KWbTVZev3SWdv1t5UoYE",
+      "spotify:track:5FxVTEpoBress37MmlMhbZ",
+      "spotify:track:2pg2TiYo9Rb8KeB5JjP7jS",
+      "spotify:track:09CqF6VVL6G7NwkCj3M2lU",
+      "spotify:track:0dxruuhJVbsSyLNkqW1Fsc",
+      "spotify:track:4lH6nENd1y81jp7Yt9lTBX",
+      "spotify:track:2Ii2eSeBxGfC57INEdlEBn",
+      "spotify:track:0Eq2AzJQNwxf5FsLYBjitC",
+      "spotify:track:2ZXxRC6V6AXzMdbLQZMHSB",
+      "spotify:track:1qkkE488CPJ0MIEkwOWLD3",
+      "spotify:track:2cbsXChWQNeFMnDTrwuQJ9",
+      "spotify:track:7cLnbmx7ZUWAwyocrKz3wL",
+      "spotify:track:20bJBbPapGQ4bqs0YcA9xY",
+      "spotify:track:5v501hmUMvbHPKa7qm0MGD",
+      "spotify:track:3g3RCV5ImXwzHpKwM2iunc",
+      "spotify:track:3XsrEA7lVrxOeRgZahaJTF",
+      "spotify:track:44hxcfEzWXQTeeCxBJ95DE",
+      "spotify:track:5mHdCZtVyb4DcJw8799hZp",
+      "spotify:track:0IeBxP5BlIH2BDhQYVsRq3",
+      "spotify:track:41SwdQIX8Hy2u6fuEDgvWr",
+      "spotify:track:6nXiaXqSZAJuOG6q66mZV1",
+      "spotify:track:49jKM8U8MXj6G1KNJrfvKB",
+      "spotify:track:6kckNpuM5oXZrObLExRg6d",
+      "spotify:track:5sdkS8DXx8rXNLxbSos8GS",
+      "spotify:track:4O9t8Qq941SAzdGlex4noA",
+      "spotify:track:0wzK2m89t22oOayHYfV75U",
+      "spotify:track:4CZgQq8KJYWGh1bM3sqGmd",
+      "spotify:track:2jrXrZdn5PoPsMw9W0T5sn",
+      "spotify:track:3uHawOMwckCryhmGf87Wp1",
+      "spotify:track:3GZD6HmiNUhxXYf8Gch723",
+      "spotify:track:051zam2WDIKOLdu4XYpCaA",
+      "spotify:track:64I9byMYBlS1ARsC3vtpgW",
+      "spotify:track:2xsTsnA5QOFCnFXdEHGkli",
+      "spotify:track:7mx3o5H3YzWolHZe0Wtbam",
+      "spotify:track:0Ph1Ptj4r31cQsUQ4oICNB",
+      "spotify:track:553cXGLHlFjP83AuE1SSlC",
+      "spotify:track:0zprBQpAaNFdV82NqjyiNx",
+      "spotify:track:0h9Rp5K2436xgTmZIJzQyE",
+      "spotify:track:10VuwBAxEi3goN8n3AvrGS",
+      "spotify:track:4zhQpcdgO2OFUMRzcgSJu1",
+      "spotify:track:2nAEYxNIEC5vh1HrLUbH7L",
+      "spotify:track:3kKPZFQse4LtbnMRhnAlEO",
+      "spotify:track:2qcFl2nn5JT8Kt9xpw8bUb",
+      "spotify:track:7tzeZLMnqlke2raEMeDZ9S",
+      "spotify:track:4DJQAOC8iGot5RcyPFCaNz",
+      "spotify:track:1fZeK4F1yZkVrEOb9ILaax",
+      "spotify:track:3lB0GMiI5KxDbTOG8V3bOx",
+      "spotify:track:1fmfarh0JM08oF5FVRRGir",
+      "spotify:track:1fewSx2d5KIZ04wsooEBOz",
+      "spotify:track:3s9jPtOqkK1py1haxECjJv",
+      "spotify:track:1q5jjWV7C0VenMBQyHPeco",
+      "spotify:track:44ZKnfWEkp7wPs035j4Tua",
+      "spotify:track:3LgrGM6s798iVLEqH4vx0X",
+      "spotify:track:58a6J0DhgpUYr8SUeUV5hP",
+      "spotify:track:592A3x9nMXoL3Ay5rKgSwW",
+      "spotify:track:5KXNgbRYbqwEFIFM0AMakg",
+      "spotify:track:5x3yh46amE0qXYT9k929Vq",
+      "spotify:track:51RDaTRAEHSitpeucJiHyU",
+      "spotify:track:66dQdXAbtuPdSasezCQVZE",
+      "spotify:track:03yib980AUBlXsJ8JJz54l",
+      "spotify:track:526fD9LiAEi3KKvhhYfWmm",
+      "spotify:track:2bmN1B9HIZTGdaFqMYrgOR",
+      "spotify:track:0rdWkO7ncrh1lrJGDmLq9L",
+      "spotify:track:6AAYNz8jXvVlgG9IpYi42Z",
+      "spotify:track:00NUowM70GCryxvjHPd26C",
+      "spotify:track:4jyyma8YdFC4S4llusSFRu",
+      "spotify:track:32VOsoPR0N9dEZNbogPIeZ",
+      "spotify:track:7tc04xLTn7fG4IUujpuC9r",
+      "spotify:track:3auSQjs9kylJwN0aU7S5Qc",
+      "spotify:track:7y6c07pgjZvtHI9kuMVqk1",
+      "spotify:track:6qcuRcbz8DCLG6nG4or8Uo",
+      "spotify:track:4wLJNd3zIfm68rMi36JtY4",
+      "spotify:track:6Ln44Up5lBxNgCsaLoXY6W",
+      "spotify:track:2cGxRwrMyEAp8dEbuZaVv6",
+      "spotify:track:1ymIM4nUVE2IDbmMjgBWoT",
+      "spotify:track:5d3QY0Kq63rwQqPDe5usTs",
+      "spotify:track:6oNZ0WxqptE7V0qpjtyJ4a"
+    ],
+    "curator_queue": [
+      {
+        "song_key": "daft punk::lose yourself to dance",
+        "nominated_at": "2026-09-30T16:08:30+00:00",
+        "observed_at": "2026-09-30T21:41:06.004757+00:00",
+        "eligible_week": "2026-10-05",
+        "track": {
+          "uri": "spotify:track:5CMjjywI0eZMixPeqNd75R",
+          "name": "Lose Yourself to Dance (feat. Pharrell Williams)",
+          "artists": "Daft Punk, Pharrell Williams",
+          "added_at": "2026-09-30T16:08:30Z",
+          "source_tags": [
+            "current"
+          ],
+          "current_position": 253,
+          "popularity": null,
+          "release_date": "2013-05-20"
+        }
+      }
+    ],
+    "dismissed_uris": [],
+    "dismissed_song_keys": [],
+    "weekly_budget": {
+      "week": "2026-W40",
+      "used": 0
+    },
+    "featured_weeks": {
+      "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:28rnDC5WfQ67deKXU43LHr": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:3lF4ZPLhWIfbiR2G74PGdn": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:5tW2NPmiGM0930x6ivTqUV": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:7aKPbNFx51OwUZBbZ7pqlj": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:393OFJFZKIIv66JmJcNm9D": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:1cgADXNiWqaHqhLDYJ69NR": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:0R2yQJOFsKqS0SsgPdWqtP": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:3xKsf9qdS1CyvXSMEid6g8": {
+        "week": "2026-09-28",
+        "streak": 1
+      },
+      "spotify:track:4whkhyXTrTgHKZzkUvdwoq": {
+        "week": "2026-09-28",
+        "streak": 1
+      }
+    }
+  }
+}
