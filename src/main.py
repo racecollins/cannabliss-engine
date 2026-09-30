@@ -236,6 +236,8 @@ def run_cannabliss(cfg, client: SpotifyClient) -> None:
     uris = [track.uri for track in result.ordered_tracks]
     if not uris:
         raise RuntimeError("Refusing to replace the live playlist with an empty result")
+    if os.environ.get("CANNABLISS_EXPECT_NOOP") == "1" and uris != [t.uri for t in target_tracks]:
+        raise RuntimeError("Activation verification requires an unchanged playlist; refusing this write")
     print(f"\n✍️  Replacing Cannabliss playlist {cfg.cannabliss_target_playlist_id} …")
     try:
         # Catch edits made while source playlists and listening signals were loading.
