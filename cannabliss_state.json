@@ -11939,69 +11939,467 @@
           "0Z4RKWyyklQUoHCYFzEPKo"
         ]
       }
+    },
+    {
+      "timestamp": "2026-11-27T19:47:04.347578+00:00",
+      "track_ids": [
+        "6YPqcB7p4P2YQhsqjX9Kal",
+        "2Ike8PM0QWeAMeBxM8b7pY",
+        "4IAWZw00ZI9DLKDjesx86u",
+        "4I2YjaR8hxlV2He2diJN4E",
+        "4aAoJzg1L7TRWPNsuPzZD4",
+        "3V1MhUIvoXig2YrrBg0gJH",
+        "4JKUjx4Ehx2b9NRylEUD0w",
+        "4gqiqFLRPO1tgOApWCAP7s",
+        "6zSpb8dQRaw0M1dK8PBwQz",
+        "7zEFlNUIg4Rv3qhnVvurlI",
+        "6s3fRCeYOdwKDCrC9jI9wT",
+        "2zyOvwdn3gIZaZQpajXxPa",
+        "0FKFhDtA6r3vw8UPQkESCf",
+        "2H1yryyX0T1GHtN6JzaoLK",
+        "2Etr2lwZnCK491mU5dHIDD",
+        "0H9KUp0A9qCJQKBrXOt8l8",
+        "26Mg3yHFBgZSECq6itb8dX",
+        "1560osUcXrnov6yuOjXvc1",
+        "0bSx4yauJp3lHRRwYMlwla",
+        "2LMK2xLfWLKbfjZgtBWByM",
+        "1Oj4UgoSBQWUPaUVakr8sc",
+        "6F5ovHGMcDwltX8GLgcDvt",
+        "5H8ZaA6z9uDvBNYEy7NsgR",
+        "1F1QmI8TMHir9SUFrooq5F",
+        "4AgFz88NHRADgVAV2MzOSq",
+        "4Jtd2uIBBdAl5bOaLVIlNV",
+        "59PK68hbhNDJ974UVE46UK",
+        "1MBoWQAUEzMkRtbbFKbtXb",
+        "0sVAsg0GP4JZHKn1Ohsiw0",
+        "5DYD4zlGiFlkpLaf2Bk8Vl",
+        "6ZthdsKjWtiCxnxbhs74vF",
+        "32PXNAUnXYTot2E1qYsTPX",
+        "5m7sf4hPlvHByTBbyRNrd1",
+        "4JsTX2WkPcdDTWbchQJuko",
+        "14SXGjPyrx7e22Ocpc2peQ",
+        "5a0bIwYh1vc2afXYNkHjUI",
+        "1i3GCSvGLkE92kLo1UcC9J",
+        "1QrtyTLimYC6Rtkzlxqvfl",
+        "3ScHXyfKl7ZdlgeAyS340n",
+        "2QrLrUqdSg5njDVEqq5QFp",
+        "2AjiiN73Kzw721XSsy2FOu",
+        "20cre5t6pqsZPCF794uJpT",
+        "08DdQe8ybw5ya8ZMeYXkIu",
+        "3GbhZOGi7PIDNhtTlPHPk2",
+        "2JbSl4JFXuiVNLvE1vGgtj",
+        "5gNlATyRF6U7pw42VZ0WkI",
+        "5cHNu3PdUbZZnnZaziayr5",
+        "1d9NF9D6HgLWvGQyPrYE98",
+        "5u1vw4nmCG8iuerg6ppBf0",
+        "4QYRXza1ZCsCGRl6VnfN2G",
+        "4HCOHRCSQelz2GPX8iTamO",
+        "0u0923PK30KGWR6BeINSYS",
+        "29USgREdEXy48zHm3OnhAZ",
+        "0qc4EOJHNO4dczQwDFCLcJ",
+        "1aBI7y4ojdL48CSib7vyNr",
+        "1Dcfp94Bmjnih9IYD6qV6K",
+        "3L0HZpTfA8LNlG0oFqoi6v",
+        "2Zro7JqN8o8d2tQvxC6aCL",
+        "403DF4o81RjXc1BwwF8MgP",
+        "1crMjhqEWtGm2anv63bkmO",
+        "2yS6i6FNnc9kTSlgcRQoQm",
+        "7G8fTbWDo5iuhyfrrYT6Ch",
+        "7mEjs3K2VjMmQ9hxCr454q",
+        "4ZNM7r3IbFeJLGouDG79ze",
+        "5hGnrxC9mJHSZolU7DZPiA",
+        "5VygdJWSHKEuv0F7P8Yzhq",
+        "3DqOJ2BoddzZpNdty3okJH",
+        "5EtJ3keh0umOlQ0kHXvNIS",
+        "1OWBh1eVxUdA1Z6UA8r4nh",
+        "22NHkFYbgxB2Zirj29Gbp8",
+        "29UNyuj5fKeE542SZ4L1rz",
+        "3OORhRpIhCk21HaJwMAp5t",
+        "0ojEn2GpidI32hiVF5nblj",
+        "7C9Bcp8XgBqdetAyvp5Vms",
+        "0JXXNGljqupsJaZsgSbMZV",
+        "00pOvRr0YGhRQfoY6nSPm9",
+        "5UNo2nitxVTkBA9QYmnHJx",
+        "6McT4l96SWJIfeGtxsQw15",
+        "0vkT3Lz1Ojv1pTmyfdaHlE",
+        "5xHbllWdvBHs6LGAWVk3Hl",
+        "3e90JC8EKLsSDUHmPpxkfp",
+        "6UbfuPifNmblRiaE8vQ08U",
+        "7rgvhF2a3WjRkRtx2lndyc",
+        "2vFlcPghbk9D4omnCgKnxP",
+        "1Du1gIiBziiR6SUx3gnSvr",
+        "5KJwFcJc0m1u4F8mVkwT5Y",
+        "0LDuxGpxvtnfERsY0aVSC5",
+        "5AGQSF0ytihJyt96K5vW9d",
+        "1SVhTS4l0sLFsP2Abme05l",
+        "3SZqA7rQvROJsCbUu2v0xa",
+        "7zoVtzzASRtacCvgQKLFaS",
+        "1H1a19fMep8pEr1XCy6t7x",
+        "6cbVp9abjjESjHgqjM1bWm",
+        "1jVjOcs7QeQZJXScbqvofI",
+        "0Z4RKWyyklQUoHCYFzEPKo",
+        "3tAz11FTj3uyc1ronoSbil",
+        "3lcC9CnN7Rpo1ugATzmYjY",
+        "7uKcScNXuO3MWw6LowBjW1",
+        "1UsPflAuWTNteFUPJAJe8E",
+        "1P2g6CN7xWsm8A2CsLHXxP"
+      ],
+      "new_track_count": 12,
+      "summary": {
+        "update_mode": [
+          "major"
+        ],
+        "added": [
+          "1560osUcXrnov6yuOjXvc1",
+          "0bSx4yauJp3lHRRwYMlwla",
+          "2LMK2xLfWLKbfjZgtBWByM",
+          "1Oj4UgoSBQWUPaUVakr8sc",
+          "6F5ovHGMcDwltX8GLgcDvt",
+          "5H8ZaA6z9uDvBNYEy7NsgR",
+          "1F1QmI8TMHir9SUFrooq5F",
+          "3tAz11FTj3uyc1ronoSbil",
+          "3lcC9CnN7Rpo1ugATzmYjY",
+          "7uKcScNXuO3MWw6LowBjW1",
+          "1UsPflAuWTNteFUPJAJe8E",
+          "1P2g6CN7xWsm8A2CsLHXxP"
+        ],
+        "promoted": [
+          "4aAoJzg1L7TRWPNsuPzZD4",
+          "4gqiqFLRPO1tgOApWCAP7s",
+          "4IAWZw00ZI9DLKDjesx86u",
+          "6YPqcB7p4P2YQhsqjX9Kal",
+          "3V1MhUIvoXig2YrrBg0gJH",
+          "2Ike8PM0QWeAMeBxM8b7pY",
+          "4I2YjaR8hxlV2He2diJN4E",
+          "4JKUjx4Ehx2b9NRylEUD0w",
+          "0ojEn2GpidI32hiVF5nblj",
+          "7C9Bcp8XgBqdetAyvp5Vms",
+          "0JXXNGljqupsJaZsgSbMZV",
+          "00pOvRr0YGhRQfoY6nSPm9",
+          "5UNo2nitxVTkBA9QYmnHJx",
+          "6zSpb8dQRaw0M1dK8PBwQz",
+          "6McT4l96SWJIfeGtxsQw15",
+          "0vkT3Lz1Ojv1pTmyfdaHlE",
+          "5xHbllWdvBHs6LGAWVk3Hl",
+          "3e90JC8EKLsSDUHmPpxkfp",
+          "6UbfuPifNmblRiaE8vQ08U",
+          "7rgvhF2a3WjRkRtx2lndyc",
+          "2vFlcPghbk9D4omnCgKnxP",
+          "1Du1gIiBziiR6SUx3gnSvr",
+          "5KJwFcJc0m1u4F8mVkwT5Y",
+          "0LDuxGpxvtnfERsY0aVSC5",
+          "5AGQSF0ytihJyt96K5vW9d",
+          "1SVhTS4l0sLFsP2Abme05l",
+          "3SZqA7rQvROJsCbUu2v0xa",
+          "7zoVtzzASRtacCvgQKLFaS",
+          "1H1a19fMep8pEr1XCy6t7x",
+          "6cbVp9abjjESjHgqjM1bWm",
+          "1jVjOcs7QeQZJXScbqvofI",
+          "0Z4RKWyyklQUoHCYFzEPKo",
+          "0FKFhDtA6r3vw8UPQkESCf",
+          "2zyOvwdn3gIZaZQpajXxPa",
+          "6s3fRCeYOdwKDCrC9jI9wT"
+        ],
+        "held": [],
+        "shifted_down": [
+          "4AgFz88NHRADgVAV2MzOSq",
+          "4Jtd2uIBBdAl5bOaLVIlNV",
+          "59PK68hbhNDJ974UVE46UK",
+          "1MBoWQAUEzMkRtbbFKbtXb",
+          "0sVAsg0GP4JZHKn1Ohsiw0",
+          "5DYD4zlGiFlkpLaf2Bk8Vl",
+          "6ZthdsKjWtiCxnxbhs74vF",
+          "7zEFlNUIg4Rv3qhnVvurlI",
+          "26Mg3yHFBgZSECq6itb8dX",
+          "2H1yryyX0T1GHtN6JzaoLK",
+          "2Etr2lwZnCK491mU5dHIDD",
+          "0H9KUp0A9qCJQKBrXOt8l8",
+          "32PXNAUnXYTot2E1qYsTPX",
+          "5m7sf4hPlvHByTBbyRNrd1",
+          "4JsTX2WkPcdDTWbchQJuko",
+          "14SXGjPyrx7e22Ocpc2peQ",
+          "5a0bIwYh1vc2afXYNkHjUI",
+          "1i3GCSvGLkE92kLo1UcC9J",
+          "1QrtyTLimYC6Rtkzlxqvfl",
+          "3ScHXyfKl7ZdlgeAyS340n",
+          "2QrLrUqdSg5njDVEqq5QFp",
+          "2AjiiN73Kzw721XSsy2FOu",
+          "20cre5t6pqsZPCF794uJpT",
+          "08DdQe8ybw5ya8ZMeYXkIu",
+          "3GbhZOGi7PIDNhtTlPHPk2",
+          "2JbSl4JFXuiVNLvE1vGgtj",
+          "5gNlATyRF6U7pw42VZ0WkI",
+          "5cHNu3PdUbZZnnZaziayr5",
+          "1d9NF9D6HgLWvGQyPrYE98",
+          "5u1vw4nmCG8iuerg6ppBf0",
+          "4QYRXza1ZCsCGRl6VnfN2G",
+          "4HCOHRCSQelz2GPX8iTamO",
+          "0u0923PK30KGWR6BeINSYS",
+          "29USgREdEXy48zHm3OnhAZ",
+          "0qc4EOJHNO4dczQwDFCLcJ",
+          "1aBI7y4ojdL48CSib7vyNr",
+          "1Dcfp94Bmjnih9IYD6qV6K",
+          "3L0HZpTfA8LNlG0oFqoi6v",
+          "2Zro7JqN8o8d2tQvxC6aCL",
+          "403DF4o81RjXc1BwwF8MgP",
+          "1crMjhqEWtGm2anv63bkmO",
+          "2yS6i6FNnc9kTSlgcRQoQm",
+          "7G8fTbWDo5iuhyfrrYT6Ch",
+          "7mEjs3K2VjMmQ9hxCr454q",
+          "4ZNM7r3IbFeJLGouDG79ze",
+          "5hGnrxC9mJHSZolU7DZPiA",
+          "5VygdJWSHKEuv0F7P8Yzhq",
+          "3DqOJ2BoddzZpNdty3okJH",
+          "5EtJ3keh0umOlQ0kHXvNIS",
+          "1OWBh1eVxUdA1Z6UA8r4nh",
+          "22NHkFYbgxB2Zirj29Gbp8",
+          "29UNyuj5fKeE542SZ4L1rz",
+          "3OORhRpIhCk21HaJwMAp5t"
+        ],
+        "removed": [
+          "7uoxGQlji7HkgIZxJOJCCE",
+          "4zyHmSSneytuFEdU2TbU7w",
+          "016z46SJwcRosW9Xb8JKmF",
+          "6Rvi7T8vQkkIYQcp1DWm3u",
+          "1yX9gy5fK02j6nBnGJ1S3k",
+          "5CMjjywI0eZMixPeqNd75R",
+          "3xSR1SmielI1yzhYh841wt",
+          "4hOENigeyDQy61jJgiQ8zD",
+          "2tv6GYr8MFaF29qQWqC0fU",
+          "4ae7kOsYM7CQqljNqMQ4lN",
+          "18btST7wU1H0Qz5ZxbAor4",
+          "5bewkBDtMY5rrXCYBFspfF",
+          "4nsd2DbMYqRwkvIQ51r4cp",
+          "4qu63nuBpdn0qHUHuObEj1",
+          "1QjmP1vFfUshrATGTZifWe"
+        ],
+        "fresh_front_added": [
+          "6YPqcB7p4P2YQhsqjX9Kal",
+          "2Ike8PM0QWeAMeBxM8b7pY",
+          "4IAWZw00ZI9DLKDjesx86u",
+          "4I2YjaR8hxlV2He2diJN4E",
+          "3V1MhUIvoXig2YrrBg0gJH",
+          "4JKUjx4Ehx2b9NRylEUD0w",
+          "4gqiqFLRPO1tgOApWCAP7s",
+          "6zSpb8dQRaw0M1dK8PBwQz"
+        ],
+        "retained": [
+          "4AgFz88NHRADgVAV2MzOSq",
+          "4Jtd2uIBBdAl5bOaLVIlNV",
+          "59PK68hbhNDJ974UVE46UK",
+          "1MBoWQAUEzMkRtbbFKbtXb",
+          "0sVAsg0GP4JZHKn1Ohsiw0",
+          "5DYD4zlGiFlkpLaf2Bk8Vl",
+          "6ZthdsKjWtiCxnxbhs74vF",
+          "7zEFlNUIg4Rv3qhnVvurlI",
+          "26Mg3yHFBgZSECq6itb8dX",
+          "4aAoJzg1L7TRWPNsuPzZD4",
+          "2H1yryyX0T1GHtN6JzaoLK",
+          "2Etr2lwZnCK491mU5dHIDD",
+          "4gqiqFLRPO1tgOApWCAP7s",
+          "0H9KUp0A9qCJQKBrXOt8l8",
+          "4IAWZw00ZI9DLKDjesx86u",
+          "32PXNAUnXYTot2E1qYsTPX",
+          "5m7sf4hPlvHByTBbyRNrd1",
+          "4JsTX2WkPcdDTWbchQJuko",
+          "14SXGjPyrx7e22Ocpc2peQ",
+          "5a0bIwYh1vc2afXYNkHjUI",
+          "1i3GCSvGLkE92kLo1UcC9J",
+          "1QrtyTLimYC6Rtkzlxqvfl",
+          "3ScHXyfKl7ZdlgeAyS340n",
+          "6YPqcB7p4P2YQhsqjX9Kal",
+          "2QrLrUqdSg5njDVEqq5QFp",
+          "2AjiiN73Kzw721XSsy2FOu",
+          "20cre5t6pqsZPCF794uJpT",
+          "3V1MhUIvoXig2YrrBg0gJH",
+          "08DdQe8ybw5ya8ZMeYXkIu",
+          "3GbhZOGi7PIDNhtTlPHPk2",
+          "2JbSl4JFXuiVNLvE1vGgtj",
+          "5gNlATyRF6U7pw42VZ0WkI",
+          "5cHNu3PdUbZZnnZaziayr5",
+          "1d9NF9D6HgLWvGQyPrYE98",
+          "5u1vw4nmCG8iuerg6ppBf0",
+          "4QYRXza1ZCsCGRl6VnfN2G",
+          "4HCOHRCSQelz2GPX8iTamO",
+          "2Ike8PM0QWeAMeBxM8b7pY",
+          "0u0923PK30KGWR6BeINSYS",
+          "29USgREdEXy48zHm3OnhAZ",
+          "0qc4EOJHNO4dczQwDFCLcJ",
+          "1aBI7y4ojdL48CSib7vyNr",
+          "1Dcfp94Bmjnih9IYD6qV6K",
+          "4I2YjaR8hxlV2He2diJN4E",
+          "3L0HZpTfA8LNlG0oFqoi6v",
+          "2Zro7JqN8o8d2tQvxC6aCL",
+          "403DF4o81RjXc1BwwF8MgP",
+          "1crMjhqEWtGm2anv63bkmO",
+          "2yS6i6FNnc9kTSlgcRQoQm",
+          "7G8fTbWDo5iuhyfrrYT6Ch",
+          "7mEjs3K2VjMmQ9hxCr454q",
+          "4ZNM7r3IbFeJLGouDG79ze",
+          "5hGnrxC9mJHSZolU7DZPiA",
+          "5VygdJWSHKEuv0F7P8Yzhq",
+          "3DqOJ2BoddzZpNdty3okJH",
+          "5EtJ3keh0umOlQ0kHXvNIS",
+          "1OWBh1eVxUdA1Z6UA8r4nh",
+          "22NHkFYbgxB2Zirj29Gbp8",
+          "29UNyuj5fKeE542SZ4L1rz",
+          "3OORhRpIhCk21HaJwMAp5t",
+          "4JKUjx4Ehx2b9NRylEUD0w",
+          "0ojEn2GpidI32hiVF5nblj",
+          "7C9Bcp8XgBqdetAyvp5Vms",
+          "0JXXNGljqupsJaZsgSbMZV",
+          "00pOvRr0YGhRQfoY6nSPm9",
+          "5UNo2nitxVTkBA9QYmnHJx",
+          "6zSpb8dQRaw0M1dK8PBwQz",
+          "6McT4l96SWJIfeGtxsQw15",
+          "0vkT3Lz1Ojv1pTmyfdaHlE",
+          "5xHbllWdvBHs6LGAWVk3Hl",
+          "3e90JC8EKLsSDUHmPpxkfp",
+          "6UbfuPifNmblRiaE8vQ08U",
+          "7rgvhF2a3WjRkRtx2lndyc",
+          "2vFlcPghbk9D4omnCgKnxP",
+          "1Du1gIiBziiR6SUx3gnSvr",
+          "5KJwFcJc0m1u4F8mVkwT5Y",
+          "0LDuxGpxvtnfERsY0aVSC5",
+          "5AGQSF0ytihJyt96K5vW9d",
+          "1SVhTS4l0sLFsP2Abme05l",
+          "3SZqA7rQvROJsCbUu2v0xa",
+          "7zoVtzzASRtacCvgQKLFaS",
+          "1H1a19fMep8pEr1XCy6t7x",
+          "6cbVp9abjjESjHgqjM1bWm",
+          "1jVjOcs7QeQZJXScbqvofI",
+          "0Z4RKWyyklQUoHCYFzEPKo",
+          "0FKFhDtA6r3vw8UPQkESCf",
+          "2zyOvwdn3gIZaZQpajXxPa",
+          "6s3fRCeYOdwKDCrC9jI9wT"
+        ],
+        "total_changed": [
+          "115"
+        ],
+        "queued_for_future": [
+          "savior \u2014 eligible 2026-10-12",
+          "Nerves \u2014 eligible 2026-10-26",
+          "Valley Serpent \u2014 eligible 2026-10-26",
+          "California Girls \u2014 eligible 2026-10-26",
+          "Glimmer (VVS) \u2014 eligible 2026-11-16",
+          "Hot \u2014 eligible 2026-11-16"
+        ],
+        "queue_promoted": [
+          "GRIP",
+          "Eimear",
+          "Lady Killers II"
+        ],
+        "queue_captured": []
+      },
+      "zones": {
+        "fresh_front": [
+          "6YPqcB7p4P2YQhsqjX9Kal",
+          "2Ike8PM0QWeAMeBxM8b7pY",
+          "4IAWZw00ZI9DLKDjesx86u",
+          "4I2YjaR8hxlV2He2diJN4E",
+          "4aAoJzg1L7TRWPNsuPzZD4",
+          "3V1MhUIvoXig2YrrBg0gJH",
+          "4JKUjx4Ehx2b9NRylEUD0w",
+          "4gqiqFLRPO1tgOApWCAP7s",
+          "6zSpb8dQRaw0M1dK8PBwQz",
+          "7zEFlNUIg4Rv3qhnVvurlI"
+        ],
+        "body": [
+          "6s3fRCeYOdwKDCrC9jI9wT",
+          "2zyOvwdn3gIZaZQpajXxPa",
+          "0FKFhDtA6r3vw8UPQkESCf",
+          "2H1yryyX0T1GHtN6JzaoLK",
+          "2Etr2lwZnCK491mU5dHIDD",
+          "0H9KUp0A9qCJQKBrXOt8l8",
+          "26Mg3yHFBgZSECq6itb8dX",
+          "1560osUcXrnov6yuOjXvc1",
+          "0bSx4yauJp3lHRRwYMlwla",
+          "2LMK2xLfWLKbfjZgtBWByM",
+          "1Oj4UgoSBQWUPaUVakr8sc",
+          "6F5ovHGMcDwltX8GLgcDvt",
+          "5H8ZaA6z9uDvBNYEy7NsgR",
+          "1F1QmI8TMHir9SUFrooq5F",
+          "4AgFz88NHRADgVAV2MzOSq",
+          "4Jtd2uIBBdAl5bOaLVIlNV",
+          "59PK68hbhNDJ974UVE46UK",
+          "1MBoWQAUEzMkRtbbFKbtXb",
+          "0sVAsg0GP4JZHKn1Ohsiw0",
+          "5DYD4zlGiFlkpLaf2Bk8Vl",
+          "6ZthdsKjWtiCxnxbhs74vF",
+          "32PXNAUnXYTot2E1qYsTPX",
+          "5m7sf4hPlvHByTBbyRNrd1",
+          "4JsTX2WkPcdDTWbchQJuko",
+          "14SXGjPyrx7e22Ocpc2peQ",
+          "5a0bIwYh1vc2afXYNkHjUI",
+          "1i3GCSvGLkE92kLo1UcC9J",
+          "1QrtyTLimYC6Rtkzlxqvfl",
+          "3ScHXyfKl7ZdlgeAyS340n",
+          "2QrLrUqdSg5njDVEqq5QFp",
+          "2AjiiN73Kzw721XSsy2FOu",
+          "20cre5t6pqsZPCF794uJpT",
+          "08DdQe8ybw5ya8ZMeYXkIu",
+          "3GbhZOGi7PIDNhtTlPHPk2",
+          "2JbSl4JFXuiVNLvE1vGgtj",
+          "5gNlATyRF6U7pw42VZ0WkI",
+          "5cHNu3PdUbZZnnZaziayr5",
+          "1d9NF9D6HgLWvGQyPrYE98",
+          "5u1vw4nmCG8iuerg6ppBf0",
+          "4QYRXza1ZCsCGRl6VnfN2G",
+          "4HCOHRCSQelz2GPX8iTamO",
+          "0u0923PK30KGWR6BeINSYS",
+          "29USgREdEXy48zHm3OnhAZ",
+          "0qc4EOJHNO4dczQwDFCLcJ",
+          "1aBI7y4ojdL48CSib7vyNr",
+          "1Dcfp94Bmjnih9IYD6qV6K",
+          "3L0HZpTfA8LNlG0oFqoi6v",
+          "2Zro7JqN8o8d2tQvxC6aCL",
+          "403DF4o81RjXc1BwwF8MgP",
+          "1crMjhqEWtGm2anv63bkmO",
+          "2yS6i6FNnc9kTSlgcRQoQm",
+          "7G8fTbWDo5iuhyfrrYT6Ch",
+          "7mEjs3K2VjMmQ9hxCr454q",
+          "4ZNM7r3IbFeJLGouDG79ze",
+          "5hGnrxC9mJHSZolU7DZPiA",
+          "5VygdJWSHKEuv0F7P8Yzhq",
+          "3DqOJ2BoddzZpNdty3okJH",
+          "5EtJ3keh0umOlQ0kHXvNIS",
+          "1OWBh1eVxUdA1Z6UA8r4nh",
+          "22NHkFYbgxB2Zirj29Gbp8",
+          "29UNyuj5fKeE542SZ4L1rz",
+          "3OORhRpIhCk21HaJwMAp5t",
+          "0ojEn2GpidI32hiVF5nblj",
+          "7C9Bcp8XgBqdetAyvp5Vms",
+          "0JXXNGljqupsJaZsgSbMZV",
+          "00pOvRr0YGhRQfoY6nSPm9",
+          "5UNo2nitxVTkBA9QYmnHJx",
+          "6McT4l96SWJIfeGtxsQw15",
+          "0vkT3Lz1Ojv1pTmyfdaHlE",
+          "5xHbllWdvBHs6LGAWVk3Hl",
+          "3e90JC8EKLsSDUHmPpxkfp",
+          "6UbfuPifNmblRiaE8vQ08U",
+          "7rgvhF2a3WjRkRtx2lndyc",
+          "2vFlcPghbk9D4omnCgKnxP",
+          "1Du1gIiBziiR6SUx3gnSvr",
+          "5KJwFcJc0m1u4F8mVkwT5Y",
+          "0LDuxGpxvtnfERsY0aVSC5",
+          "5AGQSF0ytihJyt96K5vW9d",
+          "1SVhTS4l0sLFsP2Abme05l",
+          "3SZqA7rQvROJsCbUu2v0xa",
+          "7zoVtzzASRtacCvgQKLFaS",
+          "1H1a19fMep8pEr1XCy6t7x",
+          "6cbVp9abjjESjHgqjM1bWm",
+          "1jVjOcs7QeQZJXScbqvofI",
+          "0Z4RKWyyklQUoHCYFzEPKo",
+          "3tAz11FTj3uyc1ronoSbil",
+          "3lcC9CnN7Rpo1ugATzmYjY",
+          "7uKcScNXuO3MWw6LowBjW1",
+          "1UsPflAuWTNteFUPJAJe8E",
+          "1P2g6CN7xWsm8A2CsLHXxP"
+        ]
+      }
     }
   ],
   "cooldown": [
-    {
-      "uri": "spotify:track:0IeBxP5BlIH2BDhQYVsRq3",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:1fZeK4F1yZkVrEOb9ILaax",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:20bJBbPapGQ4bqs0YcA9xY",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:3GZD6HmiNUhxXYf8Gch723",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:3s9jPtOqkK1py1haxECjJv",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:3uHawOMwckCryhmGf87Wp1",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:44hxcfEzWXQTeeCxBJ95DE",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:49jKM8U8MXj6G1KNJrfvKB",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:4CZgQq8KJYWGh1bM3sqGmd",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:4O9t8Qq941SAzdGlex4noA",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:5mHdCZtVyb4DcJw8799hZp",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:5v501hmUMvbHPKa7qm0MGD",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:6kckNpuM5oXZrObLExRg6d",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:6nXiaXqSZAJuOG6q66mZV1",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
-    {
-      "uri": "spotify:track:7mx3o5H3YzWolHZe0Wtbam",
-      "removed_at": "2026-10-16T15:07:02.619804+00:00"
-    },
     {
       "uri": "spotify:track:03yib980AUBlXsJ8JJz54l",
       "removed_at": "2026-10-23T15:36:38.122058+00:00"
@@ -12309,6 +12707,66 @@
     {
       "uri": "spotify:track:7LTUI8G6BcvY8dHZTniYd5",
       "removed_at": "2026-11-20T18:56:56.439999+00:00"
+    },
+    {
+      "uri": "spotify:track:016z46SJwcRosW9Xb8JKmF",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:18btST7wU1H0Qz5ZxbAor4",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:1QjmP1vFfUshrATGTZifWe",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:1yX9gy5fK02j6nBnGJ1S3k",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:2tv6GYr8MFaF29qQWqC0fU",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:3xSR1SmielI1yzhYh841wt",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:4ae7kOsYM7CQqljNqMQ4lN",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:4hOENigeyDQy61jJgiQ8zD",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:4nsd2DbMYqRwkvIQ51r4cp",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:4qu63nuBpdn0qHUHuObEj1",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:4zyHmSSneytuFEdU2TbU7w",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:5CMjjywI0eZMixPeqNd75R",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:5bewkBDtMY5rrXCYBFspfF",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:6Rvi7T8vQkkIYQcp1DWm3u",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
+    },
+    {
+      "uri": "spotify:track:7uoxGQlji7HkgIZxJOJCCE",
+      "removed_at": "2026-11-27T19:47:04.347578+00:00"
     }
   ],
   "rotation": {
@@ -13498,7 +13956,8 @@
         "entered_at": "2026-11-20T18:56:56.439999+00:00",
         "retired_at": "2026-09-30T21:41:06.004757+00:00",
         "curator_added_at": "2026-11-12T17:05:55+00:00",
-        "protected_until": "2026-12-04T18:56:56.439999+00:00"
+        "protected_until": "2026-12-04T18:56:56.439999+00:00",
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:1q5jjWV7C0VenMBQyHPeco": {
         "name": "Connect Four",
@@ -13743,7 +14202,7 @@
         "name": "Area Codes",
         "artists": "Ludacris, Nate Dogg",
         "song_key": "ludacris::area codes",
-        "entered_at": "2026-09-30T21:41:06.004757+00:00",
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
         "retired_at": "2026-09-30T21:41:06.004757+00:00"
       },
       "spotify:track:0PD6WTOfk9kBi6THqAaBKV": {
@@ -14136,7 +14595,8 @@
         "song_key": "daft punk::lose yourself to dance",
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
         "curator_added_at": "2026-09-30T16:08:30+00:00",
-        "protected_until": "2026-10-23T17:17:01.255207+00:00"
+        "protected_until": "2026-10-23T17:17:01.255207+00:00",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ": {
         "name": "A Good Day",
@@ -14433,7 +14893,8 @@
         "protected_until": "2026-10-23T17:17:01.255207+00:00",
         "song_key": "j-hope::sweet dreams",
         "name": "Sweet Dreams (feat. Miguel)",
-        "artists": "j-hope, Miguel"
+        "artists": "j-hope, Miguel",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:6Rvi7T8vQkkIYQcp1DWm3u": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
@@ -14441,7 +14902,8 @@
         "protected_until": "2026-10-23T17:17:01.255207+00:00",
         "song_key": "earfzilla::vintage vuitton",
         "name": "vintage vuitton",
-        "artists": "earfzilla"
+        "artists": "earfzilla",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:6TOe5NPjsKmJpjEshXSvcs": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
@@ -14453,25 +14915,29 @@
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
         "song_key": "unfazed::keep falling",
         "name": "Keep Falling",
-        "artists": "unfazed"
+        "artists": "unfazed",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:2tv6GYr8MFaF29qQWqC0fU": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
         "song_key": "arodes::use somebody",
         "name": "Use Somebody",
-        "artists": "Arodes, Redd"
+        "artists": "Arodes, Redd",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:4ae7kOsYM7CQqljNqMQ4lN": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
         "song_key": "fireboy dml::peru",
         "name": "Peru - Peace Control Remix",
-        "artists": "Fireboy DML, Peace Control"
+        "artists": "Fireboy DML, Peace Control",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:18btST7wU1H0Qz5ZxbAor4": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
         "song_key": "kyril::mbona ni hivi",
         "name": "Mbona Ni Hivi",
-        "artists": "KYRIL, Idd Aziz"
+        "artists": "KYRIL, Idd Aziz",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:7LTUI8G6BcvY8dHZTniYd5": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
@@ -14504,7 +14970,8 @@
         "song_key": "wiz khalifa::yiccen",
         "name": "Yiccen",
         "artists": "Wiz Khalifa",
-        "last_featured_at": "2026-10-21T19:05:35.918659+00:00"
+        "last_featured_at": "2026-10-21T19:05:35.918659+00:00",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:4u21sBpRc6ygu9XqOEzFua": {
         "entered_at": "2026-10-09T17:17:01.255207+00:00",
@@ -14524,7 +14991,8 @@
         "entered_at": "2026-10-14T19:09:05.006956+00:00",
         "song_key": "mura masa::nothing else",
         "name": "NOTHING ELSE! (feat. Jamie Lidell)",
-        "artists": "Mura Masa, Jamie Lidell"
+        "artists": "Mura Masa, Jamie Lidell",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:6Q8nmDj0JIu0uxhugcIpBw": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
@@ -14540,7 +15008,8 @@
         "protected_until": "2026-10-30T15:07:02.619804+00:00",
         "song_key": "badbwoy::de soweto",
         "name": "De Soweto",
-        "artists": "Badbwoy, Palane"
+        "artists": "Badbwoy, Palane",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:3DqOJ2BoddzZpNdty3okJH": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
@@ -14556,7 +15025,8 @@
         "protected_until": "2026-10-30T15:07:02.619804+00:00",
         "song_key": "novulent::scars",
         "name": "scars",
-        "artists": "Novulent"
+        "artists": "Novulent",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:3OORhRpIhCk21HaJwMAp5t": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
@@ -14572,7 +15042,8 @@
         "protected_until": "2026-10-30T15:07:02.619804+00:00",
         "song_key": "novulent::unknown feelings",
         "name": "unknown feelings",
-        "artists": "Novulent"
+        "artists": "Novulent",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:29UNyuj5fKeE542SZ4L1rz": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
@@ -14623,19 +15094,22 @@
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
         "song_key": "finneas::for cryin out loud",
         "name": "For Cryin' Out Loud!",
-        "artists": "FINNEAS"
+        "artists": "FINNEAS",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:4qu63nuBpdn0qHUHuObEj1": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
         "song_key": "marshmello::leave before you love me",
         "name": "Leave Before You Love Me (with Jonas Brothers)",
-        "artists": "Marshmello, Jonas Brothers"
+        "artists": "Marshmello, Jonas Brothers",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:1QjmP1vFfUshrATGTZifWe": {
         "entered_at": "2026-10-16T15:07:02.619804+00:00",
         "song_key": "taylor bennett::new york nights",
         "name": "New York Nights",
-        "artists": "Taylor Bennett, Treble.Fm, Stro, Jordan Bratton"
+        "artists": "Taylor Bennett, Treble.Fm, Stro, Jordan Bratton",
+        "retired_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:2QrLrUqdSg5njDVEqq5QFp": {
         "entered_at": "2026-10-23T15:36:38.122058+00:00",
@@ -14723,7 +15197,8 @@
         "entered_at": "2026-10-23T15:36:38.122058+00:00",
         "song_key": "wale::the middle finger",
         "name": "The Middle Finger",
-        "artists": "Wale"
+        "artists": "Wale",
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:7CsXW2mwJHmItiGJuxwjwW": {
         "entered_at": "2026-10-23T15:36:38.122058+00:00",
@@ -14786,7 +15261,8 @@
         "entered_at": "2026-10-28T20:02:43.704813+00:00",
         "song_key": "elton john::cold heart",
         "name": "Cold Heart - PNAU Remix",
-        "artists": "Elton John, Dua Lipa, PNAU"
+        "artists": "Elton John, Dua Lipa, PNAU",
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:6McT4l96SWJIfeGtxsQw15": {
         "entered_at": "2026-10-28T20:02:43.704813+00:00",
@@ -14808,7 +15284,8 @@
         "protected_until": "2026-11-13T16:55:52.191247+00:00",
         "song_key": "iwroteasongforu::u can test me baby",
         "name": "u can test me baby",
-        "artists": "iwroteasongforu"
+        "artists": "iwroteasongforu",
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:4HCOHRCSQelz2GPX8iTamO": {
         "entered_at": "2026-10-30T16:55:52.191247+00:00",
@@ -14834,7 +15311,7 @@
         "song_key": "sophia stel::now ive got a lot you know",
         "name": "Now I've Got A Lot You Know",
         "artists": "Sophia Stel",
-        "last_featured_at": "2026-11-11T21:43:08.819006+00:00"
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:1aBI7y4ojdL48CSib7vyNr": {
         "entered_at": "2026-10-30T16:55:52.191247+00:00",
@@ -14912,7 +15389,7 @@
         "song_key": "a$ap rocky::shroom clouds",
         "name": "Shroom Clouds (feat. reggie & Jeremih)",
         "artists": "A$AP Rocky, reggie, Jeremih",
-        "last_featured_at": "2026-11-18T22:27:56.732740+00:00"
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:2JbSl4JFXuiVNLvE1vGgtj": {
         "entered_at": "2026-11-06T17:48:00.484376+00:00",
@@ -14956,7 +15433,7 @@
         "song_key": "sliim bambino::jugga",
         "name": "JUGGA",
         "artists": "Sliim Bambino",
-        "last_featured_at": "2026-11-18T22:27:56.732740+00:00"
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:7rgvhF2a3WjRkRtx2lndyc": {
         "entered_at": "2026-11-06T17:48:00.484376+00:00",
@@ -15007,7 +15484,8 @@
         "protected_until": "2026-11-27T18:20:56.752306+00:00",
         "song_key": "drake::solar eclipse",
         "name": "Solar Eclipse (feat. Don Toliver)",
-        "artists": "Drake, Don Toliver"
+        "artists": "Drake, Don Toliver",
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:4JsTX2WkPcdDTWbchQJuko": {
         "entered_at": "2026-11-13T18:20:56.752306+00:00",
@@ -15076,7 +15554,7 @@
         "song_key": "dominic fike::pangea",
         "name": "PANGEA",
         "artists": "Dominic Fike",
-        "last_featured_at": "2026-11-25T23:27:46.368596+00:00"
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:1SVhTS4l0sLFsP2Abme05l": {
         "entered_at": "2026-11-13T18:20:56.752306+00:00",
@@ -15141,7 +15619,7 @@
         "song_key": "terror reid::presto",
         "name": "PRESTO!",
         "artists": "Terror Reid, Joey Valence & Brae",
-        "last_featured_at": "2026-11-25T23:27:46.368596+00:00"
+        "last_featured_at": "2026-11-27T19:47:04.347578+00:00"
       },
       "spotify:track:14SXGjPyrx7e22Ocpc2peQ": {
         "entered_at": "2026-11-20T18:56:56.439999+00:00",
@@ -15196,9 +15674,123 @@
         "song_key": "big sean::higher",
         "name": "Higher",
         "artists": "Big Sean"
+      },
+      "spotify:track:0FKFhDtA6r3vw8UPQkESCf": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "curator_added_at": "2026-11-17T17:18:38+00:00",
+        "protected_until": "2026-12-11T19:47:04.347578+00:00",
+        "song_key": "brevin kim::grip",
+        "name": "GRIP",
+        "artists": "Brevin Kim"
+      },
+      "spotify:track:2zyOvwdn3gIZaZQpajXxPa": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "curator_added_at": "2026-11-17T17:58:54+00:00",
+        "protected_until": "2026-12-11T19:47:04.347578+00:00",
+        "song_key": "reggie::eimear",
+        "name": "Eimear",
+        "artists": "Reggie"
+      },
+      "spotify:track:6s3fRCeYOdwKDCrC9jI9wT": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "curator_added_at": "2026-11-18T00:18:20+00:00",
+        "protected_until": "2026-12-11T19:47:04.347578+00:00",
+        "song_key": "g-eazy::lady killers ii",
+        "name": "Lady Killers II",
+        "artists": "G-Eazy"
+      },
+      "spotify:track:1560osUcXrnov6yuOjXvc1": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "drake::no face",
+        "name": "No Face",
+        "artists": "Drake"
+      },
+      "spotify:track:0bSx4yauJp3lHRRwYMlwla": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "mgk::passport",
+        "name": "passport - Audio",
+        "artists": "mgk, Wiz Khalifa"
+      },
+      "spotify:track:2LMK2xLfWLKbfjZgtBWByM": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "mas\u0161h::all i got",
+        "name": "All I Got",
+        "artists": "Mas\u0161h, Adam Port, Keinemusik, Ninae"
+      },
+      "spotify:track:1Oj4UgoSBQWUPaUVakr8sc": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "marten lou::my love for you",
+        "name": "My Love for You (Yebba's Heartbreak)",
+        "artists": "Marten Lou"
+      },
+      "spotify:track:6F5ovHGMcDwltX8GLgcDvt": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "paris texas::dnd",
+        "name": "DnD (feat. Kenny Mason)",
+        "artists": "Paris Texas, Kenny Mason"
+      },
+      "spotify:track:5H8ZaA6z9uDvBNYEy7NsgR": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "40 thieves::dont turn it off",
+        "name": "Don't Turn It off (Feat. Qzen)",
+        "artists": "40 Thieves"
+      },
+      "spotify:track:1F1QmI8TMHir9SUFrooq5F": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "tobi lou::buff baby",
+        "name": "Buff Baby",
+        "artists": "tobi lou"
+      },
+      "spotify:track:3tAz11FTj3uyc1ronoSbil": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "big sean::what goes around",
+        "name": "What Goes Around",
+        "artists": "Big Sean"
+      },
+      "spotify:track:7uKcScNXuO3MWw6LowBjW1": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "ciara::1 2 step",
+        "name": "1, 2 Step (feat. Missy Elliott)",
+        "artists": "Ciara, Missy Elliott"
+      },
+      "spotify:track:1UsPflAuWTNteFUPJAJe8E": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "killer mike::scientists engineers",
+        "name": "SCIENTISTS & ENGINEERS (feat. Future & Eryn Allen Kane)",
+        "artists": "Killer Mike, Andr\u00e9 3000, Eryn Allen Kane, Future"
+      },
+      "spotify:track:1P2g6CN7xWsm8A2CsLHXxP": {
+        "entered_at": "2026-11-27T19:47:04.347578+00:00",
+        "song_key": "chiddy bang::talking to myself",
+        "name": "Talking to Myself",
+        "artists": "Chiddy Bang"
       }
     },
     "verified_order": [
+      "spotify:track:6YPqcB7p4P2YQhsqjX9Kal",
+      "spotify:track:2Ike8PM0QWeAMeBxM8b7pY",
+      "spotify:track:4IAWZw00ZI9DLKDjesx86u",
+      "spotify:track:4I2YjaR8hxlV2He2diJN4E",
+      "spotify:track:4aAoJzg1L7TRWPNsuPzZD4",
+      "spotify:track:3V1MhUIvoXig2YrrBg0gJH",
+      "spotify:track:4JKUjx4Ehx2b9NRylEUD0w",
+      "spotify:track:4gqiqFLRPO1tgOApWCAP7s",
+      "spotify:track:6zSpb8dQRaw0M1dK8PBwQz",
+      "spotify:track:7zEFlNUIg4Rv3qhnVvurlI",
+      "spotify:track:6s3fRCeYOdwKDCrC9jI9wT",
+      "spotify:track:2zyOvwdn3gIZaZQpajXxPa",
+      "spotify:track:0FKFhDtA6r3vw8UPQkESCf",
+      "spotify:track:2H1yryyX0T1GHtN6JzaoLK",
+      "spotify:track:2Etr2lwZnCK491mU5dHIDD",
+      "spotify:track:0H9KUp0A9qCJQKBrXOt8l8",
+      "spotify:track:26Mg3yHFBgZSECq6itb8dX",
+      "spotify:track:1560osUcXrnov6yuOjXvc1",
+      "spotify:track:0bSx4yauJp3lHRRwYMlwla",
+      "spotify:track:2LMK2xLfWLKbfjZgtBWByM",
+      "spotify:track:1Oj4UgoSBQWUPaUVakr8sc",
+      "spotify:track:6F5ovHGMcDwltX8GLgcDvt",
+      "spotify:track:5H8ZaA6z9uDvBNYEy7NsgR",
+      "spotify:track:1F1QmI8TMHir9SUFrooq5F",
       "spotify:track:4AgFz88NHRADgVAV2MzOSq",
       "spotify:track:4Jtd2uIBBdAl5bOaLVIlNV",
       "spotify:track:59PK68hbhNDJ974UVE46UK",
@@ -15206,14 +15798,6 @@
       "spotify:track:0sVAsg0GP4JZHKn1Ohsiw0",
       "spotify:track:5DYD4zlGiFlkpLaf2Bk8Vl",
       "spotify:track:6ZthdsKjWtiCxnxbhs74vF",
-      "spotify:track:7zEFlNUIg4Rv3qhnVvurlI",
-      "spotify:track:26Mg3yHFBgZSECq6itb8dX",
-      "spotify:track:4aAoJzg1L7TRWPNsuPzZD4",
-      "spotify:track:2H1yryyX0T1GHtN6JzaoLK",
-      "spotify:track:2Etr2lwZnCK491mU5dHIDD",
-      "spotify:track:4gqiqFLRPO1tgOApWCAP7s",
-      "spotify:track:0H9KUp0A9qCJQKBrXOt8l8",
-      "spotify:track:4IAWZw00ZI9DLKDjesx86u",
       "spotify:track:32PXNAUnXYTot2E1qYsTPX",
       "spotify:track:5m7sf4hPlvHByTBbyRNrd1",
       "spotify:track:4JsTX2WkPcdDTWbchQJuko",
@@ -15222,11 +15806,9 @@
       "spotify:track:1i3GCSvGLkE92kLo1UcC9J",
       "spotify:track:1QrtyTLimYC6Rtkzlxqvfl",
       "spotify:track:3ScHXyfKl7ZdlgeAyS340n",
-      "spotify:track:6YPqcB7p4P2YQhsqjX9Kal",
       "spotify:track:2QrLrUqdSg5njDVEqq5QFp",
       "spotify:track:2AjiiN73Kzw721XSsy2FOu",
       "spotify:track:20cre5t6pqsZPCF794uJpT",
-      "spotify:track:3V1MhUIvoXig2YrrBg0gJH",
       "spotify:track:08DdQe8ybw5ya8ZMeYXkIu",
       "spotify:track:3GbhZOGi7PIDNhtTlPHPk2",
       "spotify:track:2JbSl4JFXuiVNLvE1vGgtj",
@@ -15236,13 +15818,11 @@
       "spotify:track:5u1vw4nmCG8iuerg6ppBf0",
       "spotify:track:4QYRXza1ZCsCGRl6VnfN2G",
       "spotify:track:4HCOHRCSQelz2GPX8iTamO",
-      "spotify:track:2Ike8PM0QWeAMeBxM8b7pY",
       "spotify:track:0u0923PK30KGWR6BeINSYS",
       "spotify:track:29USgREdEXy48zHm3OnhAZ",
       "spotify:track:0qc4EOJHNO4dczQwDFCLcJ",
       "spotify:track:1aBI7y4ojdL48CSib7vyNr",
       "spotify:track:1Dcfp94Bmjnih9IYD6qV6K",
-      "spotify:track:4I2YjaR8hxlV2He2diJN4E",
       "spotify:track:3L0HZpTfA8LNlG0oFqoi6v",
       "spotify:track:2Zro7JqN8o8d2tQvxC6aCL",
       "spotify:track:403DF4o81RjXc1BwwF8MgP",
@@ -15259,28 +15839,11 @@
       "spotify:track:22NHkFYbgxB2Zirj29Gbp8",
       "spotify:track:29UNyuj5fKeE542SZ4L1rz",
       "spotify:track:3OORhRpIhCk21HaJwMAp5t",
-      "spotify:track:7uoxGQlji7HkgIZxJOJCCE",
-      "spotify:track:4zyHmSSneytuFEdU2TbU7w",
-      "spotify:track:016z46SJwcRosW9Xb8JKmF",
-      "spotify:track:6Rvi7T8vQkkIYQcp1DWm3u",
-      "spotify:track:1yX9gy5fK02j6nBnGJ1S3k",
-      "spotify:track:5CMjjywI0eZMixPeqNd75R",
-      "spotify:track:3xSR1SmielI1yzhYh841wt",
-      "spotify:track:4hOENigeyDQy61jJgiQ8zD",
-      "spotify:track:2tv6GYr8MFaF29qQWqC0fU",
-      "spotify:track:4ae7kOsYM7CQqljNqMQ4lN",
-      "spotify:track:18btST7wU1H0Qz5ZxbAor4",
-      "spotify:track:5bewkBDtMY5rrXCYBFspfF",
-      "spotify:track:4nsd2DbMYqRwkvIQ51r4cp",
-      "spotify:track:4qu63nuBpdn0qHUHuObEj1",
-      "spotify:track:1QjmP1vFfUshrATGTZifWe",
-      "spotify:track:4JKUjx4Ehx2b9NRylEUD0w",
       "spotify:track:0ojEn2GpidI32hiVF5nblj",
       "spotify:track:7C9Bcp8XgBqdetAyvp5Vms",
       "spotify:track:0JXXNGljqupsJaZsgSbMZV",
       "spotify:track:00pOvRr0YGhRQfoY6nSPm9",
       "spotify:track:5UNo2nitxVTkBA9QYmnHJx",
-      "spotify:track:6zSpb8dQRaw0M1dK8PBwQz",
       "spotify:track:6McT4l96SWJIfeGtxsQw15",
       "spotify:track:0vkT3Lz1Ojv1pTmyfdaHlE",
       "spotify:track:5xHbllWdvBHs6LGAWVk3Hl",
@@ -15298,7 +15861,12 @@
       "spotify:track:1H1a19fMep8pEr1XCy6t7x",
       "spotify:track:6cbVp9abjjESjHgqjM1bWm",
       "spotify:track:1jVjOcs7QeQZJXScbqvofI",
-      "spotify:track:0Z4RKWyyklQUoHCYFzEPKo"
+      "spotify:track:0Z4RKWyyklQUoHCYFzEPKo",
+      "spotify:track:3tAz11FTj3uyc1ronoSbil",
+      "spotify:track:3lcC9CnN7Rpo1ugATzmYjY",
+      "spotify:track:7uKcScNXuO3MWw6LowBjW1",
+      "spotify:track:1UsPflAuWTNteFUPJAJe8E",
+      "spotify:track:1P2g6CN7xWsm8A2CsLHXxP"
     ],
     "curator_queue": [
       {
@@ -15408,60 +15976,6 @@
         "nominated_at": "2026-11-12T17:22:02+00:00",
         "observed_at": "2026-11-13T18:20:56.752306+00:00",
         "eligible_week": "2026-11-16"
-      },
-      {
-        "track": {
-          "uri": "spotify:track:0FKFhDtA6r3vw8UPQkESCf",
-          "name": "GRIP",
-          "artists": "Brevin Kim",
-          "added_at": "2026-11-17T17:18:38Z",
-          "source_tags": [
-            "current"
-          ],
-          "current_position": 101,
-          "popularity": null,
-          "release_date": "2026-02-13"
-        },
-        "song_key": "brevin kim::grip",
-        "nominated_at": "2026-11-17T17:18:38+00:00",
-        "observed_at": "2026-11-18T22:27:56.732740+00:00",
-        "eligible_week": "2026-11-23"
-      },
-      {
-        "track": {
-          "uri": "spotify:track:2zyOvwdn3gIZaZQpajXxPa",
-          "name": "Eimear",
-          "artists": "Reggie",
-          "added_at": "2026-11-17T17:58:54Z",
-          "source_tags": [
-            "current"
-          ],
-          "current_position": 102,
-          "popularity": null,
-          "release_date": "2026-07-17"
-        },
-        "song_key": "reggie::eimear",
-        "nominated_at": "2026-11-17T17:58:54+00:00",
-        "observed_at": "2026-11-18T22:27:56.732740+00:00",
-        "eligible_week": "2026-11-23"
-      },
-      {
-        "track": {
-          "uri": "spotify:track:6s3fRCeYOdwKDCrC9jI9wT",
-          "name": "Lady Killers II",
-          "artists": "G-Eazy",
-          "added_at": "2026-11-18T00:18:20Z",
-          "source_tags": [
-            "current"
-          ],
-          "current_position": 103,
-          "popularity": null,
-          "release_date": "2024-03-17"
-        },
-        "song_key": "g-eazy::lady killers ii",
-        "nominated_at": "2026-11-18T00:18:20+00:00",
-        "observed_at": "2026-11-18T22:27:56.732740+00:00",
-        "eligible_week": "2026-11-23"
       }
     ],
     "dismissed_uris": [
@@ -15490,7 +16004,7 @@
     ],
     "weekly_budget": {
       "week": "2026-W48",
-      "used": 0
+      "used": 15
     },
     "featured_weeks": {
       "spotify:track:0KDgGJf3DYJNzXDIlmRtxJ": {
@@ -15622,15 +16136,15 @@
         "streak": 1
       },
       "spotify:track:6YPqcB7p4P2YQhsqjX9Kal": {
-        "week": "2026-11-09",
-        "streak": 2
+        "week": "2026-11-23",
+        "streak": 1
       },
       "spotify:track:08DdQe8ybw5ya8ZMeYXkIu": {
         "week": "2026-11-09",
         "streak": 2
       },
       "spotify:track:2Ike8PM0QWeAMeBxM8b7pY": {
-        "week": "2026-11-02",
+        "week": "2026-11-23",
         "streak": 1
       },
       "spotify:track:3GbhZOGi7PIDNhtTlPHPk2": {
@@ -15658,7 +16172,7 @@
         "streak": 1
       },
       "spotify:track:3V1MhUIvoXig2YrrBg0gJH": {
-        "week": "2026-11-09",
+        "week": "2026-11-23",
         "streak": 1
       },
       "spotify:track:0sVAsg0GP4JZHKn1Ohsiw0": {
@@ -15674,15 +16188,35 @@
         "streak": 1
       },
       "spotify:track:7zEFlNUIg4Rv3qhnVvurlI": {
-        "week": "2026-11-16",
-        "streak": 1
+        "week": "2026-11-23",
+        "streak": 2
       },
       "spotify:track:26Mg3yHFBgZSECq6itb8dX": {
         "week": "2026-11-16",
         "streak": 1
       },
       "spotify:track:4aAoJzg1L7TRWPNsuPzZD4": {
-        "week": "2026-11-16",
+        "week": "2026-11-23",
+        "streak": 2
+      },
+      "spotify:track:4IAWZw00ZI9DLKDjesx86u": {
+        "week": "2026-11-23",
+        "streak": 1
+      },
+      "spotify:track:4I2YjaR8hxlV2He2diJN4E": {
+        "week": "2026-11-23",
+        "streak": 1
+      },
+      "spotify:track:4JKUjx4Ehx2b9NRylEUD0w": {
+        "week": "2026-11-23",
+        "streak": 1
+      },
+      "spotify:track:4gqiqFLRPO1tgOApWCAP7s": {
+        "week": "2026-11-23",
+        "streak": 1
+      },
+      "spotify:track:6zSpb8dQRaw0M1dK8PBwQz": {
+        "week": "2026-11-23",
         "streak": 1
       }
     },
@@ -15761,7 +16295,7 @@
         "note": "Explicit user ratings; opening order chosen editorially, not inferred from user drag events."
       }
     ],
-    "last_major_week": "2026-W47"
+    "last_major_week": "2026-W48"
   },
   "schema_version": 2,
   "target_playlist_id": "3P9XkucRpg9Naz8cGyZOpW"
